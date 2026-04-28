@@ -1,1108 +1,496 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Use Claude Code CLI completely FREE on PC & Android — No GPU, No Subscription. Tutorial by Yogeshwar Kumar.">
-  <title>Claude Code FREE 🤯 | Yogeshwar Kumar</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            cyber: {
-              black: '#0a0a0f',
-              dark: '#111827',
-              gray: '#1f2937',
-              green: '#00ff9d',
-              blue: '#00d4ff',
-              purple: '#b74aff',
-              red: '#ff4d6a',
-              yellow: '#ffd700',
-              orange: '#ff9f43'
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code FREE | Gateway</title>
+    
+    <!-- Fonts: Inter (Sans), Source Serif 4 (Serif for headings), JetBrains Mono (Code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        claude: {
+                            bg: '#F5F4EF',         // Anthropic Cream Background
+                            surface: '#FFFFFF',    // White Surface
+                            text: '#2D2D2D',       // Dark Charcoal Text
+                            accent: '#D9614C',     // Claude Terracotta Orange
+                            accentHover: '#C25541',
+                            border: '#E6E4DD',     // Subtle Border
+                            muted: '#737373',      // Muted Text
+                            terminal: '#1E1E1C',   // Terminal Background
+                            terminalTop: '#2D2D2A' // Terminal Header
+                        }
+                    },
+                    fontFamily: {
+                        sans:['Inter', 'sans-serif'],
+                        serif: ['"Source Serif 4"', 'serif'],
+                        mono:['"JetBrains Mono"', 'monospace']
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'float': '0 10px 30px -5px rgba(0, 0, 0, 0.08)'
+                    }
+                }
             }
-          },
-          fontFamily: {
-            mono: ['JetBrains Mono', 'monospace'],
-            sans: ['Inter', 'sans-serif']
-          },
-          animation: {
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 6s ease-in-out infinite',
-            'glow': 'glow 2s ease-in-out infinite alternate',
-            'shake': 'shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both',
-            'typing': 'typing 3s steps(40) infinite, blink 0.7s step-end infinite'
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
-            },
-            glow: {
-              'from': { 'box-shadow': '0 0 5px theme("colors.cyber.green"), 0 0 10px theme("colors.cyber.green")' },
-              'to': { 'box-shadow': '0 0 10px theme("colors.cyber.green"), 0 0 20px theme("colors.cyber.green"), 0 0 30px theme("colors.cyber.green")' }
-            },
-            shake: {
-              '10%, 90%': { transform: 'translateX(-1px)' },
-              '20%, 80%': { transform: 'translateX(2px)' },
-              '30%, 50%, 70%': { transform: 'translateX(-4px)' },
-              '40%, 60%': { transform: 'translateX(4px)' }
-            },
-            typing: {
-              'from': { width: '0' },
-              'to': { width: '100%' }
-            },
-            blink: {
-              '50%': { 'border-color': 'transparent' }
-            }
-          }
         }
-      }
-    }
-  </script>
-  
-  <style>
-    /* Matrix Rain Background */
-    #matrix-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.1;
-      pointer-events: none;
-    }
-    
-    /* Glassmorphism */
-    .glass {
-      background: rgba(17, 24, 39, 0.8);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(0, 255, 157, 0.12);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
-    }
-    .glass:hover {
-      border-color: rgba(0, 255, 157, 0.3);
-      transform: translateY(-2px);
-    }
-    
-    /* Glowing Border */
-    .glow-border {
-      position: relative;
-      overflow: hidden;
-    }
-    .glow-border::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, #00ff9d, #00d4ff, #b74aff, #00ff9d);
-      border-radius: inherit;
-      z-index: -1;
-      animation: glow 3s linear infinite;
-      opacity: 0.4;
-    }
-    
-    /* Code Block Styling */
-    .code-block {
-      background: #0d1117;
-      border-left: 3px solid #00ff9d;
-      font-family: 'JetBrains Mono', monospace;
-      border-radius: 0.5rem;
-      position: relative;
-    }
-    .code-block .copy-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      padding: 4px 8px;
-      font-size: 11px;
-      background: rgba(0, 255, 157, 0.15);
-      border: 1px solid #00ff9d;
-      border-radius: 4px;
-      color: #00ff9d;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      opacity: 0;
-    }
-    .code-block:hover .copy-btn {
-      opacity: 1;
-    }
-    .code-block .copy-btn:hover {
-      background: #00ff9d;
-      color: #0a0a0f;
-    }
-    
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #111827;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #00ff9d;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #00d4ff;
-    }
-    
-    /* Tab Animation */
-    .tab-btn {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    .tab-btn::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: #00ff9d;
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-    .tab-btn:hover::after {
-      width: 80%;
-    }
-    .tab-active {
-      border-bottom: 2px solid #00ff9d;
-      color: #00ff9d !important;
-      font-weight: 600;
-    }
-    .tab-active::after {
-      width: 100%;
-    }
-    
-    /* CTA Button */
-    .cta-btn {
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-    .cta-btn:hover::before {
-      transform: translateX(100%);
-    }
-    .cta-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
-    }
-    
-    /* Step Progress Indicator */
-    .step-indicator {
-      counter-reset: step;
-    }
-    .step-item {
-      counter-increment: step;
-      position: relative;
-      padding-left: 50px;
-    }
-    .step-item::before {
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #00ff9d, #00d4ff);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 14px;
-      color: #0a0a0f;
-      box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
-    }
-    
-    /* Terminal Typing Effect */
-    .terminal-line {
-      display: inline-block;
-      border-right: 2px solid #00ff9d;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 2.5s steps(40) infinite, blink 0.7s step-end infinite;
-      max-width: 100%;
-    }
-    
-    /* Social Icon Hover */
-    .social-icon {
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .social-icon:hover {
-      transform: scale(1.1) translateY(-4px);
-      filter: drop-shadow(0 0 12px currentColor);
-    }
-    
-    /* Mobile Optimizations */
-    @media (max-width: 768px) {
-      .code-block {
-        font-size: 12px;
-      }
-      .step-item {
-        padding-left: 40px;
-      }
-      .step-item::before {
-        width: 28px;
-        height: 28px;
-        font-size: 12px;
-      }
-    }
-  </style>
+    </script>
+
+    <style>
+        body { background-color: theme('colors.claude.bg'); color: theme('colors.claude.text'); }
+        
+        /* Terminal Window Styling */
+        .mac-window { border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .mac-header { background: theme('colors.claude.terminalTop'); padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
+        .mac-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .mac-dot.red { background: #FF5F56; }
+        .mac-dot.yellow { background: #FFBD2E; }
+        .mac-dot.green { background: #27C93F; }
+        .mac-body { background: theme('colors.claude.terminal'); color: #E8E6E1; padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 14px; overflow-x: auto; position: relative; }
+        
+        /* Interactive Elements */
+        .glass-panel { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid theme('colors.claude.border'); }
+        .tab-btn { position: relative; transition: all 0.3s ease; }
+        .tab-btn::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: theme('colors.claude.accent'); transform: scaleX(0); transition: transform 0.3s ease; }
+        .tab-active { color: theme('colors.claude.accent') !important; font-weight: 500; }
+        .tab-active::after { transform: scaleX(1); }
+        
+        /* Copy Button */
+        .copy-btn { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; color: white; transition: all 0.2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 6px; }
+        .copy-btn:hover { background: theme('colors.claude.accent'); border-color: theme('colors.claude.accent'); }
+        
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Smooth reveal animation */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeUp 0.6s ease-out forwards; }
+    </style>
 </head>
-<body class="bg-cyber-black text-gray-200 font-sans antialiased overflow-x-hidden">
+<body class="antialiased flex flex-col min-h-screen selection:bg-claude-accent selection:text-white">
 
-  <!-- Matrix Background -->
-  <canvas id="matrix-canvas"></canvas>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-claude-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-8 h-8 bg-claude-accent rounded flex items-center justify-center text-white font-serif font-bold text-lg shadow-sm">C</div>
+                <span class="font-serif text-xl font-semibold tracking-tight text-claude-text">Claude Code</span>
+                <span class="bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase border border-amber-200">Free Gateway</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-claude-muted">
+                <a href="#configure" class="hover:text-claude-accent transition-colors">Configurator</a>
+                <a href="#terminal" class="hover:text-claude-accent transition-colors">Terminal Setup</a>
+                <a href="#vscode" class="hover:text-claude-accent transition-colors">IDE Extensions</a>
+            </div>
+            <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" class="bg-claude-text text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-claude-accent transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2">
+                Get $100 API Credit <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+        </div>
+    </nav>
 
-  <!-- Navigation -->
-  <nav class="fixed w-full z-50 glass border-b border-cyber-green/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center space-x-3">
-          <i class="fas fa-robot text-cyber-green text-2xl animate-pulse-slow"></i>
-          <div>
-            <span class="text-lg md:text-xl font-bold font-mono text-cyber-green">Claude Code FREE</span>
-            <span class="hidden sm:inline text-xs text-cyber-yellow ml-1">🤯 UNLIMITED</span>
-          </div>
-        </div>
-        <div class="hidden md:flex items-center space-x-5">
-          <a href="#features" class="hover:text-cyber-green transition-colors text-sm">Features</a>
-          <a href="#setup" class="hover:text-cyber-green transition-colors text-sm">Setup</a>
-          <a href="#models" class="hover:text-cyber-green transition-colors text-sm">Models</a>
-          <a href="#links" class="hover:text-cyber-green transition-colors text-sm">Resources</a>
-          <a href="#creator" class="hover:text-cyber-green transition-colors text-sm">About</a>
-          <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" 
-             class="cta-btn px-4 py-2 bg-gradient-to-r from-cyber-green to-cyber-blue text-cyber-black rounded-lg font-mono text-xs font-bold">
-            <i class="fas fa-gift mr-1"></i>Get $100
-          </a>
-        </div>
-        <button class="md:hidden text-cyber-green" id="mobile-menu-btn">
-          <i class="fas fa-bars text-xl"></i>
-        </button>
-      </div>
-    </div>
-    <div class="md:hidden hidden glass border-t border-cyber-green/20" id="mobile-menu">
-      <div class="px-4 py-3 space-y-3 text-sm">
-        <a href="#features" class="block hover:text-cyber-green">Features</a>
-        <a href="#setup" class="block hover:text-cyber-green">Setup</a>
-        <a href="#models" class="block hover:text-cyber-green">Models</a>
-        <a href="#links" class="block hover:text-cyber-green">Resources</a>
-        <a href="#creator" class="block hover:text-cyber-green">About</a>
-        <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" 
-           class="block w-full text-center px-4 py-2 bg-gradient-to-r from-cyber-green to-cyber-blue text-cyber-black rounded-lg font-mono font-bold">
-          <i class="fas fa-gift mr-1"></i>Get $100 FREE
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="min-h-screen flex items-center justify-center pt-16 px-4 relative overflow-hidden">
-    <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
-      
-      <!-- YouTube Badge -->
-      <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" 
-         class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass border border-cyber-red/40 mb-6 hover:border-cyber-red transition-colors" data-aos="fade-down">
-        <i class="fab fa-youtube text-cyber-red text-lg"></i>
-        <span class="text-xs md:text-sm font-mono text-cyber-red">🎬 Watch: Claude Code FREE Tutorial</span>
-      </a>
-      
-      <!-- Main Heading -->
-      <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight" data-aos="fade-up" data-aos-delay="100">
-        <span class="text-cyber-green">Claude Code</span><br/>
-        <span class="bg-gradient-to-r from-cyber-green via-cyber-blue to-cyber-purple bg-clip-text text-transparent">FREE & UNLIMITED</span><br/>
-        <span class="text-lg md:text-2xl text-gray-400 mt-2 block">🤯 PC + Android • No GPU • No Card</span>
-      </h1>
-      
-      <!-- Subheading -->
-      <p class="text-base md:text-lg text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-        Use the official <strong>Claude Code CLI</strong> with full power — powered by <span class="text-cyber-green font-mono">AgentRouter</span>. 
-        Created by <span class="text-cyber-blue font-bold">Yogeshwar Kumar</span>.
-      </p>
-      
-      <!-- Primary CTA -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10" data-aos="fade-up" data-aos-delay="300">
-        <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" 
-           class="cta-btn w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyber-green to-cyber-blue text-cyber-black font-bold rounded-xl font-mono text-base glow-border">
-          <i class="fas fa-bolt mr-2"></i>Get FREE API + $100 Bonus
-        </a>
-        <a href="#setup" class="w-full sm:w-auto px-8 py-4 glass border border-cyber-green/50 text-cyber-green rounded-xl font-mono text-base hover:bg-cyber-green/10 transition-all">
-          <i class="fas fa-terminal mr-2"></i>Setup Guide
-        </a>
-      </div>
-      
-      <!-- Affiliate Banner -->
-      <div class="glass rounded-xl p-4 md:p-6 mb-10 border border-cyber-yellow/30" data-aos="fade-up" data-aos-delay="400">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div class="text-left">
-            <h3 class="font-bold text-base md:text-lg mb-1 text-cyber-yellow"><i class="fas fa-users mr-2"></i>🎁 Invite Friends, Earn $100 Each!</h3>
-            <!-- NEW (English) -->
-<p class="text-xs md:text-sm text-gray-400">Invite a friend to register, and <span class="text-cyber-green font-bold">you'll BOTH get $100</span> in rewards!</p>
-          </div>
-          <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" 
-             class="px-4 py-2 bg-cyber-yellow text-cyber-black font-mono font-bold rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap text-sm">
-            Share Link →
-          </a>
-        </div>
-      </div>
-      
-      <!-- Terminal Preview with Typing Effect -->
-      <div class="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="500">
-        <div class="code-block rounded-xl p-4 md:p-6 text-left overflow-x-auto glow-border">
-          <div class="flex items-center space-x-2 mb-4">
-            <span class="w-3 h-3 rounded-full bg-red-500"></span>
-            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-            <span class="w-3 h-3 rounded-full bg-green-500"></span>
-            <span class="ml-4 text-gray-500 font-mono text-xs">yogeshwar@terminal</span>
-          </div>
-          <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> npm install -g @anthropic-ai/claude-code
-<span class="text-cyber-blue">$</span> export ANTHROPIC_BASE_URL=https://agentrouter.org/
-<span class="text-cyber-blue">$</span> export ANTHROPIC_API_KEY=sk-YOUR_TOKEN
-<span class="text-cyber-green terminal-line"># 🚀 Claude is ready - Start coding FREE!</span></code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-        </div>
-      </div>
-      
-      <!-- Floating Elements -->
-      <div class="absolute top-1/4 left-5 md:left-10 w-16 md:w-20 h-16 md:h-20 border border-cyber-blue/30 rounded-lg animate-float hidden md:block"></div>
-      <div class="absolute bottom-1/4 right-5 md:right-10 w-12 md:w-16 h-12 md:h-16 border border-cyber-purple/30 rounded-full animate-float animation-delay-2000 hidden md:block"></div>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section id="features" class="py-16 md:py-20 px-4">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-        <h2 class="text-2xl md:text-4xl font-bold mb-4">
-          <span class="text-cyber-green">✅ What You Get</span>
-        </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">Everything you need to code with Claude — completely free.</p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        <!-- Feature Cards -->
-        <div class="glass rounded-xl p-5 glow-border model-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-10 h-10 md:w-12 md:h-12 bg-cyber-green/10 rounded-lg flex items-center justify-center mb-4">
-            <i class="fas fa-brain text-cyber-green text-lg md:text-xl"></i>
-          </div>
-          <h3 class="text-lg md:text-xl font-bold mb-2">🧠 Claude Sonnet 4.5</h3>
-          <p class="text-gray-400 text-sm">Full-power AI coding agent — reasoning, debugging, and generation.</p>
-        </div>
-        
-        <div class="glass rounded-xl p-5 glow-border model-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-10 h-10 md:w-12 md:h-12 bg-cyber-blue/10 rounded-lg flex items-center justify-center mb-4">
-            <i class="fas fa-mobile-alt text-cyber-blue text-lg md:text-xl"></i>
-          </div>
-          <h3 class="text-lg md:text-xl font-bold mb-2">📱 Android via Termux</h3>
-          <p class="text-gray-400 text-sm">Run Claude Code on your phone — no PC required. F-Droid install.</p>
-        </div>
-        
-        <div class="glass rounded-xl p-5 glow-border model-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-10 h-10 md:w-12 md:h-12 bg-cyber-purple/10 rounded-lg flex items-center justify-center mb-4">
-            <i class="fas fa-code text-cyber-purple text-lg md:text-xl"></i>
-          </div>
-          <h3 class="text-lg md:text-xl font-bold mb-2">🔧 Works Everywhere</h3>
-          <p class="text-gray-400 text-sm">Terminal, VS Code, JetBrains — integrate into your workflow.</p>
-        </div>
-        
-        <div class="glass rounded-xl p-5 glow-border model-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="w-10 h-10 md:w-12 md:h-12 bg-cyber-green/10 rounded-lg flex items-center justify-center mb-4">
-            <i class="fas fa-infinity text-cyber-green text-lg md:text-xl"></i>
-          </div>
-          <h3 class="text-lg md:text-xl font-bold mb-2">♾️ Unlimited Usage</h3>
-          <p class="text-gray-400 text-sm">No rate limits, no monthly caps. Code as much as you need.</p>
-        </div>
-        
-        <div class="glass rounded-xl p-5 glow-border model-card" data-aos="fade-up" data-aos-delay="500">
-          <div class="w-10 h-10 md:w-12 md:h-12 bg-cyber-blue/10 rounded-lg flex items-center justify-center mb-4">
-            <i class="fas fa-credit-card text-cyber-blue text-lg md:text-xl"></i>
-          </div>
-          <h3 class="text-lg md:text-xl font-bold mb-2">🚫 No Payment Required</h3>
-          <p class="text-gray-400 text-sm">No subscription, no credit card, no hidden fees. 100% free.</p>
-        </div>
-        
-        <div class="glass rounded-xl p-5 glow-border model-card" data-aos="fade-up" data-aos-delay="600">
-          <div class="w-10 h-10 md:w-12 md:h-12 bg-cyber-yellow/10 rounded-lg flex items-center justify-center mb-4">
-            <i class="fas fa-gift text-cyber-yellow text-lg md:text-xl"></i>
-          </div>
-          <h3 class="text-lg md:text-xl font-bold mb-2">🎁 $100 Referral Bonus</h3>
-          <p class="text-gray-400 text-sm">Invite friends — you BOTH get $100 credit. Share & earn!</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Setup Section with Tabs -->
-  <section id="setup" class="py-16 md:py-20 px-4 bg-cyber-dark/50">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-10 md:mb-12" data-aos="fade-up">
-        <h2 class="text-2xl md:text-4xl font-bold mb-4">
-          <span class="text-cyber-green">⚡ Quick Setup</span>
-        </h2>
-        <p class="text-gray-400 text-sm md:text-base">Get Claude Code running in under 3 minutes. Choose your device:</p>
-      </div>
-      
-      <!-- Tab Navigation -->
-      <div class="flex flex-wrap justify-center gap-2 mb-6 md:mb-8" data-aos="fade-up">
-        <button class="tab-btn px-4 md:px-6 py-2 md:py-3 font-mono text-xs md:text-sm rounded-t-lg transition-all tab-active" data-tab="windows">
-          <i class="fab fa-windows mr-1 md:mr-2"></i><span class="hidden sm:inline">Windows</span><span class="sm:hidden">Win</span>
-        </button>
-        <button class="tab-btn px-4 md:px-6 py-2 md:py-3 font-mono text-xs md:text-sm rounded-t-lg transition-all text-gray-400 hover:text-cyber-green" data-tab="mac">
-          <i class="fab fa-apple mr-1 md:mr-2"></i><span class="hidden sm:inline">macOS</span><span class="sm:hidden">Mac</span>
-        </button>
-        <button class="tab-btn px-4 md:px-6 py-2 md:py-3 font-mono text-xs md:text-sm rounded-t-lg transition-all text-gray-400 hover:text-cyber-green" data-tab="linux">
-          <i class="fab fa-linux mr-1 md:mr-2"></i><span class="hidden sm:inline">Linux</span><span class="sm:hidden">Linux</span>
-        </button>
-        <button class="tab-btn px-4 md:px-6 py-2 md:py-3 font-mono text-xs md:text-sm rounded-t-lg transition-all text-gray-400 hover:text-cyber-green" data-tab="android">
-          <i class="fas fa-mobile-alt mr-1 md:mr-2"></i><span class="hidden sm:inline">Android (Termux)</span><span class="sm:hidden">📱</span>
-        </button>
-      </div>
-      
-      <!-- Tab Content -->
-      <div class="glass rounded-b-xl rounded-tr-xl p-4 md:p-8" data-aos="fade-up">
-        
-        <!-- Windows Tab -->
-        <div id="windows" class="tab-content">
-          <h3 class="text-lg md:text-xl font-bold mb-4 text-cyber-green">🪟 Windows Setup</h3>
-          <ol class="space-y-3 md:space-y-4 mb-6 step-indicator">
-            <li class="step-item text-sm md:text-base">
-              <strong>Install Claude Code CLI:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">C:\></span> npm install -g @anthropic-ai/claude-code</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            <li class="step-item text-sm md:text-base">
-              <strong>Get FREE API key:</strong>
-              <div class="p-3 md:p-4 bg-cyber-green/5 border border-cyber-green/20 rounded-lg my-2">
-                <p class="text-xs md:text-sm">
-                  👉 Register: <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" class="text-cyber-green underline font-mono">agentrouter.org/register?aff=TAGp</a><br/>
-                  🔑 Token: <a href="https://agentrouter.org/console/token" target="_blank" class="text-cyber-blue underline font-mono">console/token</a>
+    <main class="flex-grow pt-28 pb-20 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto space-y-24">
+            
+            <!-- Hero Section -->
+            <section class="text-center space-y-8 animate-fade-up">
+                <div class="inline-flex items-center space-x-2 bg-white border border-claude-border rounded-full px-4 py-1.5 text-sm text-claude-muted shadow-sm mb-4">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span>Systems Operational</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-serif font-medium text-claude-text tracking-tight leading-tight">
+                    The power of Claude.<br>
+                    <span class="italic text-claude-muted">Without the limits.</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-claude-muted font-light max-w-2xl mx-auto leading-relaxed">
+                    Use the official Anthropic Claude Code CLI completely free. Auto-configure for Windows CMD, PowerShell, Bash, Termux, and VS Code.
                 </p>
-              </div>
-            </li>
-            <li class="step-item text-sm md:text-base">
-              <strong>Set environment variables:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code>setx ANTHROPIC_BASE_URL "https://agentrouter.org/"
-setx ANTHROPIC_AUTH_TOKEN "sk-YOUR_TOKEN"
-setx ANTHROPIC_API_KEY "sk-YOUR_TOKEN"
-setx ANTHROPIC_MODEL "claude-sonnet-4-5-20250514"</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-              <p class="text-xs text-cyber-yellow mt-2"><i class="fas fa-exclamation-triangle mr-1"></i> Restart terminal after <code>setx</code>!</p>
-            </li>
-            <li class="step-item text-sm md:text-base">
-              <strong>Launch:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">C:\></span> cd your-project && claude</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-          </ol>
-        </div>
-        
-        <!-- macOS Tab -->
-        <div id="mac" class="tab-content hidden">
-          <h3 class="text-lg md:text-xl font-bold mb-4 text-cyber-green">🍎 macOS Setup</h3>
-          <ol class="space-y-3 md:space-y-4 mb-6 step-indicator">
-            <li class="step-item text-sm md:text-base">
-              <strong>Install Claude Code:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> npm install -g @anthropic-ai/claude-code</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            <li class="step-item text-sm md:text-base">
-              <strong>Add to <code>~/.zshrc</code>:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code>export ANTHROPIC_BASE_URL="https://agentrouter.org/"
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+                    <a href="#configure" class="w-full sm:w-auto bg-claude-accent text-white px-8 py-3.5 rounded-lg font-medium hover:bg-claude-accentHover transition-colors shadow-md text-center">
+                        Configure Gateway
+                    </a>
+                    <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" class="w-full sm:w-auto bg-white border border-claude-border text-claude-text px-8 py-3.5 rounded-lg font-medium hover:border-claude-accent hover:text-claude-accent transition-colors shadow-sm flex items-center justify-center gap-2">
+                        <i class="fab fa-youtube text-red-500 text-lg"></i> Watch Tutorial
+                    </a>
+                </div>
+            </section>
+
+            <!-- Configuration Section -->
+            <section id="configure" class="scroll-mt-28 animate-fade-up" style="animation-delay: 0.1s;">
+                <div class="bg-white rounded-2xl shadow-soft border border-claude-border p-6 md:p-10 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-claude-accent to-amber-400"></div>
+                    
+                    <div class="mb-8">
+                        <h2 class="text-2xl md:text-3xl font-serif font-medium mb-2">Gateway Configuration</h2>
+                        <p class="text-claude-muted">Enter your details once. We'll generate exact commands for every platform below.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-claude-text">AgentRouter API Token</label>
+                            <div class="relative">
+                                <i class="fas fa-key absolute left-3 top-1/2 -translate-y-1/2 text-claude-muted"></i>
+                                <input type="password" id="api-token" placeholder="sk-..." class="w-full pl-10 pr-4 py-3 bg-claude-bg border border-claude-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-claude-accent/20 focus:border-claude-accent transition-all font-mono">
+                            </div>
+                            <p class="text-xs text-claude-muted mt-1">Get free token from <a href="https://agentrouter.org/console/token" target="_blank" class="text-claude-accent hover:underline font-medium">Console</a></p>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-claude-text">Provider Format</label>
+                            <div class="relative">
+                                <i class="fas fa-network-wired absolute left-3 top-1/2 -translate-y-1/2 text-claude-muted"></i>
+                                <select id="api-format" class="w-full pl-10 pr-4 py-3 bg-claude-bg border border-claude-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-claude-accent/20 focus:border-claude-accent transition-all appearance-none cursor-pointer">
+                                    <option value="anthropic">Anthropic (Claude CLI)</option>
+                                    <option value="openai">OpenAI (VS Code / Roo)</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-xs text-claude-muted pointer-events-none"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-claude-text">AI Model</label>
+                            <div class="relative">
+                                <i class="fas fa-brain absolute left-3 top-1/2 -translate-y-1/2 text-claude-muted"></i>
+                                <input type="text" id="api-model" value="claude-3-5-sonnet-20241022" class="w-full pl-10 pr-4 py-3 bg-claude-bg border border-claude-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-claude-accent/20 focus:border-claude-accent transition-all font-mono" list="model-list">
+                                <datalist id="model-list">
+                                    <option value="claude-3-5-sonnet-20241022"></option>
+                                    <option value="claude-opus-4-6"></option>
+                                    <option value="deepseek-r1-0528"></option>
+                                    <option value="deepseek-v3.2"></option>
+                                    <option value="gpt-5"></option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Terminal Setup Section -->
+            <section id="terminal" class="scroll-mt-28 space-y-8 animate-fade-up" style="animation-delay: 0.2s;">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <h2 class="text-3xl font-serif font-medium mb-2">Terminal Initialization</h2>
+                        <p class="text-claude-muted">Copy the exact commands for your operating system.</p>
+                    </div>
+                    
+                    <!-- Tabs -->
+                    <div class="flex bg-white border border-claude-border rounded-lg p-1 overflow-x-auto no-scrollbar shadow-sm">
+                        <button class="tab-btn tab-active px-5 py-2 text-sm font-medium text-claude-muted hover:text-claude-text rounded-md whitespace-nowrap" data-target="tab-bash">
+                            <i class="fab fa-apple mr-1.5"></i> Mac/Linux
+                        </button>
+                        <button class="tab-btn px-5 py-2 text-sm font-medium text-claude-muted hover:text-claude-text rounded-md whitespace-nowrap" data-target="tab-cmd">
+                            <i class="fab fa-windows mr-1.5"></i> CMD
+                        </button>
+                        <button class="tab-btn px-5 py-2 text-sm font-medium text-claude-muted hover:text-claude-text rounded-md whitespace-nowrap" data-target="tab-ps">
+                            <i class="fas fa-terminal mr-1.5"></i> PowerShell
+                        </button>
+                        <button class="tab-btn px-5 py-2 text-sm font-medium text-claude-muted hover:text-claude-text rounded-md whitespace-nowrap" data-target="tab-termux">
+                            <i class="fab fa-android mr-1.5 text-green-500"></i> Termux
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terminal Mockup Window -->
+                <div class="mac-window">
+                    <div class="mac-header">
+                        <div class="mac-dot red"></div>
+                        <div class="mac-dot yellow"></div>
+                        <div class="mac-dot green"></div>
+                        <div class="ml-2 text-xs font-mono text-gray-400">yogeshwar@claude-gateway:~</div>
+                    </div>
+                    <div class="mac-body min-h-[300px]">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copy Code</button>
+                        
+                        <!-- Bash -->
+                        <div id="tab-bash" class="tab-content">
+                            <div class="text-gray-500 mb-2"># 1. Install official Claude Code globally</div>
+                            <div class="text-blue-400 mb-6">npm install -g @anthropic-ai/claude-code</div>
+                            
+                            <div class="text-gray-500 mb-2"># 2. Export environment variables and run</div>
+                            <pre><code id="code-bash" class="text-green-400 leading-relaxed">export ANTHROPIC_BASE_URL="https://agentrouter.org/"
 export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN"
 export ANTHROPIC_API_KEY="sk-YOUR_TOKEN"
-export ANTHROPIC_MODEL="claude-sonnet-4-5-20250514"</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            <li class="step-item text-sm md:text-base">
-              <strong>Apply & Run:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> source ~/.zshrc && claude</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-          </ol>
-        </div>
-        
-        <!-- Linux Tab -->
-        <div id="linux" class="tab-content hidden">
-          <h3 class="text-lg md:text-xl font-bold mb-4 text-cyber-green">🐧 Linux Setup</h3>
-          <ol class="space-y-3 md:space-y-4 mb-6 step-indicator">
-            <li class="step-item text-sm md:text-base">
-              <strong>Install dependencies:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> sudo apt update && sudo apt install nodejs npm git -y</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            <li class="step-item text-sm md:text-base">
-              <strong>Install Claude Code:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> npm install -g @anthropic-ai/claude-code</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            <li class="step-item text-sm md:text-base">
-              <strong>Set env vars in <code>~/.bashrc</code>:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code>export ANTHROPIC_BASE_URL="https://agentrouter.org/"
+export ANTHROPIC_MODEL="claude-3-5-sonnet-20241022"
+export CLAUDE_CODE_USE_AUTH_TOKEN="true"
+
+claude</code></pre>
+                        </div>
+
+                        <!-- CMD -->
+                        <div id="tab-cmd" class="tab-content hidden">
+                            <div class="text-gray-500 mb-2">REM 1. Install official Claude Code globally</div>
+                            <div class="text-blue-400 mb-6">npm install -g @anthropic-ai/claude-code</div>
+                            
+                            <div class="text-gray-500 mb-2">REM 2. Set environment variables and run</div>
+                            <pre><code id="code-cmd" class="text-green-400 leading-relaxed">set ANTHROPIC_BASE_URL=https://agentrouter.org/
+set ANTHROPIC_AUTH_TOKEN=sk-YOUR_TOKEN
+set ANTHROPIC_API_KEY=sk-YOUR_TOKEN
+set ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
+set CLAUDE_CODE_USE_AUTH_TOKEN=true
+
+claude</code></pre>
+                        </div>
+
+                        <!-- PowerShell -->
+                        <div id="tab-ps" class="tab-content hidden">
+                            <div class="text-gray-500 mb-2"># 1. Install official Claude Code globally</div>
+                            <div class="text-blue-400 mb-6">npm install -g @anthropic-ai/claude-code</div>
+                            
+                            <div class="text-gray-500 mb-2"># 2. Set environment variables and run</div>
+                            <pre><code id="code-ps" class="text-green-400 leading-relaxed">$env:ANTHROPIC_BASE_URL="https://agentrouter.org/"
+$env:ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN"
+$env:ANTHROPIC_API_KEY="sk-YOUR_TOKEN"
+$env:ANTHROPIC_MODEL="claude-3-5-sonnet-20241022"
+$env:CLAUDE_CODE_USE_AUTH_TOKEN="true"
+
+claude</code></pre>
+                        </div>
+
+                        <!-- Termux -->
+<div id="tab-termux" class="tab-content hidden">
+    <div class="text-amber-400 mb-4 border border-amber-400/30 bg-amber-400/10 p-3 rounded text-sm">
+        <i class="fas fa-exclamation-triangle mr-2"></i>
+        <strong>CRITICAL:</strong> Install Termux ONLY from 
+        <a href="https://f-droid.org/packages/com.termux/" target="_blank" class="underline text-amber-300 hover:text-yellow-300">
+            F-Droid
+        </a>, not the Play Store!
+    </div>
+                            
+                            <div class="text-gray-500 mb-2"># 1. Update and install dependencies</div>
+                            <div class="text-blue-400 mb-6">pkg update && pkg upgrade -y
+pkg install nodejs git nano -y
+npm install -g @anthropic-ai/claude-code@2.1.112</div>
+                            
+                            <div class="text-gray-500 mb-2"># 2. Export environment variables and run</div>
+                            <pre><code id="code-termux" class="text-green-400 leading-relaxed">export ANTHROPIC_BASE_URL="https://agentrouter.org/"
 export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN"
-export ANTHROPIC_API_KEY="sk-YOUR_TOKEN"</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            <li class="step-item text-sm md:text-base">
-              <strong>Run:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> source ~/.bashrc && claude</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-          </ol>
+export ANTHROPIC_API_KEY="sk-YOUR_TOKEN"
+export ANTHROPIC_MODEL="claude-3-5-sonnet-20241022"
+export CLAUDE_CODE_USE_AUTH_TOKEN="true"
+
+claude</code></pre>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- VS Code Extensions Section -->
+            <section id="vscode" class="scroll-mt-28 space-y-8 animate-fade-up" style="animation-delay: 0.3s;">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h2 class="text-3xl font-serif font-medium mb-4">IDE & Editor Extensions</h2>
+                    <p class="text-claude-muted">Use AgentRouter seamlessly within VS Code, Cursor, or Windsurf using popular OpenAI-compatible extensions.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Roo/Kilo Card -->
+                    <div class="bg-white rounded-2xl p-8 border border-claude-border shadow-soft hover:shadow-float transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6 border border-blue-100 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-medium mb-3">Roo Code / Kilo</h3>
+                        <p class="text-sm text-claude-muted mb-6">Open extension settings and select the OpenAI Compatible provider to override the endpoints.</p>
+                        
+                        <div class="bg-claude-bg border border-claude-border rounded-xl p-5 space-y-3 font-mono text-xs text-claude-text">
+                            <div class="flex justify-between items-center border-b border-claude-border pb-2">
+                                <span class="text-claude-muted">Provider</span>
+                                <span class="font-semibold bg-white px-2 py-1 rounded shadow-sm border border-claude-border">OpenAI Compatible</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-claude-border pb-2">
+                                <span class="text-claude-muted">Base URL</span>
+                                <span class="font-semibold text-blue-600 truncate max-w-[180px] sm:max-w-none" id="ext-url-roo">https://agentrouter.org/v1</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-claude-border pb-2">
+                                <span class="text-claude-muted">API Key</span>
+                                <span class="font-semibold text-green-600 truncate max-w-[180px] sm:max-w-none" id="ext-key-roo">sk-YOUR_TOKEN</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-1">
+                                <span class="text-claude-muted">Model ID</span>
+                                <span class="font-semibold text-claude-accent" id="ext-model-roo">claude-3-5-sonnet-20241022</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Codex/OpenCode Card -->
+                    <div class="bg-white rounded-2xl p-8 border border-claude-border shadow-soft hover:shadow-float transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6 border border-purple-100 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-medium mb-3">Codex / OpenCode</h3>
+                        <p class="text-sm text-claude-muted mb-6">Update your global <code>config.toml</code> or workspace settings to point to the AgentRouter gateway.</p>
+                        
+                        <div class="bg-claude-bg border border-claude-border rounded-xl p-5 space-y-3 font-mono text-xs text-claude-text">
+                            <div class="flex justify-between items-center border-b border-claude-border pb-2">
+                                <span class="text-claude-muted">API Provider</span>
+                                <span class="font-semibold bg-white px-2 py-1 rounded shadow-sm border border-claude-border">OpenAI</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-claude-border pb-2">
+                                <span class="text-claude-muted">Endpoint URL</span>
+                                <span class="font-semibold text-blue-600 truncate max-w-[180px] sm:max-w-none" id="ext-url-codex">https://agentrouter.org/v1</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-claude-border pb-2">
+                                <span class="text-claude-muted">Auth Bearer</span>
+                                <span class="font-semibold text-green-600 truncate max-w-[180px] sm:max-w-none" id="ext-key-codex">sk-YOUR_TOKEN</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-1">
+                                <span class="text-claude-muted">Custom Model</span>
+                                <span class="font-semibold text-claude-accent" id="ext-model-codex">claude-3-5-sonnet-20241022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
-        
-        <!-- Android/Termux Tab (NEW & ENHANCED) -->
-        <div id="android" class="tab-content hidden">
-          <h3 class="text-lg md:text-xl font-bold mb-4 text-cyber-green">📱 Android via Termux</h3>
-          
-          <!-- Warning Banner -->
-          <div class="p-3 md:p-4 bg-cyber-orange/10 border border-cyber-orange/30 rounded-lg mb-4 md:mb-6">
-            <div class="flex items-start">
-              <i class="fas fa-info-circle text-cyber-orange mr-2 md:mr-3 mt-1"></i>
-              <p class="text-xs md:text-sm text-gray-300">
-                <strong>Important:</strong> Install Termux from <a href="https://f-droid.org/packages/com.termux/" target="_blank" class="text-cyber-orange underline">F-Droid</a> (NOT Play Store — outdated version).
-              </p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-claude-border py-12 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+                <p class="font-serif font-medium text-claude-text text-lg">Claude Code Gateway</p>
+                <p class="text-sm text-claude-muted mt-1">Built with passion by <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" class="text-claude-accent hover:underline">Yogeshwar Kumar</a></p>
             </div>
-          </div>
-          
-          <ol class="space-y-3 md:space-y-4 mb-6 step-indicator">
-            <li class="step-item text-sm md:text-base">
-              <strong>Update & Upgrade:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> pkg update && pkg upgrade</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
             
-            <li class="step-item text-sm md:text-base">
-              <strong>Install Dependencies:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> pkg install nodejs git nano -y</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            
-            <li class="step-item text-sm md:text-base">
-              <strong>Verify Versions:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> node -v
-<span class="text-cyber-blue">$</span> npm -v</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            
-            <li class="step-item text-sm md:text-base">
-              <strong>Install Claude Code (Specific Version):</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> npm install -g @anthropic-ai/claude-code@2.1.112</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            
-            <li class="step-item text-sm md:text-base">
-              <strong>Run Installer Script:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> node $PREFIX/lib/node_modules/@anthropic-ai/claude-code/install.cjs</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-            
-            <li class="step-item text-sm md:text-base">
-              <strong>Set Environment Variables:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto">
-                <pre class="font-mono text-xs md:text-sm"><code>export ANTHROPIC_BASE_URL=https://agentrouter.org/
-export ANTHROPIC_AUTH_TOKEN=sk-Z6Bxxxxxxxxxxxxxxxx
-export ANTHROPIC_MODEL=claude-opus-4-6
-export CLAUDE_CODE_USE_AUTH_TOKEN=true</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-              <p class="text-xs text-cyber-yellow mt-2"><i class="fas fa-lightbulb mr-1"></i> Add these to <code>~/.bashrc</code> for persistence!</p>
-            </li>
-            
-            <li class="step-item text-sm md:text-base">
-              <strong>🚀 Run Claude:</strong>
-              <div class="code-block rounded-lg p-3 md:p-4 mt-2 overflow-x-auto glow-border">
-                <pre class="font-mono text-xs md:text-sm"><code><span class="text-cyber-blue">$</span> claude</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-            </li>
-          </ol>
-          
-          <!-- Pro Tips -->
-          <div class="glass rounded-lg p-4 border border-cyber-green/20">
-            <h4 class="font-bold text-cyber-green mb-3 text-sm md:text-base"><i class="fas fa-star mr-2"></i>Pro Tips for Termux</h4>
-            <ul class="text-xs md:text-sm text-gray-300 space-y-2">
-              <li>• Use <code>nano ~/.bashrc</code> to make env vars permanent</li>
-              <li>• Run <code>termux-wake-lock</code> to prevent sleep during long tasks</li>
-              <li>• Use <code>claude-sonnet-4-5-20250514</code> for best free-tier performance</li>
-              <li>• Keep Termux updated: <code>pkg upgrade</code> weekly</li>
-            </ul>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
-
-  <!-- Models Section -->
-  <section id="models" class="py-16 md:py-20 px-4">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-10 md:mb-12" data-aos="fade-up">
-        <h2 class="text-2xl md:text-4xl font-bold mb-4">
-          <span class="text-cyber-green">🤖 Available Models</span>
-        </h2>
-        <p class="text-gray-400 text-sm md:text-base">All models via AgentRouter — pick the right one for your task.</p>
-      </div>
-      
-      <!-- Models Table -->
-      <div class="glass rounded-xl overflow-hidden" data-aos="fade-up">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left">
-            <thead class="bg-cyber-dark/80">
-              <tr>
-                <th class="px-4 md:px-6 py-3 md:py-4 font-mono text-xs md:text-sm text-cyber-green">Model</th>
-                <th class="px-4 md:px-6 py-3 md:py-4 font-mono text-xs md:text-sm text-cyber-blue">Speed</th>
-                <th class="px-4 md:px-6 py-3 md:py-4 font-mono text-xs md:text-sm text-cyber-purple">Best For</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-cyber-green/10">
-              <tr class="hover:bg-cyber-green/5 transition-colors">
-                <td class="px-4 md:px-6 py-3 md:py-4 font-mono text-xs md:text-sm">claude-sonnet-4-5-20250514</td>
-                <td class="px-4 md:px-6 py-3 md:py-4"><span class="text-cyber-green text-xs">⚡ Fast</span></td>
-                <td class="px-4 md:px-6 py-3 md:py-4 text-gray-300 text-xs md:text-sm">Daily coding (Recommended)</td>
-              </tr>
-              <tr class="hover:bg-cyber-green/5 transition-colors">
-                <td class="px-4 md:px-6 py-3 md:py-4 font-mono text-xs md:text-sm">claude-haiku-4-5-20251001</td>
-                <td class="px-4 md:px-6 py-3 md:py-4"><span class="text-cyber-green text-xs">⚡⚡ Fastest</span></td>
-                <td class="px-4 md:px-6 py-3 md:py-4 text-gray-300 text-xs md:text-sm">Quick edits, simple tasks</td>
-              </tr>
-              <tr class="hover:bg-cyber-green/5 transition-colors">
-                <td class="px-4 md:px-6 py-3 md:py-4 font-mono text-xs md:text-sm">claude-opus-4-6</td>
-                <td class="px-4 md:px-6 py-3 md:py-4"><span class="text-cyber-yellow text-xs">⚡ Premium</span></td>
-                <td class="px-4 md:px-6 py-3 md:py-4 text-gray-300 text-xs md:text-sm">Complex reasoning, heavy tasks</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      
-      <!-- Pricing Link -->
-      <div class="text-center mt-6 md:mt-8" data-aos="fade-up">
-        <a href="https://agentrouter.org/pricing" target="_blank" 
-           class="inline-flex items-center px-4 md:px-5 py-2 glass border border-cyber-blue text-cyber-blue rounded-lg font-mono text-xs md:text-sm hover:bg-cyber-blue/10 transition-all">
-          <i class="fas fa-coins mr-2"></i>View Full Pricing
-          <i class="fas fa-arrow-right ml-2 text-xs"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Files & Links Section -->
-  <section id="links" class="py-16 md:py-20 px-4 bg-cyber-dark/50">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-8 md:gap-12">
-        
-        <!-- Repo Files -->
-        <div data-aos="fade-right">
-          <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-cyber-green">
-            <i class="fas fa-folder-open mr-2"></i>📁 Files in This Repo
-          </h3>
-          <div class="glass rounded-xl p-4 md:p-6">
-            <div class="font-mono text-xs md:text-sm space-y-2 md:space-y-3">
-              <div class="flex items-start">
-                <i class="fas fa-file-alt text-cyber-green mr-3 mt-1"></i>
-                <div>
-                  <span class="font-bold">README.md</span>
-                  <p class="text-gray-500 text-xs">← You are here</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <i class="fab fa-windows text-cyber-blue mr-3 mt-1"></i>
-                <span class="font-bold">setup-windows.bat</span>
-                <p class="text-gray-500 text-xs">← One-click Windows setup</p>
-              </div>
-              <div class="flex items-start">
-                <i class="fab fa-linux text-cyber-purple mr-3 mt-1"></i>
-                <span class="font-bold">setup-mac-linux.sh</span>
-                <p class="text-gray-500 text-xs">← macOS/Linux setup</p>
-              </div>
-              <div class="flex items-start">
-                <i class="fas fa-mobile-alt text-cyber-orange mr-3 mt-1"></i>
-                <span class="font-bold">setup-termux.sh</span>
-                <p class="text-gray-500 text-xs">← Android/Termux setup</p>
-              </div>
-              <div class="flex items-start">
-                <i class="fas fa-video text-cyber-red mr-3 mt-1"></i>
-                <span class="font-bold">VIDEO_SCRIPT.md</span>
-                <p class="text-gray-500 text-xs">← YouTube video script</p>
-              </div>
+            <div class="flex space-x-6 text-xl">
+                <a href="https://t.me/inyogeshwar_official" target="_blank" class="text-claude-muted hover:text-[#0088cc] transition-colors"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.gg/N4KQNteh" target="_blank" class="text-claude-muted hover:text-[#5865F2] transition-colors"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" class="text-claude-muted hover:text-claude-text transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" class="text-claude-muted hover:text-[#FF0000] transition-colors"><i class="fab fa-youtube"></i></a>
             </div>
-          </div>
         </div>
-        
-        <!-- Useful Links -->
-        <div data-aos="fade-left">
-          <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-cyber-green">
-            <i class="fas fa-link mr-2"></i>🔗 Useful Links
-          </h3>
-          <div class="space-y-3 md:space-y-4">
-            <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" 
-               class="glass rounded-xl p-3 md:p-4 flex items-center justify-between hover:border-cyber-green transition-all group">
-              <div class="flex items-center">
-                <i class="fas fa-gift text-cyber-yellow text-lg md:text-xl mr-3"></i>
-                <div>
-                  <span class="font-bold text-sm md:text-base">🆓 AgentRouter (Free API)</span>
-                  <p class="text-xs text-gray-500 hidden md:block">Register with my affiliate link</p>
-                </div>
-              </div>
-              <i class="fas fa-arrow-right text-cyber-green group-hover:translate-x-1 transition-transform"></i>
-            </a>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Tab switching logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset buttons
+                tabBtns.forEach(b => {
+                    b.classList.remove('tab-active');
+                });
+                // Hide all contents
+                tabContents.forEach(c => {
+                    c.classList.add('hidden');
+                });
+                
+                // Activate clicked
+                btn.classList.add('tab-active');
+                const targetId = btn.getAttribute('data-target');
+                document.getElementById(targetId).classList.remove('hidden');
+            });
+        });
+
+        // Copy Code logic
+        function copyCode(btn) {
+            // Find the visible pre>code block within the active tab
+            const activeTab = document.querySelector('.tab-content:not(.hidden)');
+            const codeElements = activeTab.querySelectorAll('code');
+            let fullText = "";
             
-            <a href="https://agentrouter.org/console/token" target="_blank" 
-               class="glass rounded-xl p-3 md:p-4 flex items-center justify-between hover:border-cyber-blue transition-all group">
-              <div class="flex items-center">
-                <i class="fas fa-key text-cyber-blue text-lg md:text-xl mr-3"></i>
-                <div>
-                  <span class="font-bold text-sm md:text-base">🔑 Get API Token</span>
-                  <p class="text-xs text-gray-500 hidden md:block">Your personal access key</p>
-                </div>
-              </div>
-              <i class="fas fa-arrow-right text-cyber-blue group-hover:translate-x-1 transition-transform"></i>
-            </a>
+            // Append npm install command if exists
+            const npmInstall = activeTab.querySelector('.text-blue-400');
+            if(npmInstall) fullText += npmInstall.innerText + "\n\n";
             
-            <a href="https://docs.agentrouter.org/en/start.html" target="_blank" 
-               class="glass rounded-xl p-3 md:p-4 flex items-center justify-between hover:border-cyber-purple transition-all group">
-              <div class="flex items-center">
-                <i class="fas fa-book text-cyber-purple text-lg md:text-xl mr-3"></i>
-                <div>
-                  <span class="font-bold text-sm md:text-base">📖 AgentRouter Docs</span>
-                  <p class="text-xs text-gray-500 hidden md:block">Complete API documentation</p>
-                </div>
-              </div>
-              <i class="fas fa-arrow-right text-cyber-purple group-hover:translate-x-1 transition-transform"></i>
-            </a>
-            
-            <a href="https://t.me/inyogeshwar_official" target="_blank" 
-               class="glass rounded-xl p-3 md:p-4 flex items-center justify-between hover:border-cyber-blue transition-all group">
-              <div class="flex items-center">
-                <i class="fab fa-telegram text-cyber-blue text-lg md:text-xl mr-3"></i>
-                <div>
-                  <span class="font-bold text-sm md:text-base">💬 Telegram Channel</span>
-                  <p class="text-xs text-gray-500 hidden md:block">Updates & support</p>
-                </div>
-              </div>
-              <i class="fas fa-arrow-right text-cyber-blue group-hover:translate-x-1 transition-transform"></i>
-            </a>
-            
-            <a href="https://discord.gg/N4KQNteh" target="_blank" 
-               class="glass rounded-xl p-3 md:p-4 flex items-center justify-between hover:border-cyber-purple transition-all group">
-              <div class="flex items-center">
-                <i class="fab fa-discord text-cyber-purple text-lg md:text-xl mr-3"></i>
-                <div>
-                  <span class="font-bold text-sm md:text-base">🎮 Discord Community</span>
-                  <p class="text-xs text-gray-500 hidden md:block">Get help & share tips</p>
-                </div>
-              </div>
-              <i class="fas fa-arrow-right text-cyber-purple group-hover:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
+            // Append the actual env vars & run command
+            if(codeElements.length > 0) {
+                fullText += codeElements[0].innerText;
+            }
 
-  <!-- Troubleshooting Section -->
-  <section class="py-16 md:py-20 px-4">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-10 md:mb-12" data-aos="fade-up">
-        <h2 class="text-2xl md:text-4xl font-bold mb-4">
-          <span class="text-cyber-green">📌 Troubleshooting</span>
-        </h2>
-        <p class="text-gray-400 text-sm md:text-base">Common issues and quick fixes.</p>
-      </div>
-      
-      <div class="space-y-3 md:space-y-4">
-        <div class="glass rounded-xl p-4 md:p-5 glow-border" data-aos="fade-up">
-          <h4 class="font-bold text-cyber-green mb-2 text-sm md:text-base">"claude: command not found"</h4>
-          <div class="code-block rounded p-2 md:p-3 text-xs overflow-x-auto">
-            <pre class="font-mono"><code><span class="text-gray-500"># Restart terminal. Or verify:</span>
-npm list -g @anthropic-ai/claude-code</code></pre>
-          </div>
-        </div>
-        
-        <div class="glass rounded-xl p-4 md:p-5 glow-border" data-aos="fade-up" data-aos-delay="100">
-          <h4 class="font-bold text-cyber-blue mb-2 text-sm md:text-base">"API key invalid" error</h4>
-          <ul class="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-2 ml-4">
-            <li>• Full token copy karo AgentRouter console se</li>
-            <li>• Restart terminal after <code>setx</code> (Windows)</li>
-            <li>• No extra spaces in token</li>
-          </ul>
-        </div>
-        
-        <div class="glass rounded-xl p-4 md:p-5 glow-border" data-aos="fade-up" data-aos-delay="200">
-          <h4 class="font-bold text-cyber-purple mb-2 text-sm md:text-base">Model not available</h4>
-          <p class="text-xs md:text-sm text-gray-300">
-            Switch to <code class="bg-cyber-gray px-1 rounded">claude-sonnet-4-5-20250514</code> — most reliable free model
-          </p>
-        </div>
-        
-        <div class="glass rounded-xl p-4 md:p-5 glow-border" data-aos="fade-up" data-aos-delay="300">
-          <h4 class="font-bold text-cyber-orange mb-2 text-sm md:text-base">Termux: Permission denied</h4>
-          <p class="text-xs md:text-sm text-gray-300">
-            Run <code class="bg-cyber-gray px-1 rounded">termux-setup-storage</code> first, then retry installation.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Creator Section -->
-  <section id="creator" class="py-16 md:py-20 px-4 bg-cyber-dark/50">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="mb-10 md:mb-12" data-aos="fade-up">
-        <h2 class="text-2xl md:text-4xl font-bold mb-4">
-          <span class="text-cyber-green">👨‍💻 About the Creator</span>
-        </h2>
-        <p class="text-gray-400 text-sm md:text-base">Built with ❤️ by Yogeshwar Kumar — Developer & Content Creator</p>
-      </div>
-      
-      <!-- Creator Avatar -->
-      <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 md:mb-6 rounded-full bg-gradient-to-br from-cyber-green via-cyber-blue to-cyber-purple flex items-center justify-center glow-border" data-aos="zoom-in">
-        <i class="fas fa-user-astronaut text-2xl md:text-3xl text-white"></i>
-      </div>
-      
-      <h3 class="text-xl md:text-2xl font-bold mb-1 md:mb-2">Yogeshwar Kumar</h3>
-      <p class="text-cyber-green font-mono text-sm md:text-base mb-6 md:mb-8">@inyogeshwar</p>
-      
-      <!-- Social Links Grid -->
-      <div class="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-12" data-aos="fade-up">
-        <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" 
-           class="glass rounded-xl p-4 md:p-5 flex flex-col items-center hover:border-cyber-red transition-all group social-icon" style="color: #ff0000">
-          <i class="fab fa-youtube text-2xl md:text-3xl mb-2 md:mb-3"></i>
-          <span class="font-mono text-xs">YouTube</span>
-        </a>
-        <a href="https://t.me/inyogeshwar_official" target="_blank" 
-           class="glass rounded-xl p-4 md:p-5 flex flex-col items-center hover:border-cyber-blue transition-all group social-icon" style="color: #0088cc">
-          <i class="fab fa-telegram text-2xl md:text-3xl mb-2 md:mb-3"></i>
-          <span class="font-mono text-xs">Telegram</span>
-        </a>
-        <a href="https://discord.gg/N4KQNteh" target="_blank" 
-           class="glass rounded-xl p-4 md:p-5 flex flex-col items-center hover:border-cyber-purple transition-all group social-icon" style="color: #5865f2">
-          <i class="fab fa-discord text-2xl md:text-3xl mb-2 md:mb-3"></i>
-          <span class="font-mono text-xs">Discord</span>
-        </a>
-        <a href="https://github.com/inyogeshwar" target="_blank" 
-           class="glass rounded-xl p-4 md:p-5 flex flex-col items-center hover:border-cyber-green transition-all group social-icon" style="color: #6e5494">
-          <i class="fab fa-github text-2xl md:text-3xl mb-2 md:mb-3"></i>
-          <span class="font-mono text-xs">GitHub</span>
-        </a>
-        <a href="https://x.com/inyogeshwar" target="_blank" 
-           class="glass rounded-xl p-4 md:p-5 flex flex-col items-center hover:border-cyber-blue transition-all group social-icon" style="color: #1da1f2">
-          <i class="fab fa-x-twitter text-2xl md:text-3xl mb-2 md:mb-3"></i>
-          <span class="font-mono text-xs">X/Twitter</span>
-        </a>
-        <a href="https://instagram.com/theyogeshwara" target="_blank" 
-           class="glass rounded-xl p-4 md:p-5 flex flex-col items-center hover:border-cyber-purple transition-all group social-icon" style="color: #e1306c">
-          <i class="fab fa-instagram text-2xl md:text-3xl mb-2 md:mb-3"></i>
-          <span class="font-mono text-xs">Instagram</span>
-        </a>
-        <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" 
-           class="glass rounded-xl p-4 md:p-5 flex flex-col items-center hover:border-cyber-yellow transition-all group social-icon col-span-3 md:col-span-1" style="color: #ffd700">
-          <i class="fas fa-gift text-2xl md:text-3xl mb-2 md:mb-3"></i>
-          <span class="font-mono text-xs">$100 Bonus</span>
-        </a>
-      </div>
-      
-      <!-- Support CTA -->
-      <div class="glass rounded-xl p-4 md:p-6 mb-6 md:mb-8" data-aos="fade-up">
-        <h4 class="font-bold text-base md:text-lg mb-2 md:mb-3">⭐ Support This Project</h4>
-        <p class="text-gray-400 text-sm mb-3 md:mb-4">Video helpful laga? Please support:</p>
-        <div class="flex flex-wrap justify-center gap-2 md:gap-3">
-          <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" 
-             class="px-4 md:px-5 py-2 bg-cyber-green text-cyber-black font-mono font-bold rounded-lg hover:opacity-90 transition-opacity text-xs md:text-sm">
-            <i class="fas fa-star mr-1"></i> Star Repo
-          </a>
-          <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" 
-             class="px-4 md:px-5 py-2 glass border border-cyber-red text-cyber-red font-mono font-bold rounded-lg hover:bg-cyber-red/10 transition-all text-xs md:text-sm">
-            <i class="fas fa-thumbs-up mr-1"></i> Like Video
-          </a>
-          <a href="https://www.youtube.com/@YogeshwarkumarOfficial?sub_confirmation=1" target="_blank" 
-             class="px-4 md:px-5 py-2 glass border border-cyber-blue text-cyber-blue font-mono font-bold rounded-lg hover:bg-cyber-blue/10 transition-all text-xs md:text-sm">
-            <i class="fas fa-bell mr-1"></i> Subscribe
-          </a>
-        </div>
-      </div>
-      
-      <!-- Final Affiliate Banner -->
-      <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" 
-         class="block glass rounded-xl p-4 md:p-6 border-2 border-cyber-yellow glow-border hover:scale-[1.02] transition-transform" data-aos="fade-up">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
-          <div class="text-left">
-            <h3 class="font-bold text-base md:text-xl mb-1 text-cyber-yellow">
-              <i class="fas fa-fire mr-2"></i>🔥 Get $100 FREE Credit!
-            </h3>
-            <p class="text-gray-300 text-xs md:text-sm">Register via my link → You + Friend get $100 each</p>
-            <p class="text-xs text-gray-500 mt-1 hidden md:block">For every friend you invite to register, both you and your friend will receive a $100 reward.</p>
-          </div>
-          <div class="flex items-center space-x-2 md:space-x-3">
-            <span class="font-mono text-xl md:text-2xl font-bold text-cyber-green">$100</span>
-            <button class="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-cyber-green to-cyber-blue text-cyber-black font-mono font-bold rounded-lg md:rounded-xl hover:opacity-90 transition-opacity text-xs md:text-sm">
-              Claim Now →
-            </button>
-          </div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-6 md:py-8 px-4 border-t border-cyber-green/20">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
-      <p class="text-xs md:text-sm text-gray-500 font-mono">
-        <i class="fas fa-code mr-1"></i> Made with ❤️ by <a href="https://www.youtube.com/@YogeshwarkumarOfficial" class="text-cyber-green hover:underline">Yogeshwar Kumar</a>
-      </p>
-      <div class="flex items-center space-x-3 md:space-x-4 text-xs md:text-sm">
-        <a href="https://github.com/inyogeshwar/claude-code-free" class="hover:text-cyber-green transition-colors">GitHub</a>
-        <a href="https://agentrouter.org/pricing" class="hover:text-cyber-green transition-colors">Pricing</a>
-        <a href="https://discord.gg/N4KQNteh" class="hover:text-cyber-green transition-colors">Discord</a>
-        <a href="https://t.me/inyogeshwar_official" class="hover:text-cyber-green transition-colors">Telegram</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- JavaScript for Interactivity -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    // Initialize AOS animations
-    AOS.init({ duration: 600, once: true, offset: 50 });
-
-    // Matrix Rain Effect
-    const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%"\'#&_(),.;:?!\\|{}<>[]^~§@'.split('');
-    const fontSize = 14;
-    let columns = canvas.width / fontSize;
-    let drops = [];
-    
-    function initDrops() {
-      columns = canvas.width / fontSize;
-      drops = [];
-      for(let i = 0; i < columns; i++) drops[i] = Math.random() * -100;
-    }
-    initDrops();
-    window.addEventListener('resize', initDrops);
-    
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00ff9d';
-      ctx.font = fontSize + 'px monospace';
-      for(let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-      requestAnimationFrame(drawMatrix);
-    }
-    drawMatrix();
-
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-    // Tab Switching
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => { b.classList.remove('tab-active', 'text-cyber-green'); b.classList.add('text-gray-400'); });
-        btn.classList.add('tab-active', 'text-cyber-green'); btn.classList.remove('text-gray-400');
-        const tabId = btn.dataset.tab;
-        tabContents.forEach(c => c.classList.add('hidden'));
-        document.getElementById(tabId).classList.remove('hidden');
-      });
-    });
-
-    // Copy to Clipboard
-    function copyCode(btn) {
-      const code = btn.parentElement.querySelector('code').innerText;
-      navigator.clipboard.writeText(code).then(() => {
-        const original = btn.textContent;
-        btn.textContent = '✓ Copied!';
-        btn.style.background = '#00ff9d';
-        btn.style.color = '#0a0a0f';
-        setTimeout(() => { btn.textContent = original; btn.style.background = ''; btn.style.color = ''; }, 2000);
-      });
-    }
-    window.copyCode = copyCode;
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          mobileMenu?.classList.add('hidden');
+            navigator.clipboard.writeText(fullText).then(() => {
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.style.background = '#D9614C';
+                btn.style.borderColor = '#D9614C';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.style.background = '';
+                    btn.style.borderColor = '';
+                }, 2000);
+            });
         }
-      });
-    });
-  </script>
+
+        // Live Configuration Logic
+        const apiTokenInput = document.getElementById('api-token');
+        const apiFormatSelect = document.getElementById('api-format');
+        const apiModelInput = document.getElementById('api-model');
+
+        function updateCommands() {
+            const token = apiTokenInput.value.trim() || 'sk-YOUR_TOKEN';
+            const model = apiModelInput.value.trim() || 'claude-3-5-sonnet-20241022';
+            const format = apiFormatSelect.value;
+            
+            // Auto-adjust Base URL depending on provider selected
+            const baseUrl = format === 'anthropic' ? 'https://agentrouter.org/' : 'https://agentrouter.org/v1';
+
+            // Update Bash
+            document.getElementById('code-bash').innerHTML = `export ANTHROPIC_BASE_URL="${baseUrl}"\nexport ANTHROPIC_AUTH_TOKEN="${token}"\nexport ANTHROPIC_API_KEY="${token}"\nexport ANTHROPIC_MODEL="${model}"\nexport CLAUDE_CODE_USE_AUTH_TOKEN="true"\n\nclaude`;
+
+            // Update CMD
+            document.getElementById('code-cmd').innerHTML = `set ANTHROPIC_BASE_URL=${baseUrl}\nset ANTHROPIC_AUTH_TOKEN=${token}\nset ANTHROPIC_API_KEY=${token}\nset ANTHROPIC_MODEL=${model}\nset CLAUDE_CODE_USE_AUTH_TOKEN=true\n\nclaude`;
+
+            // Update PowerShell
+            document.getElementById('code-ps').innerHTML = `$env:ANTHROPIC_BASE_URL="${baseUrl}"\n$env:ANTHROPIC_AUTH_TOKEN="${token}"\n$env:ANTHROPIC_API_KEY="${token}"\n$env:ANTHROPIC_MODEL="${model}"\n$env:CLAUDE_CODE_USE_AUTH_TOKEN="true"\n\nclaude`;
+
+            // Update Termux
+            document.getElementById('code-termux').innerHTML = `export ANTHROPIC_BASE_URL="${baseUrl}"\nexport ANTHROPIC_AUTH_TOKEN="${token}"\nexport ANTHROPIC_API_KEY="${token}"\nexport ANTHROPIC_MODEL="${model}"\nexport CLAUDE_CODE_USE_AUTH_TOKEN="true"\n\nclaude`;
+
+            // Update Extensions UI
+            document.getElementById('ext-url-roo').textContent = baseUrl;
+            document.getElementById('ext-url-codex').textContent = baseUrl;
+            
+            document.getElementById('ext-key-roo').textContent = token;
+            document.getElementById('ext-key-codex').textContent = token;
+            
+            document.getElementById('ext-model-roo').textContent = model;
+            document.getElementById('ext-model-codex').textContent = model;
+        }
+
+        // Listeners for Live Updates
+        apiTokenInput.addEventListener('input', updateCommands);
+        apiFormatSelect.addEventListener('change', updateCommands);
+        apiModelInput.addEventListener('input', updateCommands);
+
+        // Local Storage Save/Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedToken = localStorage.getItem('claude_gateway_token');
+            const savedModel = localStorage.getItem('claude_gateway_model');
+            const savedFormat = localStorage.getItem('claude_gateway_format');
+            
+            if(savedToken) apiTokenInput.value = savedToken;
+            if(savedModel) apiModelInput.value = savedModel;
+            if(savedFormat) apiFormatSelect.value = savedFormat;
+            
+            updateCommands();
+        });
+
+        apiTokenInput.addEventListener('blur', () => localStorage.setItem('claude_gateway_token', apiTokenInput.value));
+        apiModelInput.addEventListener('blur', () => localStorage.setItem('claude_gateway_model', apiModelInput.value));
+        apiFormatSelect.addEventListener('change', () => localStorage.setItem('claude_gateway_format', apiFormatSelect.value));
+    </script>
 </body>
 </html>
