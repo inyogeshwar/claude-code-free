@@ -1,6 +1,6 @@
 # 🤯 Claude Code FREE & UNLIMITED — No GPU, No Limits!
 
-> **YouTube Tutorial:** [How to Use Claude Code FREE UNLIMITED 🤯 | Yogeshwar Kumar](https://www.youtube.com/@YogeshwarkumarOfficial)
+> **YouTube Tutorial:** [Watch Now](https://youtu.be/-ITyNBWPGu4)
 
 Use the official **Claude Code** CLI tool — powered by [AgentRouter](https://agentrouter.org/register?aff=TAGp) — completely FREE. No Anthropic subscription, no GPU, no credit card required.
 
@@ -8,19 +8,19 @@ Use the official **Claude Code** CLI tool — powered by [AgentRouter](https://a
 
 ## ✅ What You Get
 
-- 🧠 Claude Sonnet 4.5 — full power AI coding agent
-- 💻 Runs on your PC — Windows, Mac, Linux
-- 🔧 Works in terminal + VS Code + JetBrains
-- ♾️ Unlimited usage via AgentRouter free tier
-- 🚫 No monthly subscription, no credit card
+* 🧠 Claude Sonnet — powerful AI coding agent
+* 💻 Runs on Windows, Mac, Linux
+* 🔧 Works in Terminal + VS Code + JetBrains
+* ♾️ Unlimited usage via AgentRouter free tier
+* 🚫 No subscription, no credit card
 
 ---
 
 ## 📋 Requirements
 
-- Node.js v18+ → [Download Here](https://nodejs.org/)
-- Git → [Download Here](https://git-scm.com/)
-- Terminal (Command Prompt / PowerShell / Bash)
+* Node.js v18+ → [https://nodejs.org/](https://nodejs.org/)
+* Git → [https://git-scm.com/](https://git-scm.com/)
+* Terminal (CMD / PowerShell / Bash)
 
 ---
 
@@ -32,25 +32,30 @@ Use the official **Claude Code** CLI tool — powered by [AgentRouter](https://a
 npm install -g @anthropic-ai/claude-code
 ```
 
-### Step 2 — Get FREE API Key
+---
 
-👉 Register FREE: **[agentrouter.org/register?aff=TAGp](https://agentrouter.org/register?aff=TAGp)**
+### Step 2 — Get FREE Token
 
-Get your token from: **[agentrouter.org/console/token](https://agentrouter.org/console/token)**
+👉 Register: [https://agentrouter.org/register?aff=TAGp](https://agentrouter.org/register?aff=TAGp)
 
-### Step 3 — Set Environment Variables (Permanent)
+👉 Get Token: [https://agentrouter.org/console/token](https://agentrouter.org/console/token)
+
+---
+
+### Step 3 — Set Environment Variables
 
 ```cmd
 setx ANTHROPIC_BASE_URL "https://agentrouter.org/"
 setx ANTHROPIC_AUTH_TOKEN "sk-YOUR_TOKEN_HERE"
-setx ANTHROPIC_API_KEY "sk-YOUR_TOKEN_HERE"
-setx ANTHROPIC_MODEL "claude-sonnet-4-5-20250514"
+setx ANTHROPIC_MODEL "claude-3-5-sonnet-20241022"
 setx CLAUDE_CODE_USE_AUTH_TOKEN "true"
 ```
 
-> ⚠️ **Important:** Close and reopen your terminal after running `setx` commands!
+⚠️ Restart terminal after running above commands
 
-### Step 4 — Launch Claude Code
+---
+
+### Step 4 — Launch Claude
 
 ```cmd
 cd your-project-folder
@@ -59,108 +64,96 @@ claude
 
 ---
 
-## 🍎 Quick Setup — macOS / Linux
-
-### Step 1 — Install
+## 🍎 macOS / Linux Setup
 
 ```bash
 npm install -g @anthropic-ai/claude-code
-```
 
-### Step 2 — Add to `~/.bashrc` or `~/.zshrc`
-
-```bash
 export ANTHROPIC_BASE_URL="https://agentrouter.org/"
 export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN_HERE"
-export ANTHROPIC_API_KEY="sk-YOUR_TOKEN_HERE"
-export ANTHROPIC_MODEL="claude-sonnet-4-5-20250514"
+export ANTHROPIC_MODEL="claude-3-5-sonnet-20241022"
 export CLAUDE_CODE_USE_AUTH_TOKEN="true"
-```
 
-```bash
-source ~/.bashrc   # or source ~/.zshrc
 claude
 ```
 
 ---
 
-## 🤖 Available Models via AgentRouter
+## 🌐 OpenRouter (FREE Models) 🔥
 
-| Model | Speed | Best For |
-|-------|-------|---------|
-| `claude-sonnet-4-5-20250514` | ⚡ Fast | Daily coding (Recommended) |
-| `claude-haiku-4-5-20251001` | ⚡⚡ Fastest | Quick edits |
-| `claude-3-5-haiku-20241022` | ⚡⚡ Fastest | Background tasks |
+You can also use OpenRouter for FREE models:
+
+```bash
+export ANTHROPIC_BASE_URL="https://openrouter.ai/api/v1"
+export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN_HERE"
+export ANTHROPIC_MODEL="openrouter/free"
+```
+
+✅ Automatically selects best FREE model
+✅ No need to manually choose models
 
 ---
 
-## 📁 Files in This Repo
+## 🤖 Available Models
+
+* claude-3-5-sonnet-20241022 (Recommended)
+* claude-haiku-4-5-20251001
+* claude-opus-4-6
+* deepseek-v3.2
+* glm-5.1
+
+---
+
+## 📁 Project Structure
 
 ```
-📦 claude-code-free/
- ├── 📄 README.md              ← You are here
- ├── 🪟 setup-windows.bat      ← One-click Windows setup
- ├── 🪟 setup-windows.ps1      ← PowerShell setup
- ├── 🐧 setup-mac-linux.sh     ← macOS/Linux setup
- ├── 🎬 VIDEO_SCRIPT.md        ← Full YouTube video script
- └── 📋 YOUTUBE_METADATA.md    ← Title, description, tags, thumbnail ideas
+claude-code-free/
+ ├── index.html
+ ├── README.md
+ ├── setup-windows.bat
+ ├── setup-mac-linux.sh
 ```
 
 ---
 
 ## 🔗 Useful Links
 
-| Resource | Link |
-|----------|------|
-| 🆓 AgentRouter (Free API) | [agentrouter.org/register?aff=TAGp](https://agentrouter.org/register?aff=TAGp) |
-| 🔑 Get API Token | [agentrouter.org/console/token](https://agentrouter.org/console/token) |
-| 📖 AgentRouter Docs | [docs.agentrouter.org/en/start.html](https://docs.agentrouter.org/en/start.html) |
-| 📚 Claude Code Docs | [code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview) |
-| 💻 Claude Code GitHub | [github.com/anthropics/claude-code](https://github.com/anthropics/claude-code) |
+* AgentRouter → [https://agentrouter.org/register?aff=TAGp](https://agentrouter.org/register?aff=TAGp)
+* Token → [https://agentrouter.org/console/token](https://agentrouter.org/console/token)
+* OpenRouter → [https://openrouter.ai](https://openrouter.ai)
+* Docs → [https://docs.agentrouter.org](https://docs.agentrouter.org)
+* Claude Code → [https://code.claude.com](https://code.claude.com)
 
 ---
 
-## 👨‍💻 About the Creator
+## 🛠 Troubleshooting
 
-**Yogeshwar Kumar** — Developer & Content Creator
+**Command not found**
 
-| Platform | Link |
-|----------|------|
-| 🎬 YouTube (Main) | [@YogeshwarkumarOfficial](https://www.youtube.com/@YogeshwarkumarOfficial) |
-| 🎬 YouTube (Dev) | [@in_yogeshwar](https://www.youtube.com/@in_yogeshwar) |
-| 🐦 X / Twitter | [@inyogeshwar](https://x.com/inyogeshwar) |
-| 📱 Instagram | [@theyogeshwara](https://instagram.com/theyogeshwara) |
-| 💬 Telegram | [t.me/inyogeshwar_official](https://t.me/inyogeshwar_official) |
-| 🎮 Discord | [discord.gg/N4KQNteh](https://discord.gg/N4KQNteh) |
-| 🐙 GitHub | [github.com/inyogeshwar](https://github.com/inyogeshwar) |
-
----
-
-## 📌 Troubleshooting
-
-**"claude: command not found"**
 ```bash
-# Restart terminal. Or verify:
 npm list -g @anthropic-ai/claude-code
 ```
 
-**"API key invalid" error**
-- Full token copy karo AgentRouter console se
-- Restart terminal after `setx` (Windows)
-- No extra spaces in token
+Restart terminal after install
 
-**Model not available**
-- Switch to `claude-sonnet-4-5-20250514` — most reliable free model
+---
+
+**Token invalid**
+
+* Re-copy token
+* Remove extra spaces
+* Restart terminal
 
 ---
 
 ## ⭐ Support
 
-Video helpful laga? Please:
-- 🌟 **Star this repo**
-- 👍 **Like the video**
-- 🔔 **Subscribe to [@YogeshwarkumarOfficial](https://www.youtube.com/@YogeshwarkumarOfficial)**
+If this helped:
+
+* ⭐ Star this repo
+* 👍 Like the video
+* 🔔 Subscribe
 
 ---
 
-*Made with ❤️ by [Yogeshwar Kumar](https://www.youtube.com/@YogeshwarkumarOfficial)*
+*Made with ❤️ by Yogeshwar Kumar*
