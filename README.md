@@ -1,159 +1,202 @@
-# 🤯 Claude Code FREE & UNLIMITED — No GPU, No Limits!
+# 🤖 Claude Code CLI — Free Access Guide
 
-> **YouTube Tutorial:** [Watch Now](https://youtu.be/-ITyNBWPGu4)
+> ⚡ Use the official **Claude Code** CLI tool with alternative API endpoints — no GPU required!
 
-Use the official **Claude Code** CLI tool — powered by [AgentRouter](https://agentrouter.org/register?aff=TAGp) — completely FREE. No Anthropic subscription, no GPU, no credit card required.
-
----
-
-## ✅ What You Get
-
-* 🧠 Claude Sonnet — powerful AI coding agent
-* 💻 Runs on Windows, Mac, Linux
-* 🔧 Works in Terminal + VS Code + JetBrains
-* ♾️ Unlimited usage via AgentRouter free tier
-* 🚫 No subscription, no credit card
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](#)
+[![Tutorial](https://img.shields.io/badge/YouTube-Tutorial-red?logo=youtube)](https://youtu.be/-ITyNBWPGu4)
 
 ---
 
-## 📋 Requirements
+## 📋 Table of Contents
 
-* Node.js v18+ → [https://nodejs.org/](https://nodejs.org/)
-* Git → [https://git-scm.com/](https://git-scm.com/)
-* Terminal (CMD / PowerShell / Bash)
+- [✨ Features](#-features)
+- [🔧 Prerequisites](#-prerequisites)
+- [⚡ Quick Setup](#-quick-setup)
+  - [Windows](#windows)
+  - [macOS / Linux](#macos--linux)
+- [🌐 Alternative Providers](#-alternative-providers)
+- [🛠️ Troubleshooting](#️-troubleshooting)
+- [⚠️ Disclaimer](#️-disclaimer)
+- [⭐ Support](#-support)
+- [📄 License](#-license)
 
 ---
 
-## ⚡ Quick Setup — Windows
+## ✨ Features
 
-### Step 1 — Install Claude Code
+✅ Official `@anthropic-ai/claude-code` CLI compatibility  
+✅ Cross-platform support (Windows, macOS, Linux)  
+✅ Flexible API endpoint configuration  
+✅ Support for multiple model selections  
+✅ Zero GPU requirements  
+✅ Easy environment variable setup  
+
+---
+
+## 🔧 Prerequisites
+
+Before you begin, ensure you have:
+
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [npm](https://www.npmjs.com/) package manager
+- A terminal/command prompt with admin privileges
+- An API token from [AgentRouter](https://agentrouter.org/register?aff=TAGp)
+
+---
+
+## ⚡ Quick Setup
+
+### Windows
+
+#### 1️⃣ Install Claude Code CLI
 
 ```cmd
+:: Install globally via npm
 npm install -g @anthropic-ai/claude-code
 ```
 
----
+#### 2️⃣ Get Your API Token
 
-### Step 2 — Get FREE Token
+🔗 [Register at AgentRouter](https://agentrouter.org/register?aff=TAGp)  
+🔗 [Generate Token](https://agentrouter.org/console/token)
 
-👉 Register: [https://agentrouter.org/register?aff=TAGp](https://agentrouter.org/register?aff=TAGp)
-
-👉 Get Token: [https://agentrouter.org/console/token](https://agentrouter.org/console/token)
-
----
-
-### Step 3 — Set Environment Variables
+#### 3️⃣ Configure Environment Variables
 
 ```cmd
+:: Set API base URL
 setx ANTHROPIC_BASE_URL "https://agentrouter.org/"
+
+:: Set your authentication token
 setx ANTHROPIC_AUTH_TOKEN "sk-YOUR_TOKEN_HERE"
+
+:: Choose your preferred model
 setx ANTHROPIC_MODEL "claude-3-5-sonnet-20241022"
+
+:: Enable token authentication
 setx CLAUDE_CODE_USE_AUTH_TOKEN "true"
 ```
 
-⚠️ Restart terminal after running above commands
+> 💡 **Tip**: Restart your terminal after setting environment variables for changes to take effect.
 
----
-
-### Step 4 — Launch Claude
+#### 4️⃣ Launch Claude
 
 ```cmd
-cd your-project-folder
+:: Navigate to your project directory
+cd path\to\your-project
+
+:: Start the Claude CLI
 claude
 ```
 
 ---
 
-## 🍎 macOS / Linux Setup
+### macOS / Linux
 
 ```bash
+# 1. Install Claude Code CLI
 npm install -g @anthropic-ai/claude-code
 
+# 2. Configure environment variables
 export ANTHROPIC_BASE_URL="https://agentrouter.org/"
 export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN_HERE"
 export ANTHROPIC_MODEL="claude-3-5-sonnet-20241022"
 export CLAUDE_CODE_USE_AUTH_TOKEN="true"
 
+# 3. Launch Claude
 claude
 ```
 
+> 💡 **Pro Tip**: Add the `export` commands to your `~/.bashrc` or `~/.zshrc` for persistent configuration.
+
 ---
 
-## 🌐 OpenRouter (FREE Models) 🔥
+## 🌐 Alternative Providers
 
-You can also use OpenRouter for FREE models:
+### OpenRouter (Free Tier Models)
 
 ```bash
+# Configure for OpenRouter
 export ANTHROPIC_BASE_URL="https://openrouter.ai/api/v1"
-export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN_HERE"
-export ANTHROPIC_MODEL="openrouter/free"
+export ANTHROPIC_AUTH_TOKEN="sk-YOUR_OPENROUTER_KEY"
+export ANTHROPIC_MODEL="openrouter/free"  # Auto-selects best free model
 ```
 
-✅ Automatically selects best FREE model
-✅ No need to manually choose models
+🔗 [Get OpenRouter Key](https://openrouter.ai/keys)
+
+| Provider | Base URL | Free Tier | Notes |
+|----------|----------|-----------|-------|
+| AgentRouter | `https://agentrouter.org/` | ✅ | Best for Claude models |
+| OpenRouter | `https://openrouter.ai/api/v1` | ✅ | Multiple model options |
+| Official Anthropic | `https://api.anthropic.com` | ❌ | Requires paid subscription |
 
 ---
 
-## 🤖 Available Models
+## 🛠️ Troubleshooting
 
-* claude-3-5-sonnet-20241022 (Recommended)
-* claude-haiku-4-5-20251001
-* claude-opus-4-6
-* deepseek-v3.2
-* glm-5.1
+### Common Issues
 
----
+| Issue | Solution |
+|-------|----------|
+| `claude: command not found` | Ensure npm global bin is in your PATH |
+| Authentication failed | Verify `ANTHROPIC_AUTH_TOKEN` is correct |
+| Model not found | Check `ANTHROPIC_MODEL` spelling & provider support |
+| Connection timeout | Verify internet connection & firewall settings |
 
-## 📁 Project Structure
-
-```
-claude-code-free/
- ├── index.html
- ├── README.md
- ├── setup-windows.bat
- ├── setup-mac-linux.sh
-```
-
----
-
-## 🔗 Useful Links
-
-* AgentRouter → [https://agentrouter.org/register?aff=TAGp](https://agentrouter.org/register?aff=TAGp)
-* Token → [https://agentrouter.org/console/token](https://agentrouter.org/console/token)
-* OpenRouter → [https://openrouter.ai](https://openrouter.ai)
-* Docs → [https://docs.agentrouter.org](https://docs.agentrouter.org)
-* Claude Code → [https://code.claude.com](https://code.claude.com)
-
----
-
-## 🛠 Troubleshooting
-
-**Command not found**
+### Verify Installation
 
 ```bash
-npm list -g @anthropic-ai/claude-code
+# Check Claude CLI version
+claude --version
+
+# Test environment variables (macOS/Linux)
+echo $ANTHROPIC_BASE_URL
+echo $ANTHROPIC_AUTH_TOKEN
 ```
 
-Restart terminal after install
+### Reset Configuration
+
+```bash
+# Windows
+setx ANTHROPIC_AUTH_TOKEN ""
+
+# macOS/Linux
+unset ANTHROPIC_AUTH_TOKEN
+```
 
 ---
 
-**Token invalid**
+## ⚠️ Disclaimer
 
-* Re-copy token
-* Remove extra spaces
-* Restart terminal
-
----
-
-## ⭐ Support
-
-If this helped:
-
-* ⭐ Star this repo
-* 👍 Like the video
-* 🔔 Subscribe
+> 🔐 **Important**: This guide demonstrates configuration options for the Claude Code CLI. 
+> 
+> - Always review and comply with [Anthropic's Terms of Service](https://www.anthropic.com/legal/terms)
+> - Third-party API proxies may have their own usage policies
+> - This project is not affiliated with Anthropic, AgentRouter, or OpenRouter
+> - Use responsibly and ethically
 
 ---
 
-*Made with ❤️ by Yogeshwar Kumar*
+## ⭐ Support the Project
+
+If you found this guide helpful:
+
+- 🌟 **Star** this repository
+- 👍 **Like** the [YouTube tutorial](https://youtu.be/-ITyNBWPGu4)
+- 🔔 **Subscribe** for more dev tools content
+- 🐛 **Report issues** via GitHub Issues
+
+[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/YOUR_REPO?style=social)](https://github.com/YOUR_USERNAME/YOUR_REPO)
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
+
+---
+
+<p align="center">
+  <sub>Made with ❤️ by <a href="https://github.com/YogeshwarKumar">Yogeshwar Kumar</a></sub><br>
+  <sub>© 2024 — For educational purposes only</sub>
+</p>
