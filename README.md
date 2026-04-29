@@ -13,13 +13,10 @@
 - [✨ Features](#-features)
 - [🔧 Prerequisites](#-prerequisites)
 - [⚡ Quick Setup](#-quick-setup)
-  - [Windows](#windows)
-  - [macOS / Linux](#macos--linux)
 - [🌐 Alternative Providers](#-alternative-providers)
 - [🛠️ Troubleshooting](#️-troubleshooting)
 - [⚠️ Disclaimer](#️-disclaimer)
 - [⭐ Support](#-support)
-- [📄 License](#-license)
 
 ---
 
@@ -119,7 +116,7 @@ claude
 # Configure for OpenRouter
 export ANTHROPIC_BASE_URL="https://openrouter.ai/api/v1"
 export ANTHROPIC_AUTH_TOKEN="sk-YOUR_OPENROUTER_KEY"
-export ANTHROPIC_MODEL="openrouter/free"  # Auto-selects best free model
+export ANTHROPIC_MODEL="openrouter/free"
 ```
 
 🔗 [Get OpenRouter Key](https://openrouter.ai/keys)
@@ -186,7 +183,7 @@ If you found this guide helpful:
 - 🔔 **Subscribe** for more dev tools content
 - 🐛 **Report issues** via GitHub Issues
 
-[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/YOUR_REPO?style=social)](https://github.com/YOUR_USERNAME/YOUR_REPO)
+[![GitHub stars](https://img.shields.io/github/stars/inyogeshwar/claude-code-free?style=social)](https://github.com/inyogeshwar/claude-code-free)
 
 ---
 
@@ -197,6 +194,6 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more informa
 ---
 
 <p align="center">
-  <sub>Made with ❤️ by <a href="https://github.com/YogeshwarKumar">Yogeshwar Kumar</a></sub><br>
-  <sub>© 2024 — For educational purposes only</sub>
+  <sub>Made with ❤️ by <a href="https://github.com/inyogeshwar">Yogeshwar Kumar</a></sub><br>
+  <sub>© 2026 — For educational purposes only</sub>
 </p>
