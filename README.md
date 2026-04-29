@@ -4,7 +4,16 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](#)
-[![Tutorial](https://img.shields.io/badge/YouTube-Tutorial-red?logo=youtube)](https://youtu.be/-ITyNBWPGu4)
+[![YouTube](https://img.shields.io/badge/Watch_Tutorial-FF0000?logo=youtube&logoColor=white)](https://youtu.be/-ITyNBWPGu4)
+
+<p align="center">
+  <a href="https://youtu.be/-ITyNBWPGu4">
+    <img src="https://img.youtube.com/vi/-ITyNBWPGu4/maxresdefault.jpg" alt="Video Tutorial" width="600">
+  </a>
+  <br>
+  <strong>🎬 Watch the Full Setup Tutorial:</strong><br>
+  <a href="https://youtu.be/-ITyNBWPGu4">https://youtu.be/-ITyNBWPGu4</a>
+</p>
 
 ---
 
