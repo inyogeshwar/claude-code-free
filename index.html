@@ -444,17 +444,36 @@ claude</code></pre>
             const baseUrl = format === 'anthropic' ? 'https://agentrouter.org/' : 'https://agentrouter.org/v1';
 
             // Update Bash
-            document.getElementById('code-bash').innerHTML = `export ANTHROPIC_BASE_URL="${baseUrl}"\nexport ANTHROPIC_AUTH_TOKEN="${token}"\nexport ANTHROPIC_API_KEY="${token}"\nexport ANTHROPIC_MODEL="${model}"\nexport CLAUDE_CODE_USE_AUTH_TOKEN="true"\n\nclaude`;
+document.getElementById('code-bash').innerHTML = `export ANTHROPIC_BASE_URL="${baseUrl}"
+export ANTHROPIC_AUTH_TOKEN="${token}"
+export ANTHROPIC_MODEL="${model}"
+export CLAUDE_CODE_USE_AUTH_TOKEN="true"
 
-            // Update CMD
-            document.getElementById('code-cmd').innerHTML = `set ANTHROPIC_BASE_URL=${baseUrl}\nset ANTHROPIC_AUTH_TOKEN=${token}\nset ANTHROPIC_API_KEY=${token}\nset ANTHROPIC_MODEL=${model}\nset CLAUDE_CODE_USE_AUTH_TOKEN=true\n\nclaude`;
+claude`;
 
-            // Update PowerShell
-            document.getElementById('code-ps').innerHTML = `$env:ANTHROPIC_BASE_URL="${baseUrl}"\n$env:ANTHROPIC_AUTH_TOKEN="${token}"\n$env:ANTHROPIC_API_KEY="${token}"\n$env:ANTHROPIC_MODEL="${model}"\n$env:CLAUDE_CODE_USE_AUTH_TOKEN="true"\n\nclaude`;
+// Update CMD
+document.getElementById('code-cmd').innerHTML = `set ANTHROPIC_BASE_URL=${baseUrl}
+set ANTHROPIC_AUTH_TOKEN=${token}
+set ANTHROPIC_MODEL=${model}
+set CLAUDE_CODE_USE_AUTH_TOKEN=true
 
-            // Update Termux
-            document.getElementById('code-termux').innerHTML = `export ANTHROPIC_BASE_URL="${baseUrl}"\nexport ANTHROPIC_AUTH_TOKEN="${token}"\nexport ANTHROPIC_API_KEY="${token}"\nexport ANTHROPIC_MODEL="${model}"\nexport CLAUDE_CODE_USE_AUTH_TOKEN="true"\n\nclaude`;
+claude`;
 
+// Update PowerShell
+document.getElementById('code-ps').innerHTML = `$env:ANTHROPIC_BASE_URL="${baseUrl}"
+$env:ANTHROPIC_AUTH_TOKEN="${token}"
+$env:ANTHROPIC_MODEL="${model}"
+$env:CLAUDE_CODE_USE_AUTH_TOKEN="true"
+
+claude`;
+
+// Update Termux
+document.getElementById('code-termux').innerHTML = `export ANTHROPIC_BASE_URL="${baseUrl}"
+export ANTHROPIC_AUTH_TOKEN="${token}"
+export ANTHROPIC_MODEL="${model}"
+export CLAUDE_CODE_USE_AUTH_TOKEN="true"
+
+claude`;
             // Update Extensions UI
             document.getElementById('ext-url-roo').textContent = baseUrl;
             document.getElementById('ext-url-codex').textContent = baseUrl;
