@@ -251,18 +251,31 @@ claude</code></pre>
                         </div>
 
                         <!-- CMD -->
-                        <div id="tab-cmd" class="tab-content hidden">
-                            <div class="text-gray-500 mb-2">REM 1. Install official Claude Code globally</div>
-                            <div class="text-blue-400 mb-6">npm install -g @anthropic-ai/claude-code</div>
-                            
-                            <div class="text-gray-500 mb-2">REM 2. Set environment variables and run</div>
-                            <pre><code id="code-cmd" class="text-green-400 leading-relaxed">set ANTHROPIC_BASE_URL=https://agentrouter.org/
-set ANTHROPIC_AUTH_TOKEN=sk-YOUR_TOKEN
-set ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
-set CLAUDE_CODE_USE_AUTH_TOKEN=true
+<div id="tab-cmd" class="tab-content hidden">
+    <div class="text-gray-500 mb-2">REM 0. Download & Install Node.js + npm</div>
+    <pre><code class="text-green-400 leading-relaxed">
+REM Visit https://nodejs.org
+REM Download the latest LTS installer for Windows
+REM Run installer (includes npm automatically)
+node -v
+npm -v
+    </code></pre>
 
-claude</code></pre>
-                        </div>
+    <div class="text-gray-500 mb-2">REM 1. Install official Claude Code globally</div>
+    <div class="text-blue-400 mb-6">npm install -g @anthropic-ai/claude-code</div>
+    
+    <div class="text-gray-500 mb-2">REM 2. Set environment variables and run</div>
+    <pre><code id="code-cmd" class="text-green-400 leading-relaxed">
+setx ANTHROPIC_BASE_URL=https://agentrouter.org/
+setx ANTHROPIC_AUTH_TOKEN=sk-YOUR_TOKEN
+setx ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
+setx CLAUDE_CODE_USE_AUTH_TOKEN=true
+
+claude
+    </code></pre>
+</div>
+
+
 
                         <!-- PowerShell -->
                         <div id="tab-ps" class="tab-content hidden">
