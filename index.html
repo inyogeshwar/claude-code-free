@@ -224,29 +224,28 @@
                     </div>
                 </div>
 
-                <!-- Terminal Mockup Window -->
-                <div class="mac-window">
-                    <div class="mac-header">
-                        <div class="mac-dot red"></div>
-                        <div class="mac-dot yellow"></div>
-                        <div class="mac-dot green"></div>
-                        <div class="ml-2 text-xs font-mono text-gray-400">yogeshwar@claude-gateway:~</div>
-                    </div>
-                    <div class="mac-body min-h-[300px]">
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copy Code</button>
-                        
-                        <!-- Bash -->
-                        <div id="tab-bash" class="tab-content">
-                            <div class="text-gray-500 mb-2"># 1. Install official Claude Code globally</div>
-                            <div class="text-blue-400 mb-6">npm install -g @anthropic-ai/claude-code</div>
-                            <div class="text-gray-500 mb-2"># 2. Export environment variables and run</div>
-                            <pre><code id="code-bash" class="text-green-400 leading-relaxed">export ANTHROPIC_BASE_URL="https://agentrouter.org/"
-export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN"
-export ANTHROPIC_MODEL="claude-3-5-sonnet-20241022"
-export CLAUDE_CODE_USE_AUTH_TOKEN="true"
+               <!-- Bash -->
+<div id="tab-bash" class="tab-content">
+    <div class="text-gray-500 mb-2"># 1. Install Claude Code</div>
+    <div class="text-blue-400 mb-6">
+npm install -g @anthropic-ai/claude-code
+    </div>
 
-claude</code></pre>
-                        </div>
+    <div class="text-gray-500 mb-2"># 2. (Optional Fix) Run installer if error comes</div>
+    <div class="text-blue-400 mb-6">
+node $(npm root -g)/@anthropic-ai/claude-code/install.cjs
+    </div>
+
+    <div class="text-gray-500 mb-2"># 3. Export environment variables and run</div>
+    <pre><code id="code-bash" class="text-green-400 leading-relaxed">
+export ANTHROPIC_BASE_URL=https://agentrouter.org/
+export ANTHROPIC_AUTH_TOKEN=sk-YOUR_TOKEN
+export ANTHROPIC_MODEL=claude-opus-4-6
+export CLAUDE_CODE_USE_AUTH_TOKEN=true
+
+claude
+    </code></pre>
+</div>
 
                         <!-- CMD -->
 <div id="tab-cmd" class="tab-content hidden">
