@@ -167,19 +167,35 @@
                         </div>
                         
                         <div class="space-y-2">
-                            <label class="text-sm font-semibold text-claude-text">AI Model</label>
-                            <div class="relative">
-                                <i class="fas fa-brain absolute left-3 top-1/2 -translate-y-1/2 text-claude-muted"></i>
-                                <input type="text" id="api-model" value="claude-3-5-sonnet-20241022" class="w-full pl-10 pr-4 py-3 bg-claude-bg border border-claude-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-claude-accent/20 focus:border-claude-accent transition-all font-mono" list="model-list">
-                                <datalist id="model-list">
-                                    <option value="claude-3-5-sonnet-20241022"></option>
-                                    <option value="claude-opus-4-6"></option>
-                                    <option value="deepseek-r1-0528"></option>
-                                    <option value="deepseek-v3.2"></option>
-                                    <option value="gpt-5"></option>
-                                </datalist>
-                            </div>
-                        </div>
+    <label class="text-sm font-semibold text-claude-text">AI Model</label>
+    <div class="relative">
+        <i class="fas fa-brain absolute left-3 top-1/2 -translate-y-1/2 text-claude-muted"></i>
+
+        <select id="api-model"
+            class="w-full pl-10 pr-4 py-3 bg-claude-bg border border-claude-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-claude-accent/20 focus:border-claude-accent transition-all cursor-pointer">
+
+            <!-- DEFAULT -->
+            <option value="claude-3-5-sonnet-20241022" selected>
+                claude-3-5-sonnet-20241022 (Recommended)
+            </option>
+
+            <!-- CLAUDE -->
+            <option value="claude-haiku-4-5-20251001">claude-haiku-4-5-20251001</option>
+            <option value="claude-opus-4-6">claude-opus-4-6</option>
+
+            <!-- DEEPSEEK -->
+            <option value="deepseek-r1-0528">deepseek-r1-0528</option>
+            <option value="deepseek-v3.1">deepseek-v3.1</option>
+            <option value="deepseek-v3.2">deepseek-v3.2</option>
+
+            <!-- GLM -->
+            <option value="glm-4.5">glm-4.5</option>
+            <option value="glm-4.6">glm-4.6</option>
+            <option value="glm-5.1">glm-5.1</option>
+
+        </select>
+    </div>
+</div>
                     </div>
                 </div>
             </section>
