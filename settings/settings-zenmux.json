@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "alwaysThinkingEnabled": true,
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
+    "ANTHROPIC_API_KEY": "YOUR_API_KEY_HERE",
+    "ANTHROPIC_MODEL": "z-ai/glm-4.7-flash-free",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "stepfun/step-3.7-flash-free",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "z-ai/glm-4.7-flash-free",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "moonshotai/kimi-k3-free",
+    "ENABLE_TOOL_SEARCH": "true",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "API_TIMEOUT_MS": "30000000"
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(git:*)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm:*)",
+      "Bash(yarn:*)",
+      "Bash(python:*)",
+      "Bash(py:*)",
+      "Bash(pip:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(rm -fr:*)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)"
+    ],
+    "ask": [
+      "Bash(sudo:*)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)"
+    ]
+  }
+}

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Free — Configure Claude Code with Free AI Providers</title>
+    <meta name="description" content="Configure Claude Code with free AI providers. Ready-made settings files, step-by-step guides, and utility scripts for OpenRouter, OpenCode, AgentRouter, NVIDIA NIM, ZenMux, AeroLink, FreeModel, and BlueSminds.">
+    <meta name="keywords" content="Claude Code, free AI, OpenRouter, AgentRouter, AI coding, CLI, Anthropic, free tier">
+    <meta name="author" content="inyogeshwar">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Claude Code Free — Configure Claude Code with Free AI Providers">
+    <meta property="og:description" content="Ready-made settings files, step-by-step guides, and utility scripts for 8+ free AI providers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inyogeshwar.github.io/claude-code-free/">
+    <meta property="og:image" content="https://inyogeshwar.github.io/claude-code-free/assets/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code Free — Free AI Providers">
+    <meta name="twitter:description" content="Ready-made settings files for 8+ free AI providers.">
+    <meta name="twitter:image" content="https://inyogeshwar.github.io/claude-code-free/assets/og-image.png">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Claude Code Free",
+        "description": "Configure Claude Code with free AI providers using ready-made settings files.",
+        "url": "https://inyogeshwar.github.io/claude-code-free/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, Linux, macOS",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', system-ui, sans-serif; }
+        code, pre { font-family: 'JetBrains Mono', monospace; }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .dark .glass {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        html:not(.dark) .glass {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        html:not(.dark) .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #667eea);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-glow:hover::before { opacity: 1; }
+
+        .code-block {
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+        html.dark .copy-btn {
+            background: rgba(255,255,255,0.1);
+            color: #a1a1aa;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        html:not(.dark) .copy-btn {
+            background: rgba(0,0,0,0.06);
+            color: #525252;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .copy-btn:hover { transform: scale(1.05); }
+
+        .provider-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .provider-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-end));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .provider-card:hover::before { opacity: 1; }
+
+        html:not(.dark) body { background: #f8fafc; color: #1e293b; }
+        html:not(.dark) .text-gray-400 { color: #64748b; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(128,128,128,0.3); border-radius: 4px; }
+    </style>
+</head>
+<body class="dark:bg-gray-950 bg-gray-50 text-white dark:text-gray-100 transition-colors duration-300">
+
+    <!-- Theme Toggle -->
+    <button id="themeToggle" class="fixed top-5 right-5 z-50 glass rounded-full p-3 hover:scale-110 transition-transform" aria-label="Toggle theme">
+        <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-sm">C</div>
+                    <span class="font-bold text-lg">Claude Code Free</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#features" class="text-sm text-gray-400 hover:text-white transition-colors">Features</a>
+                    <a href="#providers" class="text-sm text-gray-400 hover:text-white transition-colors">Providers</a>
+                    <a href="#install" class="text-sm text-gray-400 hover:text-white transition-colors">Install</a>
+                    <a href="#faq" class="text-sm text-gray-400 hover:text-white transition-colors">FAQ</a>
+                    <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" class="text-sm font-medium px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors">GitHub</a>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass border-t border-white/5">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#features" class="block text-sm text-gray-400 hover:text-white">Features</a>
+                <a href="#providers" class="block text-sm text-gray-400 hover:text-white">Providers</a>
+                <a href="#install" class="block text-sm text-gray-400 hover:text-white">Install</a>
+                <a href="#faq" class="block text-sm text-gray-400 hover:text-white">FAQ</a>
+                <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" class="block text-sm font-medium text-purple-400">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+        <div class="hero-glow bg-purple-600" style="top: -200px; right: -200px;"></div>
+        <div class="hero-glow bg-pink-600" style="bottom: -200px; left: -200px;"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="fade-up">
+                <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="text-sm text-gray-400">8 providers • Free tiers available • Open source</span>
+                </div>
+            </div>
+
+            <h1 class="fade-up text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6" style="transition-delay: 0.1s;">
+                <span class="gradient-text">Claude Code</span>
+                <br>
+                <span class="text-gray-300 dark:text-gray-300" style="color: #94a3b8;">Free</span>
+            </h1>
+
+            <p class="fade-up text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10" style="transition-delay: 0.2s;">
+                Configure Claude Code with free AI providers. Ready-made settings, guides, and scripts — no paid subscription required.
+            </p>
+
+            <div class="fade-up flex flex-col sm:flex-row items-center justify-center gap-4" style="transition-delay: 0.3s;">
+                <a href="#install" class="btn-glow px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-semibold text-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all">
+                    Get Started Free
+                </a>
+                <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" class="glass px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-all">
+                    View on GitHub
+                </a>
+            </div>
+
+            <div class="fade-up mt-16" style="transition-delay: 0.4s;">
+                <div class="code-block glass rounded-xl p-4 max-w-xl mx-auto text-left">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <code class="text-sm text-gray-300">
+                        <span class="text-purple-400">$</span> npm install -g @anthropic-ai/claude-code<br>
+                        <span class="text-purple-400">$</span> cp settings/settings-openrouter.json ~/.claude/settings.json<br>
+                        <span class="text-purple-400">$</span> <span class="text-green-400">claude</span>
+                    </code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">Everything You Need</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Production-ready configurations, scripts, and documentation for Claude Code with free AI providers.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="fade-up glass rounded-2xl p-6 card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-4 text-2xl">📦</div>
+                    <h3 class="font-semibold text-lg mb-2">Ready-Made Settings</h3>
+                    <p class="text-sm text-gray-400">Drop-in JSON config files for 8+ providers. Just add your API key.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mb-4 text-2xl">🔄</div>
+                    <h3 class="font-semibold text-lg mb-2">Provider Switcher</h3>
+                    <p class="text-sm text-gray-400">Switch between providers instantly with included scripts.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 text-2xl">🖥️</div>
+                    <h3 class="font-semibold text-lg mb-2">Cross-Platform</h3>
+                    <p class="text-sm text-gray-400">Windows, Linux, and macOS support with PowerShell and Bash.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mb-4 text-2xl">🔍</div>
+                    <h3 class="font-semibold text-lg mb-2">Diagnostic Tools</h3>
+                    <p class="text-sm text-gray-400">Doctor scripts to diagnose and fix configuration issues.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.4s;">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center mb-4 text-2xl">📄</div>
+                    <h3 class="font-semibold text-lg mb-2">Full Documentation</h3>
+                    <p class="text-sm text-gray-400">Detailed guides for every provider with pros, cons, and troubleshooting.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.5s;">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-500 flex items-center justify-center mb-4 text-2xl">🛡️</div>
+                    <h3 class="font-semibold text-lg mb-2">Security First</h3>
+                    <p class="text-sm text-gray-400">Placeholders only. Never commit real API keys. Safe by default.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.6s;">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center mb-4 text-2xl">💾</div>
+                    <h3 class="font-semibold text-lg mb-2">Backup & Restore</h3>
+                    <p class="text-sm text-gray-400">Automatic backups when switching. Restore previous configs anytime.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.7s;">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center mb-4 text-2xl">🆓</div>
+                    <h3 class="font-semibold text-lg mb-2">100% Free</h3>
+                    <p class="text-sm text-gray-400">MIT licensed. Free forever. No hidden costs or catches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Providers Section -->
+    <section id="providers" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">Supported Providers</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Choose from 8 AI providers with free tiers. Each has a detailed setup guide.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="docs/providers/openrouter.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #6366f1; --accent-end: #8b5cf6;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center font-bold text-sm">OR</div>
+                        <div>
+                            <h3 class="font-semibold">OpenRouter</h3>
+                            <span class="text-xs text-green-400">Free Tier</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">Access hundreds of models through a unified API.</p>
+                    <div class="text-xs text-gray-500">openrouter.ai/api</div>
+                </a>
+
+                <a href="docs/providers/opencode.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #10b981; --accent-end: #06b6d4; transition-delay: 0.1s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center font-bold text-sm">OC</div>
+                        <div>
+                            <h3 class="font-semibold">OpenCode</h3>
+                            <span class="text-xs text-green-400">Free Tier</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">AI-powered development tools with free coding models.</p>
+                    <div class="text-xs text-gray-500">opencode.ai/zen/v1</div>
+                </a>
+
+                <a href="docs/providers/agentrouter.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #f59e0b; --accent-end: #ef4444; transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-red-500 flex items-center justify-center font-bold text-sm">AR</div>
+                        <div>
+                            <h3 class="font-semibold">AgentRouter</h3>
+                            <span class="text-xs text-green-400">Free Tier</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">Claude Opus access with free tier and auth token.</p>
+                    <div class="text-xs text-gray-500">agentrouter.org</div>
+                </a>
+
+                <a href="docs/providers/nvidia.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #22c55e; --accent-end: #16a34a; transition-delay: 0.3s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center font-bold text-sm">NV</div>
+                        <div>
+                            <h3 class="font-semibold">NVIDIA NIM</h3>
+                            <span class="text-xs text-green-400">Free Credits</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">NVIDIA-optimized inference with free credits.</p>
+                    <div class="text-xs text-gray-500">integrate.api.nvidia.com</div>
+                </a>
+
+                <a href="docs/providers/zenmux.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #8b5cf6; --accent-end: #d946ef; transition-delay: 0.4s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center font-bold text-sm">ZM</div>
+                        <div>
+                            <h3 class="font-semibold">ZenMux</h3>
+                            <span class="text-xs text-green-400">Free Tier</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">Smart routing across multiple free models.</p>
+                    <div class="text-xs text-gray-500">zenmux.ai/api/anthropic</div>
+                </a>
+
+                <a href="docs/providers/aerolink.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #06b6d4; --accent-end: #3b82f6; transition-delay: 0.5s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center font-bold text-sm">AL</div>
+                        <div>
+                            <h3 class="font-semibold">AeroLink</h3>
+                            <span class="text-xs text-green-400">Free Tier</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">Simple proxy for Claude Code with fast setup.</p>
+                    <div class="text-xs text-gray-500">capi.aerolink.lat</div>
+                </a>
+
+                <a href="docs/providers/freemodel.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #ec4899; --accent-end: #f43f5e; transition-delay: 0.6s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center font-bold text-sm">FM</div>
+                        <div>
+                            <h3 class="font-semibold">FreeModel</h3>
+                            <span class="text-xs text-green-400">Free Tier</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">Purpose-built free models for developer tools.</p>
+                    <div class="text-xs text-gray-500">cc.freemodel.dev</div>
+                </a>
+
+                <a href="docs/providers/bluesminds.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #3b82f6; --accent-end: #6366f1; transition-delay: 0.7s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center font-bold text-sm">BM</div>
+                        <div>
+                            <h3 class="font-semibold">BlueSminds</h3>
+                            <span class="text-xs text-green-400">Free Tier</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">GLM, Kimi, and Qwen models with free access.</p>
+                    <div class="text-xs text-gray-500">api.bluesminds.com</div>
+                </a>
+                <a href="docs/providers/nararouter.html" class="fade-up glass rounded-2xl p-6 card-hover provider-card block" style="--accent: #f97316; --accent-end: #ef4444; transition-delay: 0.8s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center font-bold text-sm">NR</div>
+                        <div>
+                            <h3 class="font-semibold">NaraRouter</h3>
+                            <span class="text-xs text-green-400">Free Tier</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3">Tencent HY3 and Agnes Flash models with free access.</p>
+                    <div class="text-xs text-gray-500">router.bynara.id/v1</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Models Section -->
+    <section id="models" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">Free Models Available</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Access powerful AI models at no cost through supported providers.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="fade-up glass rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <h3 class="font-semibold">Claude 3.5 Sonnet</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">Via OpenRouter, AgentRouter</p>
+                    <p class="text-xs text-gray-500">Excellent for coding tasks with strong reasoning.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.05s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <h3 class="font-semibold">Claude 3 Opus</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">Via AgentRouter</p>
+                    <p class="text-xs text-gray-500">Most capable model, available on free tier.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <h3 class="font-semibold">Llama 3.1 70B</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">Via OpenRouter, NVIDIA NIM</p>
+                    <p class="text-xs text-gray-500">Meta's open-source powerhouse model.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.15s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <h3 class="font-semibold">Qwen 2.5 72B</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">Via BlueSminds, ZenMux</p>
+                    <p class="text-xs text-gray-500">Alibaba's top-tier coding model.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <h3 class="font-semibold">DeepSeek Coder V2</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">Via OpenRouter, FreeModel</p>
+                    <p class="text-xs text-gray-500">Specialized for code generation and editing.</p>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-6 card-hover" style="transition-delay: 0.25s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <h3 class="font-semibold">Mistral Large</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">Via OpenRouter, ZenMux</p>
+                    <p class="text-xs text-gray-500">Strong multilingual and reasoning capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="install" class="py-24 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">Get Started in 3 Steps</h2>
+                <p class="text-gray-400 text-lg">Works on Windows, Linux, and macOS.</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="fade-up glass rounded-2xl p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-sm shrink-0">1</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg mb-2">Install Claude Code</h3>
+                            <div class="code-block rounded-xl overflow-hidden">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre class="bg-gray-900/80 p-4 rounded-xl text-sm overflow-x-auto"><code>npm install -g @anthropic-ai/claude-code</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-8" style="transition-delay: 0.1s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-sm shrink-0">2</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg mb-2">Clone & Configure</h3>
+                            <div class="code-block rounded-xl overflow-hidden">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre class="bg-gray-900/80 p-4 rounded-xl text-sm overflow-x-auto"><code><span class="text-gray-500"># Clone the repository</span>
+git clone https://github.com/inyogeshwar/claude-code-free.git
+cd claude-code-free
+
+<span class="text-gray-500"># Copy a provider settings file</span>
+cp settings/settings-openrouter.json ~/.claude/settings.json
+
+<span class="text-gray-500"># Edit and add your API key</span>
+nano ~/.claude/settings.json</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-up glass rounded-2xl p-8" style="transition-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-sm shrink-0">3</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg mb-2">Launch Claude Code</h3>
+                            <div class="code-block rounded-xl overflow-hidden">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                <pre class="bg-gray-900/80 p-4 rounded-xl text-sm overflow-x-auto"><code>claude</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 fade-up" style="transition-delay: 0.3s;">
+                <div class="glass rounded-2xl p-8 text-center">
+                    <h3 class="font-semibold text-lg mb-4">Quick Switch Script</h3>
+                    <p class="text-sm text-gray-400 mb-4">Use the interactive script to switch providers instantly:</p>
+                    <div class="code-block rounded-xl overflow-hidden inline-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre class="bg-gray-900/80 p-4 rounded-xl text-sm"><code><span class="text-gray-500"># Windows</span>
+.\scripts\switch.ps1
+
+<span class="text-gray-500"># Linux / macOS</span>
+chmod +x scripts/switch.sh
+./scripts/switch.sh</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="fade-up glass rounded-2xl overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <span class="font-semibold">Is this really free?</span>
+                        <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">Yes! This repository is MIT licensed and free forever. The providers listed offer free tiers, though some may require signup and have usage limits.</p>
+                    </div>
+                </div>
+
+                <div class="fade-up glass rounded-2xl overflow-hidden" style="transition-delay: 0.05s;">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <span class="font-semibold">Is this legal?</span>
+                        <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">Absolutely. We use only officially documented APIs and public endpoints. No cracked keys, no bypasses, no stolen credentials. See our <a href="https://github.com/inyogeshwar/claude-code-free/blob/main/DISCLAIMER.md" class="text-purple-400 hover:underline">Disclaimer</a>.</p>
+                    </div>
+                </div>
+
+                <div class="fade-up glass rounded-2xl overflow-hidden" style="transition-delay: 0.1s;">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <span class="font-semibold">Which provider should I choose?</span>
+                        <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">It depends on your needs. OpenRouter has the widest model selection. AgentRouter offers Claude Opus on the free tier. ZenMux and BlueSminds provide multiple free models. Try a few and see which works best for you.</p>
+                    </div>
+                </div>
+
+                <div class="fade-up glass rounded-2xl overflow-hidden" style="transition-delay: 0.15s;">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <span class="font-semibold">Can I switch between providers?</span>
+                        <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">Yes! Use the included switch scripts (<code>switch.sh</code> or <code>switch.ps1</code>) to swap providers instantly. Your current settings are automatically backed up.</p>
+                    </div>
+                </div>
+
+                <div class="fade-up glass rounded-2xl overflow-hidden" style="transition-delay: 0.2s;">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <span class="font-semibold">What happens when I hit a rate limit?</span>
+                        <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">Wait for the rate limit window to reset (usually 1-24 hours), switch to a lighter model, try a different provider, or upgrade to a paid tier if needed.</p>
+                    </div>
+                </div>
+
+                <div class="fade-up glass rounded-2xl overflow-hidden" style="transition-delay: 0.25s;">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <span class="font-semibold">Will my data be safe?</span>
+                        <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-gray-400">Your code is sent to whichever provider you configure. This project never collects or transmits data. Always review each provider's privacy policy before use.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 px-4">
+        <div class="max-w-3xl mx-auto text-center fade-up">
+            <div class="glass rounded-3xl p-12 sm:p-16 relative overflow-hidden">
+                <div class="hero-glow bg-purple-600" style="width: 300px; height: 300px; top: -100px; right: -100px;"></div>
+                <div class="hero-glow bg-pink-600" style="width: 300px; height: 300px; bottom: -100px; left: -100px;"></div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to Start?</h2>
+                    <p class="text-gray-400 mb-8 max-w-lg mx-auto">Join the community and start using Claude Code with free AI providers today.</p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" class="btn-glow px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-semibold text-lg">
+                            Star on GitHub
+                        </a>
+                        <a href="https://github.com/inyogeshwar/claude-code-free/blob/main/CONTRIBUTING.md" class="glass px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all">
+                            Contribute
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-sm">C</div>
+                        <span class="font-bold">Claude Code Free</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Configure Claude Code with free AI providers. Open source under MIT License.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/README.md" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/FAQ.md" class="hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/ROADMAP.md" class="hover:text-white transition-colors">Roadmap</a></li>
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/CHANGELOG.md" class="hover:text-white transition-colors">Changelog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Community</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/CONTRIBUTING.md" class="hover:text-white transition-colors">Contributing</a></li>
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/CODE_OF_CONDUCT.md" class="hover:text-white transition-colors">Code of Conduct</a></li>
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/SECURITY.md" class="hover:text-white transition-colors">Security</a></li>
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/discussions" class="hover:text-white transition-colors">Discussions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/LICENSE" class="hover:text-white transition-colors">MIT License</a></li>
+                        <li><a href="https://github.com/inyogeshwar/claude-code-free/blob/main/DISCLAIMER.md" class="hover:text-white transition-colors">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-sm text-gray-500">MIT License — inyogeshwar 2026</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" class="text-gray-500 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        function setTheme(dark) {
+            if (dark) {
+                html.classList.add('dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        setTheme(savedTheme !== 'light');
+
+        themeToggle.addEventListener('click', () => {
+            setTheme(!html.classList.contains('dark'));
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Copy buttons
+        function copyCode(btn) {
+            const code = btn.closest('.code-block, pre').querySelector('code') || btn.closest('pre');
+            const text = code.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+            });
+        }
+
+        // FAQ toggle
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('svg');
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+        }
+    </script>
+</body>
+</html>

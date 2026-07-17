@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "alwaysThinkingEnabled": true,
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.bluesminds.com",
+    "ANTHROPIC_API_KEY": "YOUR_API_KEY_HERE",
+    "ANTHROPIC_MODEL": "z-ai/glm4.7",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "moonshotai/kimi-k2.6",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "z-ai/glm4.7",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "qwen/qwen3-next-80b-a3b-instruct",
+    "ENABLE_TOOL_SEARCH": "true",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "API_TIMEOUT_MS": "30000000"
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  }
+}

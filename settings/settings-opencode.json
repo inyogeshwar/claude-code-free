@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://opencode.ai/zen/v1",
+    "ANTHROPIC_API_KEY": "YOUR_API_KEY_HERE",
+    "ANTHROPIC_MODEL": "north-mini-code-free",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash-free",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "north-mini-code-free",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8",
+    "ENABLE_TOOL_SEARCH": "true",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  }
+}

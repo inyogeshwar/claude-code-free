@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "alwaysThinkingEnabled": true,
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_API_KEY": "YOUR_API_KEY_HERE",
+    "CLAUDE_CODE_USE_AUTH_TOKEN": "true",
+    "ANTHROPIC_MODEL": "openrouter/free",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "openrouter/free",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "openrouter/free",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "openrouter/free",
+    "ENABLE_TOOL_SEARCH": "true",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "DISABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Skill(*)",
+      "Bash(git:*)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm:*)",
+      "Bash(yarn:*)",
+      "Bash(python:*)",
+      "Bash(py:*)",
+      "Bash(pip:*)",
+      "Bash(codex:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(rm -fr:*)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*secret*)",
+      "Read(**/*credential*)"
+    ],
+    "ask": [
+      "Bash(sudo:*)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)"
+    ]
+  }
+}
