@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://inyogeshwar.github.io/claude-code-free/sitemap.xml

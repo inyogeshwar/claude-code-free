@@ -1,0 +1,21 @@
+{
+    "name": "Claude Code Free",
+    "short_name": "ClaudeCodeFree",
+    "description": "Configure Claude Code with free AI providers. Ready-made settings files, step-by-step guides, and utility scripts.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#030712",
+    "theme_color": "#7c3aed",
+    "icons": [
+        {
+            "src": "assets/favicon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
