@@ -3,579 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code FREE | Gateway — 9 Providers, Settings, Scripts</title>
-    <meta name="description" content="Complete Claude Code free setup — 9 providers, settings JSON files, utility scripts, one-click configurator for Windows, Linux, macOS, Termux.">
+    <title>Claude Code Free — 9 Providers, Settings, Scripts</title>
+    <meta name="description" content="Free Claude Code setup — 9 providers, settings JSON, utility scripts, one-click wizard.">
     <meta name="author" content="Yogeshwar Kumar">
-    <meta property="og:title" content="Claude Code FREE | Gateway">
+    <meta property="og:title" content="Claude Code Free">
     <meta property="og:description" content="9 providers, settings JSON, scripts, one-click setup.">
     <meta property="og:image" content="https://img.youtube.com/vi/-ITyNBWPGu4/maxresdefault.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],mono:['"JetBrains Mono"','monospace']}}}}</script>
     <style>
         body{transition:background .3s,color .3s}
-        html.dark body{background:#111113;color:#e4e4e7}
-        .glass{background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border:1px solid #e5e5e5}
-        html.dark .glass{background:rgba(17,17,19,.85);border-color:#27272a}
-        .mac{border-radius:10px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.12)}
-        .mac-h{background:#2d2d2a;padding:10px 14px;display:flex;align-items:center;gap:7px}
-        html.dark .mac-h{background:#1a1a1f}
-        .dot{width:11px;height:11px;border-radius:50%}
-        .dr{background:#FF5F56}.dy{background:#FFBD2E}.dg{background:#27C93F}
-        .mac-b{background:#1e1e1c;color:#d4d4d4;padding:14px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;overflow-x:auto;position:relative;line-height:1.6}
-        html.dark .mac-b{background:#111113}
-        .cp{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;color:#fff;transition:all .2s;font-family:'Inter',sans-serif;z-index:10;display:flex;align-items:center;gap:4px}
-        .cp:hover{background:#D9614C;border-color:#D9614C}
-        .tab{position:relative;transition:all .3s}
-        .tab::after{content:'';position:absolute;bottom:-1px;left:0;width:100%;height:2px;background:#D9614C;transform:scaleX(0);transition:transform .3s}
-        .tab.on{color:#D9614C!important;font-weight:500}
-        .tab.on::after{transform:scaleX(1)}
-        .afu{opacity:0;transform:translateY(24px);transition:all .65s cubic-bezier(.16,1,.3,1)}.afu.vis{opacity:1;transform:translateY(0)}
-        .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}.faq-a.open{max-height:600px}
-        .jk{color:#c084fc}.js{color:#34d399}.jn{color:#f59e0b}.jb{color:#60a5fa}
-        .pcard{transition:all .3s cubic-bezier(.16,1,.3,1)}.pcard:hover{transform:translateY(-3px);box-shadow:0 10px 30px -6px rgba(0,0,0,.12)}
-        .sd{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;transition:all .3s;flex-shrink:0}
-        .sa{background:#D9614C;color:#fff;box-shadow:0 0 0 4px rgba(217,97,76,.2)}
-        .sdn{background:#22c55e;color:#fff}
-        .sdp{background:#e5e5e5;color:#737373}
-        html.dark .sdp{background:#27272a;color:#737373}
+        html.dark body{background:#0f0f11;color:#e4e4e7}
+        .code-block{background:#1e1e1c;color:#d4d4d4;padding:16px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:13px;overflow-x:auto;position:relative;line-height:1.6}
+        html.dark .code-block{background:#141416}
+        .copy-btn{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;color:#999;transition:all .2s;font-family:'Inter',sans-serif;z-index:10;display:flex;align-items:center;gap:4px}
+        .copy-btn:hover{background:#D9614C;border-color:#D9614C;color:#fff}
+        .tab-btn{position:relative;transition:all .2s}
+        .tab-btn::after{content:'';position:absolute;bottom:-1px;left:0;width:100%;height:2px;background:#D9614C;transform:scaleX(0);transition:transform .2s}
+        .tab-btn.active{color:#D9614C;font-weight:500}
+        .tab-btn.active::after{transform:scaleX(1)}
+        .step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;transition:all .2s;flex-shrink:0}
+        .step-active{background:#D9614C;color:#fff;box-shadow:0 0 0 4px rgba(217,97,76,.15)}
+        .step-done{background:#22c55e;color:#fff}
+        .step-pending{background:#e5e5e5;color:#737373}
+        html.dark .step-pending{background:#27272a;color:#737373}
+        .json-key{color:#c084fc}.json-str{color:#34d399}.json-num{color:#f59e0b}.json-bool{color:#60a5fa}
+        .faq-body{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}.faq-body.open{max-height:600px}
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen bg-[#F5F4EF] text-[#2D2D2D] dark:bg-[#111113] dark:text-[#e4e4e7] selection:bg-[#D9614C] selection:text-white">
+<body class="antialiased min-h-screen bg-[#fafaf8] text-[#1a1a1a] dark:bg-[#0f0f11] dark:text-[#e4e4e7]">
 
-<nav class="fixed top-0 w-full z-50 glass border-b border-[#e5e5e5] dark:border-[#27272a]">
-    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#0f0f11]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#222]">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
         <a href="#" class="flex items-center gap-2" onclick="scrollTo(0,0);return false">
-            <div class="w-7 h-7 bg-[#D9614C] rounded flex items-center justify-center text-white font-bold text-sm">C</div>
-            <span class="font-bold text-lg">Claude Code</span>
-            <span class="bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase border border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800">Free</span>
+            <div class="w-7 h-7 bg-[#D9614C] rounded-lg flex items-center justify-center text-white font-bold text-sm">C</div>
+            <span class="font-bold">Claude Code</span>
+            <span class="text-[10px] bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400 px-1.5 py-0.5 rounded font-bold">FREE</span>
         </a>
-        <div class="hidden md:flex items-center gap-5 text-sm font-medium text-[#737373] dark:text-[#a1a1aa]">
-            <a href="#wizard" class="hover:text-[#D9614C]">Wizard</a>
+        <div class="hidden md:flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+            <a href="#setup" class="hover:text-[#D9614C]">Setup</a>
             <a href="#terminal" class="hover:text-[#D9614C]">Terminal</a>
-            <a href="#settings" class="hover:text-[#D9614C]">Settings JSON</a>
+            <a href="#settings" class="hover:text-[#D9614C]">Settings</a>
             <a href="#scripts" class="hover:text-[#D9614C]">Scripts</a>
             <a href="#faq" class="hover:text-[#D9614C]">FAQ</a>
         </div>
         <div class="flex items-center gap-2">
-            <button id="tBtn" class="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition" aria-label="Theme"><i class="fas fa-moon" id="dI"></i><i class="fas fa-sun hidden" id="lI"></i></button>
-            <a href="https://agentrouter.org/register?aff=TAGp" target="_blank" class="hidden sm:flex bg-[#2D2D2D] text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-[#D9614C] transition dark:bg-white dark:text-gray-900 items-center gap-1.5">$100 Credit <i class="fas fa-arrow-right text-xs"></i></a>
-            <button id="mob" class="md:hidden p-2"><i class="fas fa-bars text-[#737373]"></i></button>
+            <button id="tBtn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition" aria-label="Toggle theme"><i class="fas fa-moon" id="dI"></i><i class="fas fa-sun hidden" id="lI"></i></button>
+            <button id="mob" class="md:hidden p-2"><i class="fas fa-bars text-gray-500"></i></button>
         </div>
     </div>
-    <div id="mobM" class="hidden md:hidden border-t border-[#e5e5e5] dark:border-[#27272a] bg-white dark:bg-[#1c1c1f] px-4 py-3 space-y-2">
-        <a href="#wizard" class="block text-sm font-medium text-[#737373] hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">Wizard</a>
-        <a href="#terminal" class="block text-sm font-medium text-[#737373] hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">Terminal</a>
-        <a href="#settings" class="block text-sm font-medium text-[#737373] hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">Settings JSON</a>
-        <a href="#scripts" class="block text-sm font-medium text-[#737373] hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">Scripts</a>
-        <a href="#faq" class="block text-sm font-medium text-[#737373] hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">FAQ</a>
+    <div id="mobM" class="hidden md:hidden border-t border-gray-200 dark:border-[#222] bg-white dark:bg-[#0f0f11] px-4 py-3 space-y-2">
+        <a href="#setup" class="block text-sm text-gray-500 hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">Setup</a>
+        <a href="#terminal" class="block text-sm text-gray-500 hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">Terminal</a>
+        <a href="#settings" class="block text-sm text-gray-500 hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">Settings</a>
+        <a href="#scripts" class="block text-sm text-gray-500 hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">Scripts</a>
+        <a href="#faq" class="block text-sm text-gray-500 hover:text-[#D9614C]" onclick="document.getElementById('mobM').classList.add('hidden')">FAQ</a>
     </div>
 </nav>
 
 <main class="flex-grow pt-24 pb-16 px-4 sm:px-6">
-<div class="max-w-6xl mx-auto space-y-20">
+<div class="max-w-5xl mx-auto space-y-16">
 
-<!-- HERO -->
-<section class="text-center space-y-5 afu">
-    <div class="inline-flex items-center gap-2 bg-white dark:bg-[#1c1c1f] border border-[#e5e5e5] dark:border-[#27272a] rounded-full px-4 py-1.5 text-sm text-[#737373] shadow-sm">
-        <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span>
-        9 Providers &middot; Settings JSON &middot; Scripts &middot; One-Click Setup
+<section class="text-center space-y-4">
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">Claude Code <span class="text-[#D9614C]">Free</span></h1>
+    <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">9 free providers. Settings JSON. Scripts. One-click setup wizard.</p>
+    <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+        <span><i class="fas fa-server text-[#D9614C] mr-1"></i>9 Providers</span>
+        <span><i class="fas fa-file-code text-[#D9614C] mr-1"></i>Settings JSON</span>
+        <span><i class="fas fa-terminal text-[#D9614C] mr-1"></i>Scripts</span>
+        <span><i class="fas fa-desktop text-[#D9614C] mr-1"></i>All Platforms</span>
     </div>
-    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">The power of Claude.<br><span class="text-[#737373] dark:text-[#a1a1aa] italic font-medium">Without the limits.</span></h1>
-    <p class="text-lg text-[#737373] dark:text-[#a1a1aa] max-w-2xl mx-auto">Official Claude Code CLI — free settings JSON files, utility scripts, and a one-click wizard for 9 providers.</p>
-    <div class="flex flex-wrap justify-center gap-5 text-sm text-[#737373]">
-        <span><i class="fas fa-server text-[#D9614C] mr-1"></i>9 Free Providers</span>
-        <span><i class="fas fa-file-code text-[#D9614C] mr-1"></i>9 Settings JSON</span>
-        <span><i class="fas fa-terminal text-[#D9614C] mr-1"></i>10 Scripts</span>
-        <span><i class="fas fa-desktop text-[#D9614C] mr-1"></i>5 Platforms</span>
-    </div>
-    <div class="flex flex-col sm:flex-row justify-center gap-3">
-        <a href="#wizard" class="bg-[#D9614C] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#C25541] transition shadow-md text-center">One-Click Setup</a>
-        <a href="#settings" class="bg-white dark:bg-[#1c1c1f] border border-[#e5e5e5] dark:border-[#27272a] px-8 py-3 rounded-lg font-semibold hover:border-[#D9614C] transition text-center">Browse Settings JSON</a>
+    <div class="flex justify-center gap-3">
+        <a href="#setup" class="bg-[#D9614C] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#C25541] transition text-sm">Quick Setup</a>
+        <a href="#settings" class="border border-gray-200 dark:border-[#333] px-6 py-2.5 rounded-lg font-medium hover:border-[#D9614C] transition text-sm">Browse Settings</a>
     </div>
 </section>
 
-<!-- WIZARD -->
-<section id="wizard" class="scroll-mt-20 afu">
-    <div class="bg-white dark:bg-[#1c1c1f] rounded-2xl shadow-lg border border-[#e5e5e5] dark:border-[#27272a] overflow-hidden">
-        <div class="bg-gradient-to-r from-[#D9614C] to-amber-400 h-1"></div>
-        <div class="p-6 md:p-8">
-            <div class="flex items-center justify-between mb-6">
-                <div><h2 class="text-2xl font-bold">One-Click Setup Wizard</h2><p class="text-sm text-[#737373] mt-1">Select provider → pick model → paste key → done.</p></div>
-                <button onclick="resetWiz()" class="text-sm text-[#737373] hover:text-[#D9614C] flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/10"><i class="fas fa-undo"></i> Reset</button>
+<section id="setup" class="scroll-mt-20">
+    <div class="bg-white dark:bg-[#161618] rounded-xl border border-gray-200 dark:border-[#222] overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 dark:border-[#222] flex items-center justify-between">
+            <div>
+                <h2 class="font-bold">Setup Wizard</h2>
+                <p class="text-xs text-gray-400 mt-0.5">Select provider, model, paste key — done.</p>
             </div>
-            <div class="flex items-center gap-2 mb-8">
-                <div class="sd sa" id="s1d">1</div><div class="flex-1 h-0.5 bg-[#e5e5e5] dark:bg-[#27272a]" id="sl1"></div>
-                <div class="sd sdp" id="s2d">2</div><div class="flex-1 h-0.5 bg-[#e5e5e5] dark:bg-[#27272a]" id="sl2"></div>
-                <div class="sd sdp" id="s3d">3</div><div class="flex-1 h-0.5 bg-[#e5e5e5] dark:bg-[#27272a]" id="sl3"></div>
-                <div class="sd sdp" id="s4d">4</div>
+            <button onclick="resetWiz()" class="text-xs text-gray-400 hover:text-[#D9614C] flex items-center gap-1 px-2 py-1 rounded hover:bg-gray-50 dark:hover:bg-white/5"><i class="fas fa-undo"></i>Reset</button>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center gap-2 mb-6">
+                <div class="step-dot step-active" id="s1d">1</div><div class="flex-1 h-0.5 bg-gray-200 dark:bg-[#333]" id="sl1"></div>
+                <div class="step-dot step-pending" id="s2d">2</div><div class="flex-1 h-0.5 bg-gray-200 dark:bg-[#333]" id="sl2"></div>
+                <div class="step-dot step-pending" id="s3d">3</div><div class="flex-1 h-0.5 bg-gray-200 dark:bg-[#333]" id="sl3"></div>
+                <div class="step-dot step-pending" id="s4d">4</div>
             </div>
-            <div id="ws1" class="ws"><h3 class="font-semibold text-sm mb-3 text-[#D9614C]">Step 1: Select Provider</h3><div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2" id="pgrid"></div></div>
-            <div id="ws2" class="ws hidden"><h3 class="font-semibold text-sm mb-3 text-[#D9614C]">Step 2: Select Model</h3><div id="mlist" class="space-y-2"></div></div>
-            <div id="ws3" class="ws hidden"><h3 class="font-semibold text-sm mb-3 text-[#D9614C]">Step 3: Paste API Key</h3>
-                <div class="space-y-2"><div class="relative"><i class="fas fa-key absolute left-3 top-1/2 -translate-y-1/2 text-[#737373]"></i><input type="password" id="wkey" placeholder="sk-..." class="w-full pl-10 pr-10 py-3 bg-[#F5F4EF] dark:bg-[#111113] border border-[#e5e5e5] dark:border-[#27272a] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D9614C]/20 focus:border-[#D9614C] font-mono transition"><button onclick="togK()" class="absolute right-3 top-1/2 -translate-y-1/2 text-[#737373] hover:text-[#2D2D2D]"><i class="fas fa-eye text-sm" id="eyeI"></i></button></div>
-                <p class="text-xs text-[#737373]" id="whint"></p></div>
+            <div id="ws1" class="ws">
+                <h3 class="text-xs font-semibold text-[#D9614C] mb-3 uppercase tracking-wide">Select Provider</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2" id="pgrid"></div>
             </div>
-            <div id="ws4" class="ws hidden"><h3 class="font-semibold text-sm mb-3 text-[#D9614C]">Step 4: Done! Copy or Download</h3>
-                <div class="space-y-4">
-                    <div class="mac"><div class="mac-h"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="text-gray-400 text-xs ml-2 font-mono">~/.claude/settings.json</span></div><div class="mac-b relative"><button class="cp" onclick="cpEl('wj',this)"><i class="fas fa-copy"></i> Copy</button><pre id="wj" class="text-green-400"></pre></div></div>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="dlSettings()" class="bg-[#D9614C] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#C25541] transition flex items-center gap-1.5"><i class="fas fa-download"></i> Download settings.json</button>
-                        <button onclick="cpCmd()" class="bg-white dark:bg-[#1c1c1f] border border-[#e5e5e5] dark:border-[#27272a] px-4 py-2 rounded-lg text-sm font-medium hover:border-[#D9614C] transition flex items-center gap-1.5"><i class="fas fa-terminal"></i> Copy Commands</button>
+            <div id="ws2" class="ws hidden">
+                <h3 class="text-xs font-semibold text-[#D9614C] mb-3 uppercase tracking-wide">Select Model</h3>
+                <div id="mlist" class="space-y-2"></div>
+            </div>
+            <div id="ws3" class="ws hidden">
+                <h3 class="text-xs font-semibold text-[#D9614C] mb-3 uppercase tracking-wide">Paste API Key</h3>
+                <div class="relative">
+                    <i class="fas fa-key absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="password" id="wkey" placeholder="sk-..." class="w-full pl-10 pr-10 py-2.5 bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#333] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D9614C]/20 focus:border-[#D9614C] font-mono transition">
+                    <button onclick="togK()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"><i class="fas fa-eye text-sm" id="eyeI"></i></button>
+                </div>
+                <p class="text-xs text-gray-400 mt-2" id="whint"></p>
+            </div>
+            <div id="ws4" class="ws hidden">
+                <h3 class="text-xs font-semibold text-[#D9614C] mb-3 uppercase tracking-wide">Done — Copy or Download</h3>
+                <div class="space-y-3">
+                    <div class="code-block"><button class="copy-btn" onclick="cpEl('wj',this)"><i class="fas fa-copy"></i>Copy</button><pre id="wj" class="text-green-400"></pre></div>
+                    <div class="flex gap-2">
+                        <button onclick="dlSettings()" class="bg-[#D9614C] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#C25541] transition flex items-center gap-1.5"><i class="fas fa-download"></i>Download</button>
+                        <button onclick="cpCmd()" class="border border-gray-200 dark:border-[#333] px-4 py-2 rounded-lg text-sm font-medium hover:border-[#D9614C] transition flex items-center gap-1.5"><i class="fas fa-terminal"></i>Copy Commands</button>
                     </div>
-                    <div class="mac"><div class="mac-h"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="text-gray-400 text-xs ml-2 font-mono" id="wct">terminal</span></div><div class="mac-b relative"><button class="cp" onclick="cpEl('wcmd',this)"><i class="fas fa-copy"></i> Copy</button><pre id="wcmd" class="text-green-400"></pre></div></div>
+                    <div class="code-block"><button class="copy-btn" onclick="cpEl('wcmd',this)"><i class="fas fa-copy"></i>Copy</button><pre id="wcmd" class="text-green-400"></pre></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- TERMINAL -->
-<section id="terminal" class="scroll-mt-20 afu">
-    <h2 class="text-2xl font-bold mb-5">Terminal Commands</h2>
-    <div class="flex bg-white dark:bg-[#1c1c1f] border border-[#e5e5e5] dark:border-[#27272a] rounded-lg p-1 overflow-x-auto mb-3" id="ttabs">
-        <button class="tab on px-4 py-2 text-sm font-medium text-[#737373] rounded-md whitespace-nowrap" data-t="t-bash"><i class="fab fa-apple mr-1"></i>Mac/Linux</button>
-        <button class="tab px-4 py-2 text-sm font-medium text-[#737373] rounded-md whitespace-nowrap" data-t="t-cmd"><i class="fab fa-windows mr-1"></i>CMD</button>
-        <button class="tab px-4 py-2 text-sm font-medium text-[#737373] rounded-md whitespace-nowrap" data-t="t-ps"><i class="fas fa-terminal mr-1"></i>PowerShell</button>
-        <button class="tab px-4 py-2 text-sm font-medium text-[#737373] rounded-md whitespace-nowrap" data-t="t-tx"><i class="fab fa-android mr-1 text-green-500"></i>Termux</button>
+<section id="terminal" class="scroll-mt-20">
+    <h2 class="font-bold mb-4">Terminal Commands</h2>
+    <div class="flex bg-white dark:bg-[#161618] border border-gray-200 dark:border-[#222] rounded-lg p-1 mb-3 overflow-x-auto" id="ttabs">
+        <button class="tab-btn active px-3 py-1.5 text-sm text-gray-500 rounded whitespace-nowrap" data-t="t-bash"><i class="fab fa-apple mr-1"></i>Mac/Linux</button>
+        <button class="tab-btn px-3 py-1.5 text-sm text-gray-500 rounded whitespace-nowrap" data-t="t-cmd"><i class="fab fa-windows mr-1"></i>CMD</button>
+        <button class="tab-btn px-3 py-1.5 text-sm text-gray-500 rounded whitespace-nowrap" data-t="t-ps"><i class="fas fa-terminal mr-1"></i>PowerShell</button>
+        <button class="tab-btn px-3 py-1.5 text-sm text-gray-500 rounded whitespace-nowrap" data-t="t-tx"><i class="fab fa-android mr-1 text-green-500"></i>Termux</button>
     </div>
-    <div id="t-bash" class="tc"><div class="mac"><div class="mac-h"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="text-gray-400 text-xs ml-2 font-mono">bash</span><button class="cp ml-auto" onclick="cpTab(this)"><i class="fas fa-copy"></i> Copy All</button></div><div class="mac-b"><div class="text-gray-500 mb-1"># 1. Install Claude Code</div><div class="text-blue-400 mb-3">npm install -g @anthropic-ai/claude-code</div><div class="text-gray-500 mb-1"># 2. (Optional) Fix installer</div><div class="text-blue-400 mb-3">node $(npm root -g)/@anthropic-ai/claude-code/install.cjs</div><div class="text-gray-500 mb-1"># 3. Export env vars and run</div><pre><code id="cb" class="text-green-400">export ANTHROPIC_BASE_URL="https://agentrouter.org/"
+    <div id="t-bash" class="tc"><div class="code-block"><button class="copy-btn" onclick="cpTab(this)"><i class="fas fa-copy"></i>Copy</button><pre><code id="cb" class="text-green-400"># Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Set provider and run
+export ANTHROPIC_BASE_URL="https://agentrouter.org/"
 export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN"
 export ANTHROPIC_MODEL="claude-opus-4-8"
 export CLAUDE_CODE_USE_AUTH_TOKEN="true"
 
-claude</code></pre></div></div></div>
-    <div id="t-cmd" class="tc hidden"><div class="mac"><div class="mac-h"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="text-gray-400 text-xs ml-2 font-mono">cmd.exe</span><button class="cp ml-auto" onclick="cpTab(this)"><i class="fas fa-copy"></i> Copy All</button></div><div class="mac-b"><div class="text-gray-500 mb-1">REM 1. Install</div><div class="text-blue-400 mb-3">npm install -g @anthropic-ai/claude-code</div><div class="text-gray-500 mb-1">REM 2. Set env vars (PERMANENT)</div><pre><code id="cc" class="text-green-400">setx ANTHROPIC_BASE_URL "https://agentrouter.org/"
+claude</code></pre></div></div>
+    <div id="t-cmd" class="tc hidden"><div class="code-block"><button class="copy-btn" onclick="cpTab(this)"><i class="fas fa-copy"></i>Copy</button><pre><code id="cc" class="text-green-400">REM Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+REM Set env vars (permanent)
+setx ANTHROPIC_BASE_URL "https://agentrouter.org/"
 setx ANTHROPIC_AUTH_TOKEN "sk-YOUR_TOKEN"
 setx ANTHROPIC_MODEL "claude-opus-4-8"
-setx CLAUDE_CODE_USE_AUTH_TOKEN "true"</code></pre><div class="text-gray-500 mt-3 mb-1">REM 3. Restart terminal, then:</div><div class="text-green-400">claude</div></div></div></div>
-    <div id="t-ps" class="tc hidden"><div class="mac"><div class="mac-h"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="text-gray-400 text-xs ml-2 font-mono">pwsh</span><button class="cp ml-auto" onclick="cpTab(this)"><i class="fas fa-copy"></i> Copy All</button></div><div class="mac-b"><div class="text-gray-500 mb-1"># 1. Install</div><div class="text-blue-400 mb-3">npm install -g @anthropic-ai/claude-code</div><div class="text-gray-500 mb-1"># 2. Temp session</div><pre><code id="cp" class="text-green-400">$env:ANTHROPIC_BASE_URL="https://agentrouter.org/"
+setx CLAUDE_CODE_USE_AUTH_TOKEN "true"
+
+REM Restart terminal, then:
+claude</code></pre></div></div>
+    <div id="t-ps" class="tc hidden"><div class="code-block"><button class="copy-btn" onclick="cpTab(this)"><i class="fas fa-copy"></i>Copy</button><pre><code id="cp" class="text-green-400"># Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Set provider and run
+$env:ANTHROPIC_BASE_URL="https://agentrouter.org/"
 $env:ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN"
 $env:ANTHROPIC_MODEL="claude-opus-4-8"
 $env:CLAUDE_CODE_USE_AUTH_TOKEN="true"
 
-claude</code></pre><div class="text-gray-500 mt-3 mb-1"># 3. Permanent (Recommended)</div><pre><code class="text-amber-400">[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL","https://agentrouter.org/","User")
+claude
+
+# Make permanent:
+[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL","https://agentrouter.org/","User")
 [System.Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN","sk-YOUR_TOKEN","User")
 [System.Environment]::SetEnvironmentVariable("ANTHROPIC_MODEL","claude-opus-4-8","User")
-[System.Environment]::SetEnvironmentVariable("CLAUDE_CODE_USE_AUTH_TOKEN","true","User")</code></pre></div></div></div>
-    <div id="t-tx" class="tc hidden"><div class="mac"><div class="mac-h"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="text-gray-400 text-xs ml-2 font-mono">termux</span><button class="cp ml-auto" onclick="cpTab(this)"><i class="fas fa-copy"></i> Copy All</button></div><div class="mac-b"><div class="text-amber-400 mb-3 border border-amber-400/30 bg-amber-400/10 p-3 rounded text-xs"><i class="fas fa-exclamation-triangle mr-1"></i>Install Termux ONLY from <a href="https://f-droid.org/packages/com.termux/" target="_blank" class="underline text-amber-300">F-Droid</a>!</div><div class="text-gray-500 mb-1"># 1. Install deps</div><div class="text-blue-400 mb-3">pkg update && pkg upgrade -y<br>pkg install nodejs git nano -y<br>npm install -g @anthropic-ai/claude-code@2.1.112<br>node $PREFIX/lib/node_modules/@anthropic-ai/claude-code/install.cjs</div><div class="text-gray-500 mb-1"># 2. Set API and run</div><pre><code id="ct" class="text-green-400">export ANTHROPIC_BASE_URL="https://agentrouter.org/"
+[System.Environment]::SetEnvironmentVariable("CLAUDE_CODE_USE_AUTH_TOKEN","true","User")</code></pre></div></div>
+    <div id="t-tx" class="tc hidden"><div class="code-block"><button class="copy-btn" onclick="cpTab(this)"><i class="fas fa-copy"></i>Copy</button><pre><code id="ct" class="text-green-400"># Install Termux from F-Droid (NOT Play Store)
+pkg update && pkg upgrade -y
+pkg install nodejs git -y
+npm install -g @anthropic-ai/claude-code@2.1.112
+node $PREFIX/lib/node_modules/@anthropic-ai/claude-code/install.cjs
+
+# Set provider and run
+export ANTHROPIC_BASE_URL="https://agentrouter.org/"
 export ANTHROPIC_AUTH_TOKEN="sk-YOUR_TOKEN"
 export ANTHROPIC_MODEL="claude-opus-4-8"
 export CLAUDE_CODE_USE_AUTH_TOKEN="true"
 
-claude</code></pre></div></div></div>
+claude</code></pre></div></div>
 </section>
 
-<!-- SETTINGS JSON -->
-<section id="settings" class="scroll-mt-20 afu">
-    <div class="mb-5"><h2 class="text-2xl font-bold">Settings JSON Files</h2><p class="text-sm text-[#737373] mt-1">Copy or download ready-to-use <code class="text-xs bg-black/5 dark:bg-white/10 px-1 rounded">~/.claude/settings.json</code> for each provider.</p></div>
+<section id="settings" class="scroll-mt-20">
+    <h2 class="font-bold mb-4">Settings JSON</h2>
+    <p class="text-sm text-gray-400 mb-4">Copy or download <code class="text-xs bg-gray-100 dark:bg-white/5 px-1.5 py-0.5 rounded">~/.claude/settings.json</code> for each provider.</p>
     <div class="space-y-3" id="slist"></div>
 </section>
 
-<!-- SCRIPTS -->
-<section id="scripts" class="scroll-mt-20 afu">
-    <div class="mb-5"><h2 class="text-2xl font-bold">Utility Scripts</h2><p class="text-sm text-[#737373] mt-1">PowerShell and Bash scripts to manage your Claude Code config.</p></div>
+<section id="scripts" class="scroll-mt-20">
+    <h2 class="font-bold mb-4">Scripts</h2>
+    <p class="text-sm text-gray-400 mb-4">PowerShell and Bash scripts to manage your config.</p>
     <div class="grid md:grid-cols-2 gap-3" id="sgrid"></div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" class="scroll-mt-20 afu">
-    <h2 class="text-2xl font-bold mb-6 text-center">FAQ</h2>
-    <div class="max-w-3xl mx-auto space-y-2" id="fql"></div>
+<section id="faq" class="scroll-mt-20">
+    <h2 class="font-bold mb-4">FAQ</h2>
+    <div class="max-w-3xl space-y-2" id="fql"></div>
 </section>
 
 </div>
 </main>
 
-<footer class="bg-white dark:bg-[#1c1c1f] border-t border-[#e5e5e5] dark:border-[#27272a] py-10 mt-auto">
-<div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="text-center md:text-left"><p class="font-bold text-lg">Claude Code Gateway</p><p class="text-sm text-[#737373]">Built by <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" class="text-[#D9614C] hover:underline">Yogeshwar Kumar</a> · MIT Licensed</p></div>
-    <div class="flex gap-5 text-xl">
-        <a href="https://t.me/inyogeshwar_official" target="_blank" class="text-[#737373] hover:text-[#0088cc]"><i class="fab fa-telegram"></i></a>
-        <a href="https://discord.gg/N4KQNteh" target="_blank" class="text-[#737373] hover:text-[#5865F2]"><i class="fab fa-discord"></i></a>
-        <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" class="text-[#737373] hover:text-[#2D2D2D] dark:hover:text-white"><i class="fab fa-github"></i></a>
-        <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" class="text-[#737373] hover:text-[#FF0000]"><i class="fab fa-youtube"></i></a>
+<footer class="border-t border-gray-200 dark:border-[#222] py-8 mt-auto">
+<div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
+    <p class="text-sm text-gray-400">Built by <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" class="text-[#D9614C] hover:underline">Yogeshwar Kumar</a> · MIT</p>
+    <div class="flex gap-4 text-gray-400 text-lg">
+        <a href="https://t.me/inyogeshwar_official" target="_blank" class="hover:text-[#0088cc]"><i class="fab fa-telegram"></i></a>
+        <a href="https://discord.gg/N4KQNteh" target="_blank" class="hover:text-[#5865F2]"><i class="fab fa-discord"></i></a>
+        <a href="https://github.com/inyogeshwar/claude-code-free" target="_blank" class="hover:text-gray-900 dark:hover:text-white"><i class="fab fa-github"></i></a>
+        <a href="https://www.youtube.com/@YogeshwarkumarOfficial" target="_blank" class="hover:text-[#FF0000]"><i class="fab fa-youtube"></i></a>
     </div>
 </div>
 </footer>
 
 <script>
-// ============ PROVIDER DATA ============
 const P={
-agentrouter:{name:'AgentRouter',short:'AR',color:'from-amber-500 to-red-500',url:'https://agentrouter.org',baseUrl:'https://agentrouter.org/',keyPre:'sk-',auth:'AUTH_TOKEN',signUp:'https://agentrouter.org/register?aff=TAGp',models:['claude-opus-4-8','claude-3-5-sonnet-20241022','claude-haiku-4-5-20251001','glm-5.2','glm-4.6','deepseek-v3.2'],defModel:'claude-opus-4-8',hint:'Free Claude Opus 4',env:{ANTHROPIC_BASE_URL:'https://agentrouter.org',ANTHROPIC_AUTH_TOKEN:'YOUR_API_KEY_HERE',CLAUDE_CODE_USE_AUTH_TOKEN:'true',ANTHROPIC_MODEL:'claude-opus-4-8',ANTHROPIC_DEFAULT_OPUS_MODEL:'claude-opus-4-8',ANTHROPIC_DEFAULT_SONNET_MODEL:'claude-opus-4-8',ANTHROPIC_DEFAULT_HAIKU_MODEL:'glm-5.2',ENABLE_TOOL_SEARCH:'true',DISABLE_NON_ESSENTIAL_MODEL_CALLS:'1',DISABLE_TELEMETRY:'1',CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:'1'}},
-openrouter:{name:'OpenRouter',short:'OR',color:'from-indigo-500 to-violet-500',url:'https://openrouter.ai',baseUrl:'https://openrouter.ai/api',keyPre:'sk-or-',auth:'API_KEY',signUp:'https://openrouter.ai',models:['openrouter/free','anthropic/claude-3.5-sonnet','deepseek/deepseek-chat','meta-llama/llama-3.1-405b','google/gemini-pro'],defModel:'openrouter/free',hint:'100s of models',env:{ANTHROPIC_BASE_URL:'https://openrouter.ai/api',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',CLAUDE_CODE_USE_AUTH_TOKEN:'true',ANTHROPIC_MODEL:'openrouter/free',ANTHROPIC_DEFAULT_OPUS_MODEL:'openrouter/free',ANTHROPIC_DEFAULT_SONNET_MODEL:'openrouter/free',ANTHROPIC_DEFAULT_HAIKU_MODEL:'openrouter/free',ENABLE_TOOL_SEARCH:'true',DISABLE_NON_ESSENTIAL_MODEL_CALLS:'1',DISABLE_TELEMETRY:'1'}},
-zenmux:{name:'ZenMux',short:'ZM',color:'from-violet-500 to-fuchsia-500',url:'https://zenmux.ai',baseUrl:'https://zenmux.ai/api/anthropic',keyPre:'sk-ai-v1-',auth:'API_KEY',signUp:'https://zenmux.ai/invite/YGGC5O',models:['z-ai/glm-4.7-flash-free','stepfun/step-3.7-flash-free','moonshotai/kimi-k3-free'],defModel:'z-ai/glm-4.7-flash-free',hint:'3 free models',env:{ANTHROPIC_BASE_URL:'https://zenmux.ai/api/anthropic',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',ANTHROPIC_MODEL:'z-ai/glm-4.7-flash-free',ANTHROPIC_DEFAULT_HAIKU_MODEL:'stepfun/step-3.7-flash-free',ANTHROPIC_DEFAULT_SONNET_MODEL:'z-ai/glm-4.7-flash-free',ANTHROPIC_DEFAULT_OPUS_MODEL:'moonshotai/kimi-k3-free',ENABLE_TOOL_SEARCH:'true',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1',API_TIMEOUT_MS:'30000000'}},
-opencode:{name:'OpenCode',short:'OC',color:'from-emerald-500 to-cyan-500',url:'https://opencode.ai',baseUrl:'https://opencode.ai/zen/v1',keyPre:'sk-',auth:'API_KEY',signUp:'https://opencode.ai',models:['north-mini-code-free','deepseek-v4-flash-free','claude-opus-4-8'],defModel:'north-mini-code-free',hint:'Free coding models',env:{ANTHROPIC_BASE_URL:'https://opencode.ai/zen/v1',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',ANTHROPIC_MODEL:'north-mini-code-free',ANTHROPIC_DEFAULT_HAIKU_MODEL:'deepseek-v4-flash-free',ANTHROPIC_DEFAULT_SONNET_MODEL:'north-mini-code-free',ANTHROPIC_DEFAULT_OPUS_MODEL:'claude-opus-4-8',ENABLE_TOOL_SEARCH:'true',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1'}},
-bluesminds:{name:'BlueSminds',short:'BM',color:'from-blue-500 to-indigo-500',url:'https://bluesminds.com',baseUrl:'https://api.bluesminds.com',keyPre:'sk-',auth:'API_KEY',signUp:'https://api.bluesminds.com/register?aff=vzdu',models:['z-ai/glm4.7','moonshotai/kimi-k2.6','qwen/qwen3-next-80b-a3b-instruct'],defModel:'z-ai/glm4.7',hint:'GLM, Kimi, Qwen',env:{ANTHROPIC_BASE_URL:'https://api.bluesminds.com',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',ANTHROPIC_MODEL:'z-ai/glm4.7',ANTHROPIC_DEFAULT_HAIKU_MODEL:'moonshotai/kimi-k2.6',ANTHROPIC_DEFAULT_SONNET_MODEL:'z-ai/glm4.7',ANTHROPIC_DEFAULT_OPUS_MODEL:'qwen/qwen3-next-80b-a3b-instruct',ENABLE_TOOL_SEARCH:'true',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1',API_TIMEOUT_MS:'30000000'}},
-freemodel:{name:'FreeModel',short:'FM',color:'from-pink-500 to-rose-500',url:'https://freemodel.dev',baseUrl:'https://cc.freemodel.dev',keyPre:'fe_oa_',auth:'API_KEY',signUp:'https://freemodel.dev/invite/FRE-5ea6df8e',models:['free-default'],defModel:'free-default',hint:'Built for Claude Code',env:{ANTHROPIC_BASE_URL:'https://cc.freemodel.dev',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1',ENABLE_TOOL_SEARCH:'true'}},
-aerolink:{name:'AeroLink',short:'AL',color:'from-cyan-500 to-blue-500',url:'https://aerolink.lat',baseUrl:'https://capi.aerolink.lat/',keyPre:'aero_live_',auth:'API_KEY',signUp:'https://aerolink.lat/register?ref=7JJTI60',models:['claude-default'],defModel:'claude-default',hint:'Simple proxy',env:{ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',ANTHROPIC_BASE_URL:'https://capi.aerolink.lat/',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1'}},
-nvidia:{name:'NVIDIA NIM',short:'NV',color:'from-green-500 to-green-600',url:'https://build.nvidia.com',baseUrl:'https://integrate.api.nvidia.com/v1',keyPre:'nvapi-',auth:'API_KEY',signUp:'https://build.nvidia.com',models:['meta/llama-3.1-405b-instruct','mistralai/mixtral-8x22b-instruct-v0.1','google/gemma-2-27b-it'],defModel:'meta/llama-3.1-405b-instruct',hint:'Free credits',env:{ANTHROPIC_BASE_URL:'https://integrate.api.nvidia.com/v1',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1',ENABLE_TOOL_SEARCH:'1'}},
-nararouter:{name:'NaraRouter',short:'NR',color:'from-orange-500 to-red-500',url:'https://router.bynara.id',baseUrl:'https://router.bynara.id/v1',keyPre:'sk-nry-',auth:'AUTH_TOKEN',signUp:'https://router.bynara.id/register?ref=KB864Z8T',models:['tencent-hy3','agnes-2.0-flash'],defModel:'tencent-hy3',hint:'Tencent HY3 + Agnes',env:{ANTHROPIC_BASE_URL:'https://router.bynara.id/v1',ANTHROPIC_AUTH_TOKEN:'YOUR_API_KEY_HERE',CLAUDE_CODE_USE_AUTH_TOKEN:'true',ANTHROPIC_MODEL:'tencent-hy3',ANTHROPIC_DEFAULT_OPUS_MODEL:'tencent-hy3',ANTHROPIC_DEFAULT_SONNET_MODEL:'tencent-hy3',ANTHROPIC_DEFAULT_HAIKU_MODEL:'agnes-2.0-flash',ENABLE_TOOL_SEARCH:'1',DISABLE_TELEMETRY:'1'}}
+agentrouter:{name:'AgentRouter',short:'AR',color:'from-amber-500 to-red-500',url:'https://agentrouter.org',baseUrl:'https://agentrouter.org/',keyPre:'sk-',auth:'AUTH_TOKEN',signUp:'https://agentrouter.org/register?aff=TAGp',models:['claude-opus-4-8','claude-3-5-sonnet-20241022','glm-5.2','deepseek-v3.2'],defModel:'claude-opus-4-8',env:{ANTHROPIC_BASE_URL:'https://agentrouter.org',ANTHROPIC_AUTH_TOKEN:'YOUR_API_KEY_HERE',CLAUDE_CODE_USE_AUTH_TOKEN:'true',ANTHROPIC_MODEL:'claude-opus-4-8',ANTHROPIC_DEFAULT_OPUS_MODEL:'claude-opus-4-8',ANTHROPIC_DEFAULT_SONNET_MODEL:'claude-opus-4-8',ANTHROPIC_DEFAULT_HAIKU_MODEL:'glm-5.2',ENABLE_TOOL_SEARCH:'true',DISABLE_NON_ESSENTIAL_MODEL_CALLS:'1',DISABLE_TELEMETRY:'1'}},
+openrouter:{name:'OpenRouter',short:'OR',color:'from-indigo-500 to-violet-500',url:'https://openrouter.ai',baseUrl:'https://openrouter.ai/api',keyPre:'sk-or-',auth:'API_KEY',signUp:'https://openrouter.ai',models:['openrouter/free','anthropic/claude-3.5-sonnet','deepseek/deepseek-chat','meta-llama/llama-3.1-405b'],defModel:'openrouter/free',env:{ANTHROPIC_BASE_URL:'https://openrouter.ai/api',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',CLAUDE_CODE_USE_AUTH_TOKEN:'true',ANTHROPIC_MODEL:'openrouter/free',ANTHROPIC_DEFAULT_OPUS_MODEL:'openrouter/free',ANTHROPIC_DEFAULT_SONNET_MODEL:'openrouter/free',ANTHROPIC_DEFAULT_HAIKU_MODEL:'openrouter/free',ENABLE_TOOL_SEARCH:'true',DISABLE_NON_ESSENTIAL_MODEL_CALLS:'1',DISABLE_TELEMETRY:'1'}},
+zenmux:{name:'ZenMux',short:'ZM',color:'from-violet-500 to-fuchsia-500',url:'https://zenmux.ai',baseUrl:'https://zenmux.ai/api/anthropic',keyPre:'sk-ai-v1-',auth:'API_KEY',signUp:'https://zenmux.ai/invite/YGGC5O',models:['z-ai/glm-4.7-flash-free','stepfun/step-3.7-flash-free','moonshotai/kimi-k3-free'],defModel:'z-ai/glm-4.7-flash-free',env:{ANTHROPIC_BASE_URL:'https://zenmux.ai/api/anthropic',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',ANTHROPIC_MODEL:'z-ai/glm-4.7-flash-free',ANTHROPIC_DEFAULT_HAIKU_MODEL:'stepfun/step-3.7-flash-free',ANTHROPIC_DEFAULT_SONNET_MODEL:'z-ai/glm-4.7-flash-free',ANTHROPIC_DEFAULT_OPUS_MODEL:'moonshotai/kimi-k3-free',ENABLE_TOOL_SEARCH:'true',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1',API_TIMEOUT_MS:'30000000'}},
+opencode:{name:'OpenCode',short:'OC',color:'from-emerald-500 to-cyan-500',url:'https://opencode.ai',baseUrl:'https://opencode.ai/zen/v1',keyPre:'sk-',auth:'API_KEY',signUp:'https://opencode.ai',models:['north-mini-code-free','deepseek-v4-flash-free','claude-opus-4-8'],defModel:'north-mini-code-free',env:{ANTHROPIC_BASE_URL:'https://opencode.ai/zen/v1',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',ANTHROPIC_MODEL:'north-mini-code-free',ANTHROPIC_DEFAULT_HAIKU_MODEL:'deepseek-v4-flash-free',ANTHROPIC_DEFAULT_SONNET_MODEL:'north-mini-code-free',ANTHROPIC_DEFAULT_OPUS_MODEL:'claude-opus-4-8',ENABLE_TOOL_SEARCH:'true',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1'}},
+bluesminds:{name:'BlueSminds',short:'BM',color:'from-blue-500 to-indigo-500',url:'https://bluesminds.com',baseUrl:'https://api.bluesminds.com',keyPre:'sk-',auth:'API_KEY',signUp:'https://api.bluesminds.com/register?aff=vzdu',models:['z-ai/glm4.7','moonshotai/kimi-k2.6','qwen/qwen3-next-80b-a3b-instruct'],defModel:'z-ai/glm4.7',env:{ANTHROPIC_BASE_URL:'https://api.bluesminds.com',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',ANTHROPIC_MODEL:'z-ai/glm4.7',ANTHROPIC_DEFAULT_HAIKU_MODEL:'moonshotai/kimi-k2.6',ANTHROPIC_DEFAULT_SONNET_MODEL:'z-ai/glm4.7',ANTHROPIC_DEFAULT_OPUS_MODEL:'qwen/qwen3-next-80b-a3b-instruct',ENABLE_TOOL_SEARCH:'true',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1',API_TIMEOUT_MS:'30000000'}},
+freemodel:{name:'FreeModel',short:'FM',color:'from-pink-500 to-rose-500',url:'https://freemodel.dev',baseUrl:'https://cc.freemodel.dev',keyPre:'fe_oa_',auth:'API_KEY',signUp:'https://freemodel.dev/invite/FRE-5ea6df8e',models:['free-default'],defModel:'free-default',env:{ANTHROPIC_BASE_URL:'https://cc.freemodel.dev',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1',ENABLE_TOOL_SEARCH:'true'}},
+aerolink:{name:'AeroLink',short:'AL',color:'from-cyan-500 to-blue-500',url:'https://aerolink.lat',baseUrl:'https://capi.aerolink.lat/',keyPre:'aero_live_',auth:'API_KEY',signUp:'https://aerolink.lat/register?ref=7JJTI60',models:['claude-default'],defModel:'claude-default',env:{ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',ANTHROPIC_BASE_URL:'https://capi.aerolink.lat/',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1'}},
+nvidia:{name:'NVIDIA NIM',short:'NV',color:'from-green-500 to-green-600',url:'https://build.nvidia.com',baseUrl:'https://integrate.api.nvidia.com/v1',keyPre:'nvapi-',auth:'API_KEY',signUp:'https://build.nvidia.com',models:['meta/llama-3.1-405b-instruct','mistralai/mixtral-8x22b-instruct-v0.1','google/gemma-2-27b-it'],defModel:'meta/llama-3.1-405b-instruct',env:{ANTHROPIC_BASE_URL:'https://integrate.api.nvidia.com/v1',ANTHROPIC_API_KEY:'YOUR_API_KEY_HERE',CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC:'1',ENABLE_TOOL_SEARCH:'1'}},
+nararouter:{name:'NaraRouter',short:'NR',color:'from-orange-500 to-red-500',url:'https://router.bynara.id',baseUrl:'https://router.bynara.id/v1',keyPre:'sk-nry-',auth:'AUTH_TOKEN',signUp:'https://router.bynara.id/register?ref=KB864Z8T',models:['tencent-hy3','agnes-2.0-flash'],defModel:'tencent-hy3',env:{ANTHROPIC_BASE_URL:'https://router.bynara.id/v1',ANTHROPIC_AUTH_TOKEN:'YOUR_API_KEY_HERE',CLAUDE_CODE_USE_AUTH_TOKEN:'true',ANTHROPIC_MODEL:'tencent-hy3',ANTHROPIC_DEFAULT_OPUS_MODEL:'tencent-hy3',ANTHROPIC_DEFAULT_SONNET_MODEL:'tencent-hy3',ANTHROPIC_DEFAULT_HAIKU_MODEL:'agnes-2.0-flash',ENABLE_TOOL_SEARCH:'1',DISABLE_TELEMETRY:'1'}}
 };
 
-// ============ EMBEDDED SCRIPT CONTENT ============
 const SCRIPTS={
-'switch.ps1':{pl:'Windows',icon:'fa-windows',desc:'Interactive provider switcher',code:`<#
-.SYNOPSIS
-    Interactive provider switcher for Claude Code.
-#>
-
-$SettingsDir = Join-Path $PSScriptRoot "..\\settings"
+'switch.ps1':{pl:'Windows',icon:'fa-windows',desc:'Interactive provider switcher',code:`$SettingsDir = Join-Path $PSScriptRoot "..\\settings"
 $ClaudeDir = Join-Path $env:USERPROFILE ".claude"
 $TargetFile = Join-Path $ClaudeDir "settings.json"
-$BackupDir = Join-Path $ClaudeDir "backups"
-
-if (-not (Test-Path $ClaudeDir)) {
-    New-Item -ItemType Directory -Path $ClaudeDir -Force | Out-Null
-}
 
 $SettingsFiles = Get-ChildItem -Path $SettingsDir -Filter "settings-*.json" | Sort-Object Name
+if ($SettingsFiles.Count -eq 0) { Write-Host "No settings files found" -ForegroundColor Red; exit 1 }
 
-if ($SettingsFiles.Count -eq 0) {
-    Write-Host "No settings files found" -ForegroundColor Red
-    exit 1
-}
-
-Write-Host ""
-Write-Host "Claude Code Provider Switcher" -ForegroundColor Cyan
-Write-Host ""
-
+Write-Host "`nClaude Code Provider Switcher" -ForegroundColor Cyan
 for ($i = 0; $i -lt $SettingsFiles.Count; $i++) {
     $Name = $SettingsFiles[$i].Name -replace "^settings-", "" -replace "\\.json$", ""
     Write-Host "  [$($i+1)] $Name" -ForegroundColor Yellow
 }
 
-Write-Host ""
-$Choice = Read-Host "Select provider (1-$($SettingsFiles.Count))"
-
-if ($Choice -notmatch '^\\d+$' -or [int]$Choice -lt 1 -or [int]$Choice -gt $SettingsFiles.Count) {
-    Write-Host "Invalid selection." -ForegroundColor Red
-    exit 1
-}
-
+$Choice = Read-Host "`nSelect provider (1-$($SettingsFiles.Count))"
 $Selected = $SettingsFiles[[int]$Choice - 1]
-
-if (Test-Path $TargetFile) {
-    if (-not (Test-Path $BackupDir)) {
-        New-Item -ItemType Directory -Path $BackupDir -Force | Out-Null
-    }
-    $Timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
-    Copy-Item -Path $TargetFile -Destination (Join-Path $BackupDir "settings-backup-$Timestamp.json")
-    Write-Host "  Backed up current settings" -ForegroundColor DarkGray
-}
-
 Copy-Item -Path $Selected.FullName -Destination $TargetFile -Force
 $Name = $Selected.Name -replace '^settings-', '' -replace '\\.json$', ''
-Write-Host "  Switched to: $Name" -ForegroundColor Green
-Write-Host "  Edit $TargetFile to add your API key, then run: claude" -ForegroundColor Cyan`},
+Write-Host "Switched to: $Name" -ForegroundColor Green
+Write-Host "Edit $TargetFile to add your API key, then run: claude" -ForegroundColor Cyan`},
 'switch.sh':{pl:'Linux/macOS',icon:'fa-linux',desc:'Interactive provider switcher',code:`#!/usr/bin/env bash
-# switch.sh - Interactive provider switcher
-
-set -euo pipefail
-
 SCRIPT_DIR="$(cd "$(dirname "\\${BASH_SOURCE[0]}")" && pwd)"
 SETTINGS_DIR="$SCRIPT_DIR/../settings"
-CLAUDE_DIR="$HOME/.claude"
-TARGET_FILE="$CLAUDE_DIR/settings.json"
+TARGET_FILE="$HOME/.claude/settings.json"
 
-mkdir -p "$CLAUDE_DIR"
+mkdir -p "$HOME/.claude"
+SettingsFiles=("$SETTINGS_DIR"/settings-*.json)
 
-echo ""
-echo "Claude Code Provider Switcher"
-echo ""
-
-SettingsFiles=()
-for f in "$SETTINGS_DIR"/settings-*.json; do
-    [ -f "$f" ] && SettingsFiles+=("$f")
-done
-
-if [ \\${#SettingsFiles[@]} -eq 0 ]; then
-    echo "No settings files found"
-    exit 1
-fi
-
+echo "\\nClaude Code Provider Switcher\\n"
 for i in "\\${!SettingsFiles[@]}"; do
     Name=$(basename "\\${SettingsFiles[$i]}" | sed 's/^settings-//' | sed 's/\\.json$//')
     echo "  [$((i+1))] $Name"
 done
 
-echo ""
-read -rp "Select provider (1-\\${#SettingsFiles[@]}): " Choice
-
-if ! [[ "$Choice" =~ ^[0-9]+$ ]] || [ "$Choice" -lt 1 ] || [ "$Choice" -gt "\\${#SettingsFiles[@]}" ]; then
-    echo "Invalid selection."
-    exit 1
-fi
-
-Selected="\\${SettingsFiles[$((Choice - 1))]}"
-cp "$Selected" "$TARGET_FILE"
-SelectedName=$(basename "$Selected" | sed 's/^settings-//' | sed 's/\\.json$//')
-
-echo "Switched to: $SelectedName"
+read -rp "\\nSelect (1-\\${#SettingsFiles[@]}): " Choice
+cp "\\${SettingsFiles[$((Choice - 1))]}" "$TARGET_FILE"
+echo "Switched to: $(basename "\\${SettingsFiles[$((Choice - 1))]}" | sed 's/^settings-//' | sed 's/\\.json$//')"
 echo "Edit $TARGET_FILE to add your API key, then run: claude"`},
-'doctor.ps1':{pl:'Windows',icon:'fa-windows',desc:'Diagnose config issues',code:`<#
-.SYNOPSIS
-    Diagnostic tool for Claude Code configuration.
-#>
-
-Write-Host ""
-Write-Host "Claude Code Doctor" -ForegroundColor Cyan
-Write-Host ""
-
+'doctor.ps1':{pl:'Windows',icon:'fa-windows',desc:'Diagnose config issues',code:`Write-Host "`nClaude Code Doctor" -ForegroundColor Cyan
 $Issues = 0
 
-$NodePath = Get-Command node -ErrorAction SilentlyContinue
-if ($NodePath) {
-    $NodeVersion = & node --version 2>&1
-    Write-Host "  [OK] Node.js: $NodeVersion" -ForegroundColor Green
-} else {
-    Write-Host "  [FAIL] Node.js not found" -ForegroundColor Red
-    $Issues++
-}
+if (Get-Command node -ErrorAction SilentlyContinue) {
+    Write-Host "  [OK] Node.js: $(node --version)" -ForegroundColor Green
+} else { Write-Host "  [FAIL] Node.js not found" -ForegroundColor Red; $Issues++ }
 
-$ClaudePath = Get-Command claude -ErrorAction SilentlyContinue
-if ($ClaudePath) {
+if (Get-Command claude -ErrorAction SilentlyContinue) {
     Write-Host "  [OK] Claude Code: installed" -ForegroundColor Green
-} else {
-    Write-Host "  [WARN] Claude Code not found" -ForegroundColor Yellow
-}
+} else { Write-Host "  [WARN] Claude Code not found" -ForegroundColor Yellow }
 
-$SettingsFile = Join-Path (Join-Path $env:USERPROFILE ".claude") "settings.json"
-if (Test-Path $SettingsFile) {
-    Write-Host "  [OK] Settings file exists" -ForegroundColor Green
-    try {
-        $Settings = Get-Content $SettingsFile -Raw | ConvertFrom-Json
-        if ($Settings.env.ANTHROPIC_BASE_URL) {
-            Write-Host "  [OK] Base URL: $($Settings.env.ANTHROPIC_BASE_URL)" -ForegroundColor Green
-        }
-        $Key = if ($Settings.env.ANTHROPIC_API_KEY) { $Settings.env.ANTHROPIC_API_KEY } else { $Settings.env.ANTHROPIC_AUTH_TOKEN }
-        if ($Key -and $Key -ne "YOUR_API_KEY_HERE") {
-            Write-Host "  [OK] API Key: $($Key.Substring(0, [Math]::Min(8, $Key.Length)))..." -ForegroundColor Green
-        } else {
-            Write-Host "  [WARN] API key is placeholder" -ForegroundColor Yellow
-        }
-    } catch {
-        Write-Host "  [FAIL] Settings is not valid JSON" -ForegroundColor Red
-        $Issues++
-    }
-} else {
-    Write-Host "  [WARN] No settings file found" -ForegroundColor Yellow
-}
+$SettingsFile = "$env:USERPROFILE\\.claude\\settings.json"
+if (Test-Path $SettingsFile) { Write-Host "  [OK] Settings exists" -ForegroundColor Green }
+else { Write-Host "  [WARN] No settings file" -ForegroundColor Yellow }
 
-Write-Host ""
-if ($Issues -eq 0) { Write-Host "  All checks passed!" -ForegroundColor Green }
-else { Write-Host "  Found $Issues issue(s)" -ForegroundColor Red }
-Write-Host ""`},
+Write-Host "`n  $(if ($Issues -eq 0) { 'All checks passed!' } else { "Found $Issues issue(s)" })"`},
 'doctor.sh':{pl:'Linux/macOS',icon:'fa-linux',desc:'Diagnose config issues',code:`#!/usr/bin/env bash
-# doctor.sh - Diagnostic tool
-
-set -euo pipefail
-
-echo ""
-echo "Claude Code Doctor"
-echo ""
-
-Issues=0
-
-if command -v node &>/dev/null; then
-    echo "  [OK] Node.js: $(node --version)"
-else
-    echo "  [FAIL] Node.js not found"
-    ((Issues++))
-fi
-
-if command -v claude &>/dev/null; then
-    echo "  [OK] Claude Code: installed"
-else
-    echo "  [WARN] Claude Code not found"
-fi
-
-SettingsFile="$HOME/.claude/settings.json"
-if [ -f "$SettingsFile" ]; then
-    echo "  [OK] Settings file exists"
-else
-    echo "  [WARN] No settings file"
-fi
-
-echo ""
-if [ "$Issues" -eq 0 ]; then echo "  All checks passed!"; else echo "  Found $Issues issue(s)"; fi
-echo ""`},
-'backup.ps1':{pl:'Windows',icon:'fa-windows',desc:'Backup current settings',code:`<#
-.SYNOPSIS
-    Backs up the current Claude Code settings.
-#>
-
-$ClaudeDir = Join-Path $env:USERPROFILE ".claude"
+echo "\\nClaude Code Doctor\\n"
+command -v node &>/dev/null && echo "  [OK] Node.js: $(node --version)" || echo "  [FAIL] Node.js not found"
+command -v claude &>/dev/null && echo "  [OK] Claude Code: installed" || echo "  [WARN] Claude Code not found"
+[ -f "$HOME/.claude/settings.json" ] && echo "  [OK] Settings exists" || echo "  [WARN] No settings file"`},
+'backup.ps1':{pl:'Windows',icon:'fa-windows',desc:'Backup settings',code:`$ClaudeDir = Join-Path $env:USERPROFILE ".claude"
 $SettingsFile = Join-Path $ClaudeDir "settings.json"
 $BackupDir = Join-Path $ClaudeDir "backups"
 
-if (-not (Test-Path $SettingsFile)) {
-    Write-Host "No settings file found" -ForegroundColor Red
-    exit 1
-}
-
-if (-not (Test-Path $BackupDir)) {
-    New-Item -ItemType Directory -Path $BackupDir -Force | Out-Null
-}
-
+if (-not (Test-Path $SettingsFile)) { Write-Host "No settings file" -ForegroundColor Red; exit 1 }
+New-Item -ItemType Directory -Path $BackupDir -Force | Out-Null
 $Timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 Copy-Item -Path $SettingsFile -Destination (Join-Path $BackupDir "settings-backup-$Timestamp.json")
 Write-Host "Settings backed up!" -ForegroundColor Green`},
-'backup.sh':{pl:'Linux/macOS',icon:'fa-linux',desc:'Backup current settings',code:`#!/usr/bin/env bash
-# backup.sh - Backs up current settings
-
-set -euo pipefail
-
+'backup.sh':{pl:'Linux/macOS',icon:'fa-linux',desc:'Backup settings',code:`#!/usr/bin/env bash
 CLAUDE_DIR="$HOME/.claude"
-SETTINGS_FILE="$CLAUDE_DIR/settings.json"
-
-if [ ! -f "$SETTINGS_FILE" ]; then echo "No settings file found"; exit 1; fi
-
+[ ! -f "$CLAUDE_DIR/settings.json" ] && echo "No settings file" && exit 1
 mkdir -p "$CLAUDE_DIR/backups"
-Timestamp=$(date +%Y%m%d-%H%M%S)
-cp "$SETTINGS_FILE" "$CLAUDE_DIR/backups/settings-backup-$Timestamp.json"
+cp "$CLAUDE_DIR/settings.json" "$CLAUDE_DIR/backups/settings-backup-$(date +%Y%m%d-%H%M%S).json"
 echo "Settings backed up!"`},
-'restore.ps1':{pl:'Windows',icon:'fa-windows',desc:'Restore from backup',code:`<#
-.SYNOPSIS
-    Restores Claude Code settings from a backup.
-#>
-
-$ClaudeDir = Join-Path $env:USERPROFILE ".claude"
-$SettingsFile = Join-Path $ClaudeDir "settings.json"
-$BackupDir = Join-Path $ClaudeDir "backups"
-
-if (-not (Test-Path $BackupDir)) { Write-Host "No backups found" -ForegroundColor Red; exit 1 }
-
+'restore.ps1':{pl:'Windows',icon:'fa-windows',desc:'Restore from backup',code:`$BackupDir = Join-Path $env:USERPROFILE ".claude\\backups"
 $Backups = Get-ChildItem -Path $BackupDir -Filter "settings-backup-*.json" | Sort-Object Name -Descending
-if ($Backups.Count -eq 0) { Write-Host "No backup files" -ForegroundColor Red; exit 1 }
+if ($Backups.Count -eq 0) { Write-Host "No backups" -ForegroundColor Red; exit 1 }
 
-Write-Host "Available backups:" -ForegroundColor Cyan
 for ($i = 0; $i -lt $Backups.Count; $i++) {
     Write-Host "  [$($i+1)] $($Backups[$i].Name -replace 'settings-backup-','' -replace '\\.json$','')" -ForegroundColor Yellow
 }
-
 $Choice = Read-Host "Select (1-$($Backups.Count))"
-$Selected = $Backups[[int]$Choice - 1]
-Copy-Item -Path $Selected.FullName -Destination $SettingsFile -Force
-Write-Host "Restored from: $($Selected.Name)" -ForegroundColor Green`},
+Copy-Item -Path $Backups[[int]$Choice - 1].FullName -Destination "$env:USERPROFILE\\.claude\\settings.json" -Force
+Write-Host "Restored!" -ForegroundColor Green`},
 'restore.sh':{pl:'Linux/macOS',icon:'fa-linux',desc:'Restore from backup',code:`#!/usr/bin/env bash
-# restore.sh - Restores from backup
+BACKUP_DIR="$HOME/.claude/backups"
+Backups=("$BACKUP_DIR"/settings-backup-*.json)
+[ \\${#Backups[@]} -eq 0 ] && echo "No backups" && exit 1
 
-set -euo pipefail
-
-CLAUDE_DIR="$HOME/.claude"
-SETTINGS_FILE="$CLAUDE_DIR/settings.json"
-
-if [ ! -d "$CLAUDE_DIR/backups" ]; then echo "No backups found"; exit 1; fi
-
-Backups=()
-for f in "$CLAUDE_DIR/backups"/settings-backup-*.json; do [ -f "$f" ] && Backups+=("$f"); done
-if [ \\${#Backups[@]} -eq 0 ]; then echo "No backup files"; exit 1; fi
-
-echo "Available backups:"
 for i in "\\${!Backups[@]}"; do
     echo "  [$((i+1))] $(basename "\\${Backups[$i]}" | sed 's/settings-backup-//' | sed 's/\\.json$//')"
 done
-
-read -rp "Select (1-\\${#Backups[@]}): " Choice
-cp "\\${Backups[$((Choice - 1))]}" "$SETTINGS_FILE"
+read -rp "Select: " Choice
+cp "\\${Backups[$((Choice - 1))]}" "$HOME/.claude/settings.json"
 echo "Restored!"`},
-'install.ps1':{pl:'Windows',icon:'fa-windows',desc:'Setup wizard',code:`<#
-.SYNOPSIS
-    Automated setup wizard for Claude Code.
-#>
+'install.ps1':{pl:'Windows',icon:'fa-windows',desc:'Setup wizard',code:`Write-Host "`nClaude Code Free - Setup Wizard" -ForegroundColor Cyan
 
-Write-Host ""
-Write-Host "Claude Code Free - Setup Wizard" -ForegroundColor Cyan
-Write-Host ""
-
-if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
-    Write-Host "Node.js required. Install from https://nodejs.org/" -ForegroundColor Red
-    exit 1
-}
-Write-Host "  [OK] Node.js installed" -ForegroundColor Green
+if (-not (Get-Command node -ErrorAction SilentlyContinue)) { Write-Host "Node.js required" -ForegroundColor Red; exit 1 }
+Write-Host "  [OK] Node.js" -ForegroundColor Green
 
 if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
     Write-Host "Installing Claude Code..." -ForegroundColor Yellow
     & npm install -g @anthropic-ai/claude-code
 }
-Write-Host "  [OK] Claude Code installed" -ForegroundColor Green
+Write-Host "  [OK] Claude Code" -ForegroundColor Green
 
 $Providers = @("OpenRouter","OpenCode","AgentRouter","NVIDIA NIM","ZenMux","AeroLink","FreeModel","BlueSminds")
-$Files = @("settings-openrouter.json","settings-opencode.json","settings-agentrouter.json","settings-nvidia.json","settings-zenmux.json","settings-aerolink.json","settings-freemodel.json","settings-bluesminds.json")
-
-Write-Host ""
 for ($i = 0; $i -lt $Providers.Count; $i++) { Write-Host "  [$($i+1)] $($Providers[$i])" }
-$Choice = Read-Host "Select provider (1-$($Providers.Count))"
+$Choice = Read-Host "`nSelect provider"
 $Idx = [int]$Choice - 1
-
-$Src = Join-Path $PSScriptRoot "..\\settings\\$($Files[$Idx])"
-$Dst = Join-Path $env:USERPROFILE ".claude\\settings.json"
-New-Item -ItemType Directory -Path (Split-Path $Dst) -Force | Out-Null
-Copy-Item -Path $Src -Destination $Dst -Force
-
-Write-Host ""
-Write-Host "Installed $($Providers[$Idx]) settings!" -ForegroundColor Green
-Write-Host "Edit $Dst to add your API key, then run: claude" -ForegroundColor Cyan`},
+$Files = @("settings-openrouter.json","settings-opencode.json","settings-agentrouter.json","settings-nvidia.json","settings-zenmux.json","settings-aerolink.json","settings-freemodel.json","settings-bluesminds.json")
+Copy-Item -Path (Join-Path $PSScriptRoot "..\\settings\\$($Files[$Idx])") -Destination "$env:USERPROFILE\\.claude\\settings.json" -Force
+Write-Host "`nInstalled $($Providers[$Idx]) settings!" -ForegroundColor Green`},
 'install.sh':{pl:'Linux/macOS',icon:'fa-linux',desc:'Setup wizard',code:`#!/usr/bin/env bash
-# install.sh - Setup wizard
-
-set -euo pipefail
-
-echo ""
-echo "Claude Code Free - Setup Wizard"
-echo ""
-
-if ! command -v node &>/dev/null; then echo "Node.js required"; exit 1; fi
-echo "  [OK] Node.js installed"
-
-if ! command -v claude &>/dev/null; then
-    echo "Installing Claude Code..."
-    npm install -g @anthropic-ai/claude-code
-fi
-echo "  [OK] Claude Code installed"
+echo "\\nClaude Code Free - Setup Wizard\\n"
+command -v node &>/dev/null || { echo "Node.js required"; exit 1; }
+command -v claude &>/dev/null || npm install -g @anthropic-ai/claude-code
+mkdir -p "$HOME/.claude"
 
 Providers=("OpenRouter" "OpenCode" "AgentRouter" "NVIDIA NIM" "ZenMux" "AeroLink" "FreeModel" "BlueSminds")
 Files=("settings-openrouter.json" "settings-opencode.json" "settings-agentrouter.json" "settings-nvidia.json" "settings-zenmux.json" "settings-aerolink.json" "settings-freemodel.json" "settings-bluesminds.json")
-
-echo ""
 for i in "\\${!Providers[@]}"; do echo "  [$((i+1))] \\${Providers[$i]}"; done
-read -rp "Select (1-\\${#Providers[@]}): " Choice
-
-mkdir -p "$HOME/.claude"
+read -rp "\\nSelect: " Choice
+SCRIPT_DIR="$(cd "$(dirname "\\${BASH_SOURCE[0]}")" && pwd)"
 cp "$SCRIPT_DIR/../settings/\\${Files[$((Choice-1))]}" "$HOME/.claude/settings.json"
-echo ""
-echo "Installed \\${Providers[$((Choice-1))]} settings!"
-echo "Edit ~/.claude/settings.json to add your API key, then run: claude"`}
+echo "Installed \\${Providers[$((Choice-1))]} settings! Edit and run: claude"`}
 };
 
 const FAQS=[
-{q:'Is this really free?',a:'Yes! All 9 providers offer free tiers. The repo is MIT licensed. Some providers may require signup.'},
-{q:'Is this legal?',a:'Absolutely. Only officially documented APIs. No cracked keys, no bypasses, no stolen credentials.'},
-{q:'What is settings.json?',a:'Claude Code reads <code>~/.claude/settings.json</code> on startup. It contains your API key, base URL, model, and permissions. Our files are ready to use.'},
-{q:'What do the scripts do?',a:'<b>switch</b> — swap providers. <b>doctor</b> — check config. <b>backup/restore</b> — save & recover. <b>install</b> — guided setup.'},
-{q:'Which provider should I choose?',a:'<b>AgentRouter</b> — free Claude Opus 4. <b>OpenRouter</b> — widest selection. <b>ZenMux</b> — 3 free models. Try a few!'},
-{q:'Does this work with VS Code?',a:'Claude Code is CLI. For VS Code use Roo Code, Kilo Code, or Claude Dev extensions with the same API key.'},
-{q:'Rate limit hit?',a:'Wait 1-24h, switch model, try another provider, or upgrade to paid.'},
-{q:'Is my code sent to third parties?',a:'Yes — to whichever provider you configure. This project never collects data. Review each provider\'s privacy policy.'}
+{q:'Is this really free?',a:'Yes. All 9 providers offer free tiers. MIT licensed.'},
+{q:'Is this legal?',a:'Yes. Officially documented APIs only. No cracked keys or stolen credentials.'},
+{q:'What is settings.json?',a:'Claude Code reads <code>~/.claude/settings.json</code> on startup with your API key, base URL, and model config.'},
+{q:'Which provider should I choose?',a:'<b>AgentRouter</b> — free Claude Opus 4. <b>OpenRouter</b> — widest model selection. <b>ZenMux</b> — 3 free models.'},
+{q:'Does this work with VS Code?',a:'Claude Code is CLI. For VS Code, use Roo Code or Kilo Code extensions with the same API key.'},
+{q:'Rate limited?',a:'Wait 1-24h, switch model, try another provider, or upgrade to paid.'}
 ];
 
-// ============ RENDER ============
-function hl(json){
-    return json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"([^"]+)":/g,'<span class="jk">"$1"</span>:')
-    .replace(/: "([^"]*?)"/g,': <span class="js">"$1"</span>')
-    .replace(/: (\d+)/g,': <span class="jn">$1</span>')
-    .replace(/: (true|false)/g,': <span class="jb">$1</span>');
+function hl(j){
+    return j.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"([^"]+)":/g,'<span class="json-key">"$1"</span>:')
+    .replace(/: "([^"]*?)"/g,': <span class="json-str">"$1"</span>')
+    .replace(/: (\d+)/g,': <span class="json-num">$1</span>')
+    .replace(/: (true|false)/g,': <span class="json-bool">$1</span>');
 }
 
 function renderPGrid(){
-    const g=document.getElementById('pgrid');
-    g.innerHTML='';
+    const g=document.getElementById('pgrid');g.innerHTML='';
     for(const[k,v]of Object.entries(P)){
-        g.innerHTML+=`<button onclick="selP('${k}')" id="pg-${k}" class="pcard bg-[#F5F4EF] dark:bg-[#1c1c1f] border-2 border-[#e5e5e5] dark:border-[#27272a] rounded-xl p-3 text-left hover:border-[#D9614C] transition-all"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-lg bg-gradient-to-br ${v.color} flex items-center justify-center text-white font-bold text-[10px]">${v.short}</div><div><div class="font-semibold text-xs">${v.name}</div><div class="text-[10px] text-green-500 font-bold">FREE</div></div></div></button>`;
+        g.innerHTML+=`<button onclick="selP('${k}')" id="pg-${k}" class="bg-gray-50 dark:bg-[#1a1a1c] border border-gray-200 dark:border-[#27272a] rounded-lg p-2.5 text-left hover:border-[#D9614C] transition"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-md bg-gradient-to-br ${v.color} flex items-center justify-center text-white font-bold text-[10px]">${v.short}</div><div><div class="font-semibold text-xs">${v.name}</div><div class="text-[10px] text-green-500 font-bold">FREE</div></div></div></button>`;
     }
 }
 
@@ -583,67 +391,61 @@ function renderSettings(){
     const el=document.getElementById('slist');el.innerHTML='';
     for(const[k,v]of Object.entries(P)){
         const j=JSON.stringify({$schema:'https://json.schemastore.org/claude-code-settings.json',env:v.env,permissions:{defaultMode:'acceptEdits'}},null,2);
-        el.innerHTML+=`<div class="bg-white dark:bg-[#1c1c1f] rounded-xl border border-[#e5e5e5] dark:border-[#27272a] overflow-hidden"><div class="flex items-center justify-between px-4 py-3 border-b border-[#e5e5e5] dark:border-[#27272a] bg-[#F5F4EF]/50 dark:bg-[#111113]"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-lg bg-gradient-to-br ${v.color} flex items-center justify-center text-white font-bold text-[10px]">${v.short}</div><span class="font-semibold text-sm">${v.name}</span></div><div class="flex gap-2"><button onclick="cpTxt(this,'${j.replace(/'/g,"\\'")}')" class="text-xs bg-white dark:bg-[#27272a] border border-[#e5e5e5] dark:border-[#3f3f46] px-3 py-1.5 rounded-lg hover:border-[#D9614C] transition flex items-center gap-1"><i class="fas fa-copy"></i>Copy</button><button onclick="dlFile('settings-${k}.json',this.getAttribute('data-j'))" data-j='${j.replace(/'/g,"\\'")}' class="text-xs bg-[#D9614C] text-white px-3 py-1.5 rounded-lg hover:bg-[#C25541] transition flex items-center gap-1"><i class="fas fa-download"></i>Download</button></div></div><div class="mac-b text-xs max-h-56 overflow-y-auto">${hl(j)}</div></div>`;
+        el.innerHTML+=`<div class="bg-white dark:bg-[#161618] rounded-xl border border-gray-200 dark:border-[#222] overflow-hidden"><div class="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-[#222]"><div class="flex items-center gap-2"><div class="w-6 h-6 rounded bg-gradient-to-br ${v.color} flex items-center justify-center text-white font-bold text-[9px]">${v.short}</div><span class="font-semibold text-sm">${v.name}</span></div><div class="flex gap-2"><button onclick="cpTxt(this,'${j.replace(/'/g,"\\'")}')" class="text-xs border border-gray-200 dark:border-[#333] px-3 py-1.5 rounded-lg hover:border-[#D9614C] transition flex items-center gap-1"><i class="fas fa-copy"></i>Copy</button><button onclick="dlFile('settings-${k}.json',this.getAttribute('data-j'))" data-j='${j.replace(/'/g,"\\'")}' class="text-xs bg-[#D9614C] text-white px-3 py-1.5 rounded-lg hover:bg-[#C25541] transition flex items-center gap-1"><i class="fas fa-download"></i>Download</button></div></div><div class="code-block text-xs max-h-48 overflow-y-auto">${hl(j)}</div></div>`;
     }
 }
 
 function renderScripts(){
     const el=document.getElementById('sgrid');el.innerHTML='';
     for(const[n,s]of Object.entries(SCRIPTS)){
-        el.innerHTML+=`<div class="bg-white dark:bg-[#1c1c1f] rounded-xl border border-[#e5e5e5] dark:border-[#27272a] p-4"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><i class="fab ${s.icon} text-sm ${s.icon==='fa-windows'?'text-blue-500':'text-green-500'}"></i><span class="font-mono text-sm font-semibold">${n}</span></div><span class="text-[10px] bg-[#F5F4EF] dark:bg-[#111113] px-2 py-0.5 rounded-full text-[#737373]">${s.pl}</span></div><p class="text-xs text-[#737373] mb-3">${s.desc}</p><div class="flex gap-2"><button onclick="togScr(this)" class="text-xs bg-[#F5F4EF] dark:bg-[#111113] border border-[#e5e5e5] dark:border-[#27272a] px-3 py-1.5 rounded-lg hover:border-[#D9614C] transition flex items-center gap-1"><i class="fas fa-eye"></i>View</button><button onclick="dlFile('${n}',this.getAttribute('data-c'))" data-c='${SCRIPTS[n].code.replace(/'/g,"\\'")}' class="text-xs bg-[#D9614C] text-white px-3 py-1.5 rounded-lg hover:bg-[#C25541] transition flex items-center gap-1"><i class="fas fa-download"></i>Download</button></div></div>`;
+        el.innerHTML+=`<div class="bg-white dark:bg-[#161618] rounded-xl border border-gray-200 dark:border-[#222] p-4"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><i class="fab ${s.icon} text-sm ${s.icon==='fa-windows'?'text-blue-500':'text-green-500'}"></i><span class="font-mono text-sm font-semibold">${n}</span></div><span class="text-[10px] bg-gray-100 dark:bg-white/5 px-2 py-0.5 rounded text-gray-400">${s.pl}</span></div><p class="text-xs text-gray-400 mb-3">${s.desc}</p><div class="flex gap-2"><button onclick="togScr(this)" class="text-xs bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-[#27272a] px-3 py-1.5 rounded-lg hover:border-[#D9614C] transition flex items-center gap-1"><i class="fas fa-eye"></i>View</button><button onclick="dlFile('${n}',this.getAttribute('data-c'))" data-c='${SCRIPTS[n].code.replace(/'/g,"\\'")}' class="text-xs bg-[#D9614C] text-white px-3 py-1.5 rounded-lg hover:bg-[#C25541] transition flex items-center gap-1"><i class="fas fa-download"></i>Download</button></div></div>`;
     }
 }
 
 function renderFAQ(){
     const el=document.getElementById('fql');el.innerHTML='';
     FAQS.forEach(f=>{
-        el.innerHTML+=`<div class="bg-white dark:bg-[#1c1c1f] rounded-xl border border-[#e5e5e5] dark:border-[#27272a] overflow-hidden"><button class="w-full px-5 py-3.5 text-left flex items-center justify-between hover:bg-[#F5F4EF]/50 dark:hover:bg-[#111113] transition" onclick="togF(this)"><span class="font-semibold text-sm">${f.q}</span><i class="fas fa-chevron-down text-xs text-[#737373] transition-transform"></i></button><div class="faq-a px-5 pb-4 text-sm text-[#737373] leading-relaxed">${f.a}</div></div>`;
+        el.innerHTML+=`<div class="bg-white dark:bg-[#161618] rounded-xl border border-gray-200 dark:border-[#222] overflow-hidden"><button class="w-full px-5 py-3 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-white/5 transition text-sm font-semibold" onclick="togF(this)"><span>${f.q}</span><i class="fas fa-chevron-down text-xs text-gray-400 transition-transform"></i></button><div class="faq-body px-5 pb-4 text-sm text-gray-500 leading-relaxed">${f.a}</div></div>`;
     });
 }
 
-// ============ WIZARD ============
 let WS={p:null,m:null};
-
 function selP(k){
     WS.p=k;WS.m=P[k].defModel;
-    document.querySelectorAll('#pgrid button').forEach(b=>{b.classList.remove('border-[#D9614C]');b.classList.add('border-[#e5e5e5]','dark:border-[#27272a]')});
-    const b=document.getElementById('pg-'+k);if(b){b.classList.add('border-[#D9614C]');b.classList.remove('border-[#e5e5e5]','dark:border-[#27272a]')}
+    document.querySelectorAll('#pgrid button').forEach(b=>{b.classList.remove('border-[#D9614C]');b.classList.add('border-gray-200','dark:border-[#27272a]')});
+    const b=document.getElementById('pg-'+k);if(b){b.classList.add('border-[#D9614C]');b.classList.remove('border-gray-200','dark:border-[#27272a]')}
     goStep(2);renderModels(k);
 }
-
 function renderModels(k){
     const el=document.getElementById('mlist');el.innerHTML='';
     P[k].models.forEach(m=>{
         const d=m===P[k].defModel;
-        el.innerHTML+=`<button onclick="selM('${m}')" class="w-full text-left px-4 py-3 rounded-xl border-2 ${d?'border-[#D9614C] bg-[#D9614C]/5':'border-[#e5e5e5] dark:border-[#27272a] bg-white dark:bg-[#1c1c1f] hover:border-[#D9614C]/50'} transition-all"><div class="flex items-center justify-between"><span class="font-mono text-sm font-semibold">${m}</span>${d?'<span class="text-[10px] bg-[#D9614C] text-white px-2 py-0.5 rounded-full font-bold">DEFAULT</span>':''}</div></button>`;
+        el.innerHTML+=`<button onclick="selM('${m}')" class="w-full text-left px-4 py-2.5 rounded-lg border ${d?'border-[#D9614C] bg-[#D9614C]/5':'border-gray-200 dark:border-[#333] hover:border-[#D9614C]/50'} transition"><div class="flex items-center justify-between"><span class="font-mono text-sm font-semibold">${m}</span>${d?'<span class="text-[10px] bg-[#D9614C] text-white px-2 py-0.5 rounded font-bold">DEFAULT</span>':''}</div></button>`;
     });
 }
-
 function selM(m){
     WS.m=m;
-    document.querySelectorAll('#mlist button').forEach(b=>{b.classList.remove('border-[#D9614C]');b.classList.add('border-[#e5e5e5]','dark:border-[#27272a]')});
+    document.querySelectorAll('#mlist button').forEach(b=>{b.classList.remove('border-[#D9614C]');b.classList.add('border-gray-200','dark:border-[#333]')});
     event.currentTarget.classList.add('border-[#D9614C]');
-    event.currentTarget.classList.remove('border-[#e5e5e5]','dark:border-[#27272a]');
+    event.currentTarget.classList.remove('border-gray-200','dark:border-[#333]');
     goStep(3);
     const p=P[WS.p];
-    document.getElementById('whint').innerHTML=`Get key from <a href="${p.signUp}" target="_blank" class="text-[#D9614C] hover:underline font-medium">${p.name}</a> — starts with "${p.keyPre}..."`;
+    document.getElementById('whint').innerHTML=`Get key from <a href="${p.signUp}" target="_blank" class="text-[#D9614C] hover:underline font-medium">${p.name}</a>`;
 }
-
 function goStep(n){
     document.querySelectorAll('.ws').forEach(s=>s.classList.add('hidden'));
     document.getElementById('ws'+n).classList.remove('hidden');
     for(let i=1;i<=4;i++){
         const d=document.getElementById('s'+i+'d');
-        d.className='sd '+(i<n?'sdn':i===n?'sa':'sdp');
+        d.className='step-dot '+(i<n?'step-done':i===n?'step-active':'step-pending');
         d.innerHTML=i<n?'<i class="fas fa-check text-sm"></i>':i;
     }
     for(let i=1;i<=3;i++){
         const l=document.getElementById('sl'+i);
-        if(l)l.className='flex-1 h-0.5 '+(i<n?'bg-green-500':'bg-[#e5e5e5] dark:bg-[#27272a]');
+        if(l)l.className='flex-1 h-0.5 '+(i<n?'bg-green-500':'bg-gray-200 dark:bg-[#333]');
     }
     if(n===4)renderResult();
 }
-
 function renderResult(){
     const p=P[WS.p],key=document.getElementById('wkey').value.trim()||'YOUR_API_KEY_HERE';
     const env={...p.env};
@@ -655,21 +457,17 @@ function renderResult(){
     let cmd;
     if(isWin){
         cmd=`$env:ANTHROPIC_BASE_URL="${p.baseUrl}"\n$env:ANTHROPIC_AUTH_TOKEN="${key}"\n$env:ANTHROPIC_MODEL="${WS.m}"\n$env:CLAUDE_CODE_USE_AUTH_TOKEN="true"\n\nclaude`;
-        document.getElementById('wct').textContent='PowerShell';
     }else{
         cmd=`export ANTHROPIC_BASE_URL="${p.baseUrl}"\nexport ANTHROPIC_AUTH_TOKEN="${key}"\nexport ANTHROPIC_MODEL="${WS.m}"\nexport CLAUDE_CODE_USE_AUTH_TOKEN="true"\n\nclaude`;
-        document.getElementById('wct').textContent='Bash';
     }
     document.getElementById('wcmd').textContent=cmd;
 }
-
 function resetWiz(){
     WS={p:null,m:null};
     document.getElementById('wkey').value='';
-    document.querySelectorAll('#pgrid button').forEach(b=>{b.classList.remove('border-[#D9614C]');b.classList.add('border-[#e5e5e5]','dark:border-[#27272a]')});
+    document.querySelectorAll('#pgrid button').forEach(b=>{b.classList.remove('border-[#D9614C]');b.classList.add('border-gray-200','dark:border-[#27272a]')});
     goStep(1);
 }
-
 function dlSettings(){
     const p=P[WS.p],key=document.getElementById('wkey').value.trim()||'YOUR_API_KEY_HERE';
     const env={...p.env};
@@ -677,16 +475,14 @@ function dlSettings(){
     env.ANTHROPIC_MODEL=WS.m;
     dlFile('settings.json',JSON.stringify({$schema:'https://json.schemastore.org/claude-code-settings.json',env:env,permissions:{defaultMode:'acceptEdits'}},null,2));
 }
-
 function cpCmd(){navigator.clipboard.writeText(document.getElementById('wcmd').textContent)}
 
-// ============ HELPERS ============
-function cpTxt(btn,t){navigator.clipboard.writeText(t).then(()=>{const o=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i> Copied!';setTimeout(()=>btn.innerHTML=o,2000)})}
-function cpEl(id,btn){navigator.clipboard.writeText(document.getElementById(id).textContent).then(()=>{const o=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i> Copied!';setTimeout(()=>btn.innerHTML=o,2000)})}
+function cpTxt(btn,t){navigator.clipboard.writeText(t).then(()=>{const o=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i> Copied!';setTimeout(()=>btn.innerHTML=o,1500)})}
+function cpEl(id,btn){navigator.clipboard.writeText(document.getElementById(id).textContent).then(()=>{const o=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i> Copied!';setTimeout(()=>btn.innerHTML=o,1500)})}
 function cpTab(btn){
-    const tab=btn.closest('.mac').querySelector('.mac-b');
-    let t='';tab.querySelectorAll('code').forEach(c=>t+=c.innerText.trim()+'\n');
-    navigator.clipboard.writeText(t.trim()).then(()=>{const o=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i> Copied!';btn.style.background='#D9614C';setTimeout(()=>{btn.innerHTML=o;btn.style.background=''},2000)});
+    const block=btn.closest('.code-block');
+    const code=block.querySelector('code');
+    navigator.clipboard.writeText(code.textContent).then(()=>{const o=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i> Copied!';btn.style.background='#D9614C';setTimeout(()=>{btn.innerHTML=o;btn.style.background=''},1500)});
 }
 function dlFile(name,content){
     const b=new Blob([content],{type:'text/plain'}),a=document.createElement('a');
@@ -695,45 +491,34 @@ function dlFile(name,content){
 function togK(){const i=document.getElementById('wkey'),ic=document.getElementById('eyeI');if(i.type==='password'){i.type='text';ic.classList.replace('fa-eye','fa-eye-slash')}else{i.type='password';ic.classList.replace('fa-eye-slash','fa-eye')}}
 function togF(btn){
     const a=btn.nextElementSibling,ic=btn.querySelector('i');
-    document.querySelectorAll('.faq-a').forEach(x=>{if(x!==a)x.classList.remove('open')});
+    document.querySelectorAll('.faq-body').forEach(x=>{if(x!==a)x.classList.remove('open')});
     document.querySelectorAll('#faq button i').forEach(x=>{if(x!==ic)x.style.transform=''});
     a.classList.toggle('open');ic.style.transform=a.classList.contains('open')?'rotate(180deg)':'';
 }
 function togScr(btn){
-    const card=btn.closest('.bg-white,.dark\\:bg-\\[\\#1c1c1f\\]');
+    const card=btn.closest('[class*="bg-white"],[class*="dark:bg-"]');
     let v=card.querySelector('.sv');
     if(v){v.remove();btn.innerHTML='<i class="fas fa-eye"></i>View';return}
-    const name=btn.closest('[data-name]')?.dataset.name||btn.parentElement.parentElement.querySelector('.font-mono').textContent;
+    const name=btn.parentElement.parentElement.querySelector('.font-mono').textContent;
     const sc=SCRIPTS[name];if(!sc)return;
-    v=document.createElement('div');v.className='sv mt-3 mac';
-    v.innerHTML=`<div class="mac-h"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><span class="text-gray-400 text-xs ml-2 font-mono">${name}</span><button class="cp" onclick="cpEl(this.closest('.mac').querySelector('code'),this)"><i class="fas fa-copy"></i> Copy</button></div><div class="mac-b text-xs max-h-48 overflow-y-auto"><code class="text-green-400 whitespace-pre">${sc.code.replace(/</g,'&lt;')}</code></div>`;
+    v=document.createElement('div');v.className='sv mt-3 code-block';
+    v.innerHTML=`<button class="copy-btn" onclick="cpEl(this.parentElement.querySelector('code'),this)"><i class="fas fa-copy"></i>Copy</button><code class="text-green-400 whitespace-pre text-xs">${sc.code.replace(/</g,'&lt;')}</code>`;
     card.appendChild(v);btn.innerHTML='<i class="fas fa-eye-slash"></i>Hide';
 }
 
-// ============ THEME ============
 const h=document.documentElement,dI=document.getElementById('dI'),lI=document.getElementById('lI');
 function setT(d){if(d){h.classList.add('dark');dI.classList.add('hidden');lI.classList.remove('hidden');localStorage.setItem('t','d')}else{h.classList.remove('dark');dI.classList.remove('hidden');lI.classList.add('hidden');localStorage.setItem('t','l')}}
 setT(localStorage.getItem('t')==='d'||(!localStorage.getItem('t')&&matchMedia('(prefers-color-scheme:dark)').matches));
 document.getElementById('tBtn').onclick=()=>setT(!h.classList.contains('dark'));
-
-// ============ MOBILE ============
 document.getElementById('mob').onclick=()=>document.getElementById('mobM').classList.toggle('hidden');
 
-// ============ TABS ============
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+document.querySelectorAll('.tab-btn').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
     document.querySelectorAll('.tc').forEach(x=>x.classList.add('hidden'));
-    b.classList.add('on');document.getElementById(b.dataset.t).classList.remove('hidden');
+    b.classList.add('active');document.getElementById(b.dataset.t).classList.remove('hidden');
 });
 
-// ============ SCROLL ANIM ============
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.06,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.afu').forEach(el=>obs.observe(el));
-
-// ============ LIVE UPDATE ============
 document.getElementById('wkey').addEventListener('input',()=>{if(WS.p)renderResult()});
-
-// ============ INIT ============
 renderPGrid();renderSettings();renderScripts();renderFAQ();goStep(1);
 </script>
 </body>
