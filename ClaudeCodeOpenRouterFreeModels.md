@@ -166,6 +166,7 @@ setx ANTHROPIC_DEFAULT_SONNET_MODEL "openrouter/free"
 setx ANTHROPIC_DEFAULT_OPUS_MODEL "openrouter/free"
 setx ANTHROPIC_DEFAULT_HAIKU_MODEL "openrouter/free"
 setx CLAUDE_CODE_SUBAGENT_MODEL "openrouter/free"
+setx CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY "1"
 ```
 
 ### Important
