@@ -1,119 +1,190 @@
-# Claude Code + OpenRouter Free Models
-## Complete Windows Setup Tutorial
+# 🎬 CLAUDE CODE + OPENROUTER FREE MODELS
+
+## Complete Windows Setup — 2026 Updated Tutorial
 
 ---
 
-## 🎬 INTRO
+## ⏱️ 00:00 — HOOK
+
+**SCREEN:** Claude Code terminal + OpenRouter dashboard का fast montage.
 
 **VOICEOVER:**
 
-> "Hey everyone! आज के इस tutorial में हम Windows पर Claude Code को OpenRouter के साथ connect करने वाले हैं.
+> "क्या आप Claude Code को सिर्फ Anthropic के models तक limited रखना चाहते हैं?
 >
-> सबसे interesting बात यह है कि हम OpenRouter के `openrouter/free` router को use करेंगे, जिससे हमें available free models के साथ Claude Code का coding workflow test करने का मौका मिलेगा.
+> आज मैं आपको दिखाने वाला हूँ कि Windows पर Claude Code को OpenRouter के साथ कैसे connect करें — और OpenRouter के `openrouter/free` router के जरिए available free models को Claude Code के coding workflow में कैसे use करें.
 >
-> मैं आपको बिल्कुल zero से setup कराऊंगा — Claude Code installation, OpenRouter API key, environment variables, connection testing, model configuration, model discovery और final testing — सब कुछ step by step."
+> इस पूरे setup को हम zero से करेंगे.
+>
+> Claude Code installation से लेकर API configuration, model routing, testing, troubleshooting और real coding demo तक — सब कुछ इसी video में."
+
+**ON SCREEN:**
+
+```text
+CLAUDE CODE
+      ↓
+OPENROUTER
+      ↓
+openrouter/free
+      ↓
+FREE MODELS
+```
 
 ---
 
-# PART 1 — REQUIREMENTS
+# ⏱️ 00:25 — IMPORTANT 2026 UPDATE
 
 **VOICEOVER:**
 
-> "शुरू करने से पहले हमें तीन चीज़ों की जरूरत होगी:
+> "और video शुरू करने से पहले एक important YouTube update.
 >
-> Number one — Windows PC और PowerShell.
+> YouTube ने announce किया है कि 24 August 2026 से public views की counting में बदलाव होगा.
 >
-> Number two — Claude Code.
+> अब एक view video के play होते ही, यानी first frame से count होगी.
 >
-> Number three — OpenRouter API key."
+> इसलिए इस tutorial में मैं शुरुआत से ही actual setup और result दिखाऊंगा — कोई लंबा intro नहीं."
+
+**ON SCREEN:**
+
+```text
+YouTube View Counting Update
+
+24 August 2026
+
+View starts counting
+→ When playback begins
+→ From the first frame
+```
+
+YouTube के official community announcement के अनुसार यह नया counting standard Shorts के अलावा अन्य public videos पर भी लागू होगा।
+
+---
+
+# ⏱️ 01:00 — WHAT WE ARE BUILDING
+
+**VOICEOVER:**
+
+> "सबसे पहले architecture समझ लेते हैं."
 
 **SCREEN:**
 
-PowerShell खोलें.
+```text
+Windows PC
+    │
+    ▼
+Claude Code
+    │
+    │ Anthropic-compatible API
+    ▼
+OpenRouter
+    │
+    ▼
+openrouter/free
+    │
+    ├── Free Model 1
+    ├── Free Model 2
+    ├── Free Model 3
+    └── Other available free models
+```
+
+**VOICEOVER:**
+
+> "`openrouter/free` खुद एक fixed model नहीं है.
+>
+> यह OpenRouter का Free Models Router है, जो available free models में से suitable model select कर सकता है."
+
+---
+
+# ⏱️ 01:35 — REQUIREMENTS
+
+**SCREEN:**
+
+```text
+✓ Windows
+✓ PowerShell
+✓ Claude Code
+✓ OpenRouter Account
+✓ OpenRouter API Key
+```
+
+**VOICEOVER:**
+
+> "आपको सिर्फ Windows PC, PowerShell, Claude Code और OpenRouter account की जरूरत होगी."
+
+---
+
+# ⏱️ 02:00 — CHECK POWERSHELL
+
+**COMMAND:**
 
 ```powershell
 $PSVersionTable.PSVersion
 ```
 
-Optional Git check:
+**VOICEOVER:**
 
-```powershell
-git --version
-```
-
-अगर Git installed नहीं है तो native Windows पर Git for Windows recommended है क्योंकि Claude Code Bash tool use कर सकता है। Git उपलब्ध न होने पर Claude Code Windows पर PowerShell को shell के रूप में use करता है।
+> "सबसे पहले PowerShell version check कर लेते हैं."
 
 ---
 
-# PART 2 — INSTALL CLAUDE CODE
+# ⏱️ 02:20 — INSTALL CLAUDE CODE
 
-**VOICEOVER:**
-
-> "अब सबसे पहले Claude Code install करते हैं."
-
-**SCREEN COMMAND:**
+**COMMAND:**
 
 ```powershell
 irm https://claude.ai/install.ps1 | iex
 ```
 
-Installation complete होने के बाद:
+फिर:
 
 ```powershell
 claude --version
 ```
 
-अगर version दिखाई देता है, तो Claude Code successfully install हो चुका है.
+**VOICEOVER:**
 
-Official documentation के अनुसार Windows PowerShell के लिए यही current native installation command है।
+> "Installation complete होने के बाद `claude --version` run करेंगे.
+>
+> अगर version दिखाई देता है, तो Claude Code successfully installed है."
 
 ---
 
-# PART 3 — OPENROUTER ACCOUNT
+# ⏱️ 03:00 — OPENROUTER ACCOUNT
+
+**SCREEN:**
+
+OpenRouter dashboard.
 
 **VOICEOVER:**
 
-> "अब हमें OpenRouter की API key चाहिए."
+> "अब OpenRouter पर जाएं और एक API key create करें."
 
-Browser में OpenRouter खोलें:
-
-https://openrouter.ai/
-
-फिर:
+**ON SCREEN:**
 
 ```text
-Dashboard
+OpenRouter
+→ Dashboard
 → Keys
 → Create Key
 ```
 
-**IMPORTANT SCREEN NOTE:**
+**IMPORTANT:**
 
-> API key को कभी भी video में expose मत करें.
+```text
+NEVER SHOW YOUR REAL API KEY
+```
 
 **VOICEOVER:**
 
-> "मैं अपनी real API key screen पर नहीं दिखाऊंगा. Tutorial में हम placeholder use करेंगे."
-
-Example:
-
-```text
-sk-or-v1-XXXXXXXXXXXXXXXX
-```
+> "मैं video में अपनी real API key कभी display नहीं करूंगा.
+>
+> आप अपनी key को हमेशा private रखें."
 
 ---
 
-# PART 4 — OPENROUTER FREE ROUTER
+# ⏱️ 03:40 — OPENROUTER FREE ROUTER
 
-**VOICEOVER:**
-
-> "अब हम OpenRouter के Free Models Router को देखेंगे."
-
-Browser:
-
-https://openrouter.ai/openrouter/free
-
-यहाँ model identifier है:
+**SCREEN:**
 
 ```text
 openrouter/free
@@ -121,63 +192,74 @@ openrouter/free
 
 **VOICEOVER:**
 
-> "`openrouter/free` एक single fixed model नहीं है. यह OpenRouter का router है जो available free models में से suitable model select करता है."
+> "अब हम OpenRouter के Free Models Router पर आते हैं."
 
-OpenRouter की current documentation इसे free models के लिए router बताती है और request requirements के आधार पर compatible free models filter कर सकता है।
+**SCREEN:**
 
----
-
-# PART 5 — SET OPENROUTER API KEY
+```text
+Model:
+openrouter/free
+```
 
 **VOICEOVER:**
 
-> "अब सबसे important step है Claude Code को OpenRouter का endpoint बताना."
+> "ध्यान रखें — `openrouter/free` एक specific model नहीं है.
+>
+> यह एक routing endpoint है, जो available free models में से model choose करता है."
 
-PowerShell में:
+---
+
+# ⏱️ 04:20 — CONFIGURE API KEY
+
+PowerShell:
 
 ```powershell
 $env:OPENROUTER_API_KEY="YOUR_OPENROUTER_API_KEY"
 ```
 
-अब Claude Code के लिए gateway variables:
+**VOICEOVER:**
+
+> "यहाँ अपनी नई OpenRouter API key डालें."
+
+फिर:
 
 ```powershell
 $env:ANTHROPIC_BASE_URL="https://openrouter.ai/api"
 ```
 
-और authentication:
+फिर:
 
 ```powershell
 $env:ANTHROPIC_AUTH_TOKEN=$env:OPENROUTER_API_KEY
 ```
 
-अब अगर कोई existing Anthropic API key set है तो उसे clear करें:
+और:
 
 ```powershell
 $env:ANTHROPIC_API_KEY=""
 ```
 
+**VOICEOVER:**
+
+> "यहाँ हम Claude Code को बता रहे हैं कि Anthropic-compatible requests OpenRouter के endpoint पर भेजनी हैं."
+
 ---
 
-# PART 6 — CONFIGURE THE MODEL
-
-अब:
+# ⏱️ 05:20 — CONFIGURE MODEL
 
 ```powershell
 $env:ANTHROPIC_DEFAULT_SONNET_MODEL="openrouter/free"
 ```
 
-अगर testing में दूसरे Claude Code model slots भी same router पर भेजने हैं:
+Optional testing:
 
 ```powershell
 $env:ANTHROPIC_DEFAULT_OPUS_MODEL="openrouter/free"
 
-$env:ANTHROPIC_DEFAULT_SONNET_MODEL="openrouter/free"
-
 $env:ANTHROPIC_DEFAULT_HAIKU_MODEL="openrouter/free"
 ```
 
-Subagent model के लिए:
+Subagent:
 
 ```powershell
 $env:CLAUDE_CODE_SUBAGENT_MODEL="openrouter/free"
@@ -185,39 +267,38 @@ $env:CLAUDE_CODE_SUBAGENT_MODEL="openrouter/free"
 
 **VOICEOVER:**
 
-> "अब Claude Code के model routing variables को OpenRouter के `openrouter/free` identifier पर point कर दिया गया है."
+> "अब Claude Code के model variables को OpenRouter के Free Router पर point कर दिया गया है."
 
 ---
 
-# PART 7 — START CLAUDE CODE
-
-अब:
+# ⏱️ 06:15 — START CLAUDE CODE
 
 ```powershell
 claude
 ```
 
-अगर Claude Code खुल जाता है, तो अंदर:
+Claude Code खुलने के बाद:
 
 ```text
 /status
 ```
 
-**SCREEN पर CHECK करें:**
+**VOICEOVER:**
+
+> "अब `/status` से हम configuration verify करेंगे."
+
+**SCREEN:**
 
 ```text
-Anthropic base URL
+Base URL:
+https://openrouter.ai/api
 ```
-
-और authentication source.
-
-Claude Code की gateway documentation के अनुसार `/status` में gateway base URL और active credential source दिखाई देना चाहिए।
 
 ---
 
-# PART 8 — TEST CONNECTION
+# ⏱️ 06:50 — FIRST TEST
 
-Claude Code के अंदर:
+Claude Code:
 
 ```text
 Hello
@@ -226,73 +307,41 @@ Hello
 फिर:
 
 ```text
-What model are you using?
+What model are you currently using?
 ```
 
-और:
+फिर:
 
 ```text
-Explain this project structure.
+Explain what you can do in this project.
 ```
 
-अगर response आता है तो basic connection working है.
+**VOICEOVER:**
+
+> "अगर response आ रहा है, तो हमारा basic connection working है."
 
 ---
 
-# PART 9 — DIRECT API TEST
-
-अब Claude Code से बाहर PowerShell में connection को independently test करना useful है.
-
-पहले:
-
-```powershell
-$env:ANTHROPIC_BASE_URL
-```
-
-यह output होना चाहिए:
-
-```text
-https://openrouter.ai/api
-```
-
-Credential check:
-
-```powershell
-if ($env:OPENROUTER_API_KEY) {
-    "OPENROUTER_API_KEY is set"
-} else {
-    "OPENROUTER_API_KEY is missing"
-}
-```
-
-**API key को print मत करें.**
-
----
-
-# PART 10 — TEST OPENROUTER DIRECTLY
-
-OpenRouter का Anthropic-compatible endpoint:
-
-```text
-https://openrouter.ai/api/v1/messages
-```
-
-और `openrouter/free` model identifier use किया जा सकता है। OpenRouter current documentation इस router के लिए Anthropic Messages API format भी दिखाती है।
+# ⏱️ 07:30 — DIRECT OPENROUTER API TEST
 
 PowerShell:
 
 ```powershell
 $body = @{
     model = "openrouter/free"
-    max_tokens = 20
+    max_tokens = 50
     messages = @(
         @{
             role = "user"
-            content = "."
+            content = "Say hello in one sentence."
         }
     )
 } | ConvertTo-Json -Depth 10
+```
 
+फिर:
+
+```powershell
 Invoke-RestMethod `
     -Method Post `
     -Uri "https://openrouter.ai/api/v1/messages" `
@@ -304,13 +353,15 @@ Invoke-RestMethod `
     -Body $body
 ```
 
-अगर JSON response मिलता है तो OpenRouter API key और endpoint working हैं.
+**VOICEOVER:**
+
+> "अब हम Claude Code को हटाकर directly OpenRouter endpoint test कर रहे हैं.
+>
+> अगर यहाँ response मिलता है, तो API key और endpoint दोनों working हैं."
 
 ---
 
-# PART 11 — START A REAL CODING SESSION
-
-अपने project folder में जाएँ:
+# ⏱️ 08:40 — REAL PROJECT OPEN करें
 
 ```powershell
 cd "C:\Path\To\Your\Project"
@@ -325,104 +376,102 @@ claude
 Claude Code में:
 
 ```text
-What does this project do?
+Analyze this project.
+
+Do not modify anything.
+
+Tell me:
+1. What framework is being used?
+2. What is the main entry point?
+3. What package manager is being used?
+4. What files are most important?
 ```
-
-फिर:
-
-```text
-Explain the folder structure.
-```
-
-फिर:
-
-```text
-What technologies does this project use?
-```
-
-Claude Code project files को जरूरत के अनुसार read कर सकता है; manually हर file context में देने की जरूरत नहीं होती।
-
----
-
-# PART 12 — REAL CODING TEST
-
-अब एक safe coding test:
-
-```text
-Create a simple hello world function in the main entry file and explain the changes before applying them.
-```
-
-Claude Code relevant file खोजेगा और change propose करेगा.
 
 **VOICEOVER:**
 
-> "अब हम देख सकते हैं कि यह सिर्फ chatbot की तरह answer नहीं कर रहा, बल्कि actual coding workflow में project files के साथ काम कर रहा है."
+> "अब हम actual coding project में Claude Code को test करेंगे."
 
 ---
 
-# PART 13 — GIT TEST
+# ⏱️ 09:40 — CLAUDE CODE AGENT DEMO
 
-अगर project Git repository है:
-
-```text
-What files have I changed?
-```
-
-फिर:
+Prompt:
 
 ```text
-Show me the last 5 commits.
+Inspect this project and identify the cause of the current build error.
+
+Do not modify any files.
+
+Explain:
+1. The root cause
+2. The affected files
+3. The recommended fix
 ```
 
-फिर:
+**VOICEOVER:**
 
-```text
-Review my current changes and explain any potential issues.
-```
-
-Claude Code Git workflows के साथ conversational तरीके से काम कर सकता है।
+> "यहाँ हम पहले analysis करवा रहे हैं और modification नहीं करने दे रहे."
 
 ---
 
-# PART 14 — CLAUDE CODE BASIC COMMANDS
+# ⏱️ 10:30 — CODING DEMO
 
-Terminal commands:
+Prompt:
 
-```powershell
+```text
+Now fix the identified build issue.
+
+Before modifying anything:
+1. Explain the changes.
+2. List the files you will modify.
+3. Apply the minimum required changes.
+4. Run the relevant tests.
+5. Summarize the result.
+```
+
+**VOICEOVER:**
+
+> "अब Claude Code actual project modification कर सकता है और उसके बाद tests run कर सकता है."
+
+---
+
+# ⏱️ 11:40 — IMPORTANT CLAUDE CODE COMMANDS
+
+**SCREEN:**
+
+```text
 claude
 ```
 
-Interactive mode.
+Start Claude Code.
 
-```powershell
-claude "fix the build error"
+```text
+claude "fix this bug"
 ```
 
-One-time task.
+Direct task.
 
-```powershell
-claude -p "explain this function"
+```text
+claude -p "explain this code"
 ```
 
-One-off query.
+Print-style one-off query.
 
-```powershell
+```text
 claude -c
 ```
 
-Most recent conversation continue करना.
+Continue recent conversation.
 
-```powershell
+```text
 claude -r
 ```
 
-Previous conversation resume करना.
-
-Claude Code की current quickstart documentation इन्हें essential CLI commands के रूप में list करती है।
+Resume previous conversation.
 
 ---
 
-# PART 15 — SESSION COMMANDS
+# ⏱️ 12:40 — CLAUDE CODE SLASH COMMANDS
 
 Claude Code के अंदर:
 
@@ -430,51 +479,49 @@ Claude Code के अंदर:
 /help
 ```
 
-Help.
-
 ```text
 /status
 ```
-
-Current configuration/status.
-
-```text
-/clear
-```
-
-Conversation clear.
-
-```text
-/login
-```
-
-Login/re-authentication.
-
-```text
-/logout
-```
-
-Saved authentication clear करना.
 
 ```text
 /model
 ```
 
-Model selection.
+```text
+/clear
+```
+
+```text
+/login
+```
+
+```text
+/logout
+```
 
 ```text
 /exit
 ```
 
-Session exit.
+**VOICEOVER:**
 
-`/help`, `/clear`, `/exit` आदि current quickstart में documented हैं।
+> "इन commands को याद रखना जरूरी है क्योंकि इन्हीं से आप Claude Code session और configuration manage कर सकते हैं."
 
 ---
 
-# PART 16 — MODEL DISCOVERY
+# ⏱️ 13:30 — MODEL PICKER
 
-अगर हमारा gateway model discovery support करता है, तो Claude Code में:
+Claude Code:
+
+```text
+/model
+```
+
+**VOICEOVER:**
+
+> "अब `/model` से model selection interface खोल सकते हैं."
+
+अगर gateway model discovery configure किया गया है:
 
 ```powershell
 $env:CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY="1"
@@ -492,135 +539,25 @@ claude
 /model
 ```
 
-Claude Code gateway से model list discover करके model picker में additional models दिखा सकता है। Current documentation के अनुसार discovered models `From gateway` के रूप में दिखाई देते हैं।
+**VOICEOVER:**
 
-Debug के लिए:
+> "अगर आपका gateway model discovery support करता है, तो gateway से available models model picker में दिखाई दे सकते हैं."
+
+---
+
+# ⏱️ 14:30 — DEBUGGING
+
+अगर connection में problem आए:
 
 ```powershell
 claude --debug
 ```
 
-Gateway discovery logs में:
-
-```text
-[gatewayDiscovery]
-```
-
-देखे जा सकते हैं।
-
----
-
-# PART 17 — PERSIST THE CONFIGURATION
-
-अब तक हमारे environment variables सिर्फ current PowerShell session के लिए हैं.
-
-अगर permanent user-level configuration चाहिए, तो Claude Code का global settings file use कर सकते हैं:
-
-```text
-%USERPROFILE%\.claude\settings.json
-```
-
-Official gateway documentation Windows पर इसी global path को बताती है।
-
-Create/open:
-
-```powershell
-New-Item -ItemType Directory -Force "$HOME\.claude"
-notepad "$HOME\.claude\settings.json"
-```
-
-Example structure:
-
-```json
-{
-  "env": {
-    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
-    "ANTHROPIC_AUTH_TOKEN": "YOUR_OPENROUTER_API_KEY",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "openrouter/free",
-    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
-  }
-}
-```
-
 **VOICEOVER:**
 
-> "ध्यान रखें — real API key को Git repository में commit नहीं करना है. Project-level shared settings में secret डालना avoid करें."
+> "Debugging के लिए `--debug` बहुत useful है."
 
-Official docs भी project `.claude/settings.json` में credentials रखने से मना करती हैं क्योंकि वह repository के साथ share हो सकता है।
-
----
-
-# PART 18 — SECURITY CHECK
-
-PowerShell:
-
-```powershell
-if ($env:OPENROUTER_API_KEY) {
-    Write-Host "OpenRouter key detected"
-} else {
-    Write-Host "OpenRouter key missing"
-}
-```
-
-**Never do this in the video:**
-
-```powershell
-echo $env:OPENROUTER_API_KEY
-```
-
-या:
-
-```powershell
-$env:OPENROUTER_API_KEY
-```
-
-क्योंकि इससे पूरा secret terminal में दिखाई देगा.
-
----
-
-# PART 19 — TROUBLESHOOTING
-
-## ERROR 401
-
-अगर:
-
-```text
-401 Unauthorized
-```
-
-आता है तो सबसे पहले API key check करें.
-
-```powershell
-if ($env:OPENROUTER_API_KEY) {
-    "Key exists"
-}
-```
-
-फिर:
-
-```powershell
-$env:ANTHROPIC_AUTH_TOKEN=$env:OPENROUTER_API_KEY
-```
-
-और Claude restart करें:
-
-```text
-/exit
-```
-
-फिर:
-
-```powershell
-claude
-```
-
-Claude Code documentation के अनुसार credential variable गलत होने पर authentication header mismatch होकर `401` आ सकता है। `ANTHROPIC_AUTH_TOKEN` bearer Authorization header भेजता है, जबकि `ANTHROPIC_API_KEY` `x-api-key` header के लिए है।
-
----
-
-# PART 20 — WRONG BASE URL
-
-Check:
+फिर configuration:
 
 ```powershell
 $env:ANTHROPIC_BASE_URL
@@ -632,264 +569,300 @@ Expected:
 https://openrouter.ai/api
 ```
 
+API key existence check:
+
+```powershell
+if ($env:OPENROUTER_API_KEY) {
+    "OpenRouter API key is configured"
+} else {
+    "OpenRouter API key is missing"
+}
+```
+
+**VOICEOVER:**
+
+> "हम कभी भी पूरी API key terminal में print नहीं करेंगे."
+
+---
+
+# ⏱️ 15:30 — COMMON 401 ERROR
+
+अगर:
+
+```text
+401 Unauthorized
+```
+
+आता है:
+
+```powershell
+$env:ANTHROPIC_AUTH_TOKEN=$env:OPENROUTER_API_KEY
+```
+
+फिर:
+
+```text
+/exit
+```
+
+और:
+
+```powershell
+claude
+```
+
+**VOICEOVER:**
+
+> "401 का सबसे common कारण गलत या missing authentication configuration है."
+
+---
+
+# ⏱️ 16:15 — WRONG BASE URL
+
+Check:
+
+```powershell
+$env:ANTHROPIC_BASE_URL
+```
+
 अगर गलत है:
 
 ```powershell
 $env:ANTHROPIC_BASE_URL="https://openrouter.ai/api"
 ```
 
-फिर:
-
-```powershell
-claude
-```
+फिर Claude Code restart करें.
 
 ---
 
-# PART 21 — CHECK CURRENT CONFIGURATION
+# ⏱️ 16:50 — SECURITY
 
-Claude Code में:
+**SCREEN — RED TEXT:**
 
 ```text
-/status
+DO NOT:
+❌ Upload API keys to GitHub
+❌ Show API keys in tutorials
+❌ Put secrets inside public project settings
+❌ Share your OpenRouter key
 ```
-
-देखें:
-
-```text
-Anthropic base URL
-Auth token
-Model
-```
-
-अगर base URL OpenRouter दिखा रहा है, तो Claude Code gateway path पर route हो रहा है।
-
----
-
-# PART 22 — DEBUG MODE
-
-अगर problem समझ नहीं आ रही:
-
-```powershell
-claude --debug
-```
-
-और gateway discovery/configuration related logs देखें.
-
----
-
-# PART 23 — DISABLE NONESSENTIAL TRAFFIC
-
-अगर आप चाहते हैं कि Claude Code का nonessential background traffic gateway deployment के बाहर न जाए:
-
-```powershell
-$env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
-```
-
-लेकिन ध्यान दें कि current Claude Code documentation के अनुसार इससे auto-updates disable होते हैं और gateway model discovery भी disable हो जाती है; इसलिए सामान्य personal tutorial setup में इसे बिना जरूरत enable न करें।
-
----
-
-# PART 24 — IMPORTANT OPENROUTER LIMITATION
 
 **VOICEOVER:**
 
-> "यहाँ एक important बात समझना जरूरी है.
+> "एक बहुत important security tip.
 >
-> `openrouter/free` का मतलब यह नहीं है कि हर request हमेशा एक ही model पर जाएगी.
+> API key को कभी GitHub पर commit मत करें.
 >
-> OpenRouter dynamically available free models में से choose करता है.
->
-> इसलिए अगर आपको exact model चाहिए, तो `openrouter/free` की जगह उस model का exact OpenRouter model slug configure करना होगा."
-
-OpenRouter की current Free Models Router documentation यही behavior describe करती है।
+> Video recording में भी key को blur या placeholder से replace करें."
 
 ---
 
-# PART 25 — FINAL TEST PROMPT
+# ⏱️ 17:30 — `openrouter/free` VS EXACT MODEL
 
-Claude Code में:
+**VOICEOVER:**
 
-```text
-Analyze this project.
-
-1. Identify the framework.
-2. Identify the main entry point.
-3. Identify the package manager.
-4. Identify the test framework.
-5. Find any obvious configuration problems.
-6. Do not modify any files yet.
-```
-
-फिर:
-
-```text
-Now create a small improvement in the project and explain exactly which files you would modify before making the change.
-```
-
----
-
-# PART 26 — DEMO CODING PROMPT
-
-Final demonstration के लिए:
-
-```text
-Inspect this project and add a simple health-check endpoint.
-
-First:
-1. Understand the existing architecture.
-2. Find the correct server entry point.
-3. Explain the implementation plan.
-4. Identify the files that will change.
-5. Wait for approval.
-6. Implement the change.
-7. Run the relevant tests.
-8. Summarize the result.
-```
-
-यह demo Claude Code के agentic coding workflow को clearly दिखाएगा.
-
----
-
-# PART 27 — FINAL RESULT
+> "अब सबसे important distinction."
 
 **SCREEN:**
 
 ```text
-Claude Code
-      ↓
-ANTHROPIC_BASE_URL
-      ↓
-OpenRouter
-      ↓
 openrouter/free
-      ↓
-Free Model Router
-      ↓
-Coding Response
+        ≠
+Specific Model
 ```
 
 **VOICEOVER:**
 
-> "और इसी तरह हमने Windows पर Claude Code को OpenRouter के साथ successfully connect कर दिया.
+> "`openrouter/free` router है.
 >
-> अब Claude Code का interface वही रहता है, लेकिन model traffic OpenRouter के gateway के through जाता है."
+> अगर आपको हमेशा एक exact model चाहिए, तो उस model का exact OpenRouter slug configure करना होगा.
+>
+> इससे model selection predictable रहेगा."
 
 ---
 
-# PART 28 — BONUS: FUTURE UNIVERSAL GATEWAY
+# ⏱️ 18:20 — UNIVERSAL GATEWAY TEASER
+
+**SCREEN:**
+
+```text
+             Claude Code
+                  │
+                  ▼
+       ┌────────────────────┐
+       │ Universal Gateway  │
+       └─────────┬──────────┘
+                 │
+       ┌─────────┼─────────┐
+       ▼         ▼         ▼
+  OpenRouter   OpenAI     Zen
+       │
+       ▼
+  Other Providers
+```
 
 **VOICEOVER:**
 
-> "और अगर आप इससे भी advanced setup बनाना चाहते हैं, तो इसी architecture को एक universal LLM gateway में convert किया जा सकता है."
+> "और अगर आप इस setup को next level पर ले जाना चाहते हैं, तो हम एक Universal LLM Gateway बना सकते हैं.
+>
+> Claude Code को सिर्फ एक Anthropic-compatible endpoint मिलेगा.
+>
+> लेकिन backend में gateway automatically provider detect करेगा, model route करेगा, failures पर retry करेगा और जरूरत पड़ने पर दूसरे provider पर failover करेगा."
+
+---
+
+# ⏱️ 19:30 — FINAL DEMO PROMPT
+
+Claude Code:
 
 ```text
+Analyze this project completely.
+
+Do not modify any files yet.
+
+Tell me:
+
+1. Framework
+2. Runtime
+3. Package manager
+4. Entry points
+5. Important configuration files
+6. Build command
+7. Test command
+8. Potential security issues
+9. Recommended improvements
+
+Wait for my approval before making changes.
+```
+
+**VOICEOVER:**
+
+> "और यह हमारा final test है."
+
+---
+
+# ⏱️ 20:30 — FINAL RESULT
+
+**SCREEN:**
+
+```text
+Windows
+   ↓
 Claude Code
-     │
-     ▼
-Universal Gateway
-     │
-     ├── OpenRouter
-     ├── OpenAI
-     ├── Anthropic
-     ├── Google
-     ├── Zen
-     └── Custom Providers
+   ↓
+Anthropic-compatible API
+   ↓
+OpenRouter
+   ↓
+openrouter/free
+   ↓
+Free Model
+   ↓
+Coding Agent
 ```
 
 **VOICEOVER:**
 
-> "इस architecture में Claude Code को सिर्फ एक standard Anthropic-compatible endpoint दिखाई देगा.
->
-> Backend में हमारा gateway provider detection, model routing, retries, fallbacks, streaming, tool translation और response normalization handle कर सकता है."
-
-Claude Code की gateway documentation भी centralized gateway को multiple providers के सामने single endpoint और centralized request logging के use case के रूप में describe करती है।
+> "तो अब हमारे पास Windows पर Claude Code और OpenRouter का working setup है."
 
 ---
 
-# 🎬 OUTRO
+# ⏱️ 21:00 — OUTRO
 
 **VOICEOVER:**
 
-> "तो दोस्तों, इस tutorial में हमने शुरुआत से लेकर end तक Claude Code को OpenRouter के साथ connect किया.
+> "अगर आप Claude Code को OpenRouter के साथ use करना चाहते थे, तो अब आपके पास complete setup है.
 >
-> हमने Claude Code install किया, OpenRouter API key configure की, Anthropic-compatible gateway endpoint set किया, `openrouter/free` configure किया, direct API test किया, Claude Code status verify किया और finally real coding task run किया.
+> हमने Claude Code install किया, OpenRouter configure किया, `openrouter/free` setup किया, API connection test किया, model configuration check की और finally real coding task run किया.
 >
-> अगर आप next level पर जाना चाहते हैं, तो हमारा next project होगा — एक Windows-native Universal LLM Gateway, जिसमें OpenRouter, OpenAI, Anthropic, Zen और दूसरे providers को एक single Claude Code-compatible endpoint के पीछे connect किया जाएगा.
+> और next part में हम इससे भी powerful setup बनाएंगे — एक Universal LLM Gateway, जिसमें OpenRouter, OpenAI, Anthropic, Zen और दूसरे compatible providers को एक single endpoint से manage किया जा सकेगा.
 >
-> Thanks for watching! ❤️"
+> अगर यह tutorial useful लगा, तो video को like करें और channel को subscribe करें.
+>
+> मिलते हैं next tutorial में. 🚀"
 
 ---
 
-# 📌 VIDEO DESCRIPTION — SHORT
+# 📌 VIDEO TITLE OPTIONS
 
-**Claude Code + OpenRouter Free Models on Windows 🚀**
+### Option 1 — Recommended
 
-इस tutorial में हम step-by-step Windows पर Claude Code install करके OpenRouter के साथ connect करते हैं और `openrouter/free` Free Models Router को coding workflow में use करते हैं.
+**Claude Code + OpenRouter FREE Models on Windows 🚀 | Full Setup 2026**
 
-Covered:
+### Option 2
 
-- Claude Code installation
-- OpenRouter API setup
-- Windows PowerShell configuration
-- Anthropic-compatible gateway
-- `openrouter/free`
-- Environment variables
-- Direct API testing
-- `/status`
-- `/model`
-- Model discovery
-- Claude Code debugging
-- Real coding workflow
-- Troubleshooting
-- Security best practices
+**Use Claude Code With OpenRouter FREE Models | Windows Setup 2026**
+
+### Option 3
+
+**Claude Code + OpenRouter Setup 🔥 | FREE AI Coding Models on Windows**
 
 ---
 
-# 🏷️ VIDEO CHAPTERS
+# 🖼️ THUMBNAIL TEXT
+
+**Option A**
 
 ```text
-00:00 Introduction
-00:35 Requirements
-01:10 Install Claude Code
-02:00 OpenRouter Setup
-03:00 Create API Key
-03:45 OpenRouter Free Router
-04:30 Configure PowerShell
-06:00 Configure Model
-07:00 Start Claude Code
-07:45 Check /status
-08:30 Test OpenRouter
-10:00 Real Coding Test
-11:30 Claude Code Commands
-13:00 Model Discovery
-14:00 Persistent Configuration
-15:30 Security
-16:30 Troubleshooting
-18:00 openrouter/free Explained
-19:00 Final Demo
-20:00 Universal Gateway Concept
-21:00 Outro
+CLAUDE CODE
++
+OPENROUTER
+
+FREE MODELS 🚀
+```
+
+**Option B**
+
+```text
+CLAUDE CODE
+WITHOUT CLAUDE API?
+
+OPENROUTER 🔥
+```
+
+**Option C**
+
+```text
+CLAUDE CODE
+×
+OPENROUTER
+
+2026 SETUP
 ```
 
 ---
 
-# 🔗 OFFICIAL REFERENCES
+# 📌 PINNED COMMENT
 
-Claude Code Quickstart: [Claude Code Quickstart](https://code.claude.com/docs/en/quickstart?utm_source=chatgpt.com)
-
-Claude Code Admin Setup: [Claude Code Admin Setup](https://code.claude.com/docs/en/admin-setup?utm_source=chatgpt.com)
-
-Claude Code LLM Gateway: [Claude Code LLM Gateway](https://code.claude.com/docs/en/llm-gateway-connect?utm_source=chatgpt.com)
-
-OpenRouter Free Models Router: [OpenRouter Free Router](https://openrouter.ai/openrouter/free?utm_source=chatgpt.com)
-
-OpenRouter Free Models: [OpenRouter Free Models](https://openrouter.ai/models?q=free&utm_source=chatgpt.com)
+> 🚀 **Claude Code + OpenRouter Setup**
+>
+> In this tutorial we configured Claude Code on Windows with OpenRouter's `openrouter/free` router.
+>
+> ⚠️ Never share your real API key. Use your own OpenRouter key and keep it private.
+>
+> Next tutorial: **Universal LLM Gateway for Claude Code — OpenRouter + OpenAI + Zen + automatic fallback & retry.**
 
 ---
 
-## ⚠️ एक correction जो tutorial में बहुत important है
+# 🔗 OFFICIAL SOURCES
 
-OpenRouter का current `openrouter/free` **fixed model नहीं है**; यह available free models में से dynamically select करता है। इसलिए video में इसे **“Free Models Router”** बोलना, **“एक free model”** नहीं।
+* [YouTube — Public Views Counting Update](https://support.google.com/youtube/thread/433409976?utm_source=chatgpt.com)
+* [Claude Code Quickstart](https://code.claude.com/docs/en/quickstart?utm_source=chatgpt.com)
+* [Claude Code Admin Setup](https://code.claude.com/docs/en/admin-setup?utm_source=chatgpt.com)
+* [Claude Code LLM Gateway](https://code.claude.com/docs/en/llm-gateway-connect?utm_source=chatgpt.com)
+* [OpenRouter Free Models](https://openrouter.ai/models?q=free&utm_source=chatgpt.com)
 
-और एक practical बात: अगर तुम्हारा अगला goal **“Claude Code + OpenRouter के लिए exact free coding model + automatic fallback + retry + multiple providers”** वाला demo है, तो उसके लिए `openrouter/free` से अलग exact model slug और gateway architecture दिखाना ज्यादा professional रहेगा।
+---
+
+## 🎯 सबसे जरूरी YouTube बदलाव
+
+तुम्हारे **24 August 2026 के बाद publish होने वाले video** में शुरुआत को इस तरह रखना बेहतर है:
+
+**0–3 sec:** Final result दिखाओ
+**3–10 sec:** “आज क्या मिलेगा”
+**10–20 sec:** Actual terminal/setup
+**20 sec onward:** Tutorial
+
+क्योंकि YouTube के नए announcement के अनुसार view अब playback शुरू होते ही count होगी।
+
+इसलिए मैंने ऊपर script को **“long intro → tutorial”** की जगह **“result → promise → immediate tutorial”** format में रखा है। 🔥
