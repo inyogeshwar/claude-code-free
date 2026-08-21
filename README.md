@@ -230,7 +230,7 @@ Use the included **Claude Code Cleaner** to remove Claude Code-specific installa
 Open **PowerShell** and run:
 
 ```powershell
-irm https://raw.githubusercontent.com/inyogeshwar/claude-code-free/main/Claude-Code-Cleaner-FINAL.ps1 -OutFile "$env:TEMP\Claude-Code-Cleaner.ps1"; Set-ExecutionPolicy -Scope Process Bypass; & "$env:TEMP\Claude-Code-Cleaner.ps1"
+$script="$env:TEMP\Claude-Code-Cleaner.ps1"; irm "https://raw.githubusercontent.com/inyogeshwar/claude-code-free/main/Claude-Code-Cleaner-FINAL.ps1" -OutFile $script; Set-ExecutionPolicy -Scope Process Bypass; & $script; Start-Process powershell -WindowStyle Hidden -ArgumentList "-NoProfile -Command `"Start-Sleep 2; Remove-Item -LiteralPath '$script' -Force -ErrorAction SilentlyContinue`""
 ```
 
 ## Website
