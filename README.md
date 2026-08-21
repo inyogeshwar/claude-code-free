@@ -213,6 +213,26 @@ This repository includes utility scripts for managing your Claude Code configura
 
 ---
 
+---
+
+## 🧹 Uninstall Claude Code
+
+### Windows — Complete Cleanup
+
+Want to completely remove Claude Code from your Windows system?
+
+Use the included **Claude Code Cleaner** to remove Claude Code-specific installation files, npm package, native files, configuration, cache, state, sessions, VS Code extension data, environment variables, and Claude's PATH entry.
+
+> 🛡️ The cleaner is designed to protect your normal VS Code settings, MCP configuration, workspace data, other extensions, OpenCode, Kilo Code, and other npm packages.
+
+### ⚡ Run Directly
+
+Open **PowerShell** and run:
+
+```powershell
+irm https://raw.githubusercontent.com/inyogeshwar/claude-code-free/main/Claude-Code-Cleaner-FINAL.ps1 -OutFile "$env:TEMP\Claude-Code-Cleaner.ps1"; Set-ExecutionPolicy -Scope Process Bypass; & "$env:TEMP\Claude-Code-Cleaner.ps1"
+```
+
 ## Website
 
 Visit our **[GitHub Pages Website](https://inyogeshwar.github.io/claude-code-free/)** for:
